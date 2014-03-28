@@ -15,4 +15,8 @@ public class SongFactory {
 	public ISong createSong3(IGameScreen gameScreen) {
 		return null;
 	}
+	
+	public ISong createTestSong() {
+		return null;
+	}
 }

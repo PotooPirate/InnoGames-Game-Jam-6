@@ -1,8 +1,14 @@
 package de.teampotoo.gamejam6.song;
 
+import java.util.List;
+
 public class Song implements ISong {
 
+	private final List<IStep> mSteps;
 	
+	private Song(List<IStep> steps) {
+		mSteps = steps;
+	}
 	
 	@Override
 	public void start() {
