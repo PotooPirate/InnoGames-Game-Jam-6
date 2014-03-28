@@ -21,6 +21,7 @@ public class SugarBar extends Group {
 		addActor(mForderground);
 		
 		setValue(0.5f);
+		addAction(Actions.alpha(0.75f));
 	}
 	
 	public void setValue(float value) {

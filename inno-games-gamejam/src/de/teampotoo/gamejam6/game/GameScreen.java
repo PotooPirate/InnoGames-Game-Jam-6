@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.song.IStep;
@@ -26,6 +27,7 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	//HUD
 	private SugarBar mSugarBar;
+	private DancePattern mDancePattern;
 	
 	// Blur shader
 	private boolean blurShaderEnabled;
@@ -44,8 +46,12 @@ public class GameScreen extends Group implements IGameScreen {
 		mSugarBar = new SugarBar();
 		mSugarBar.setPosition(20, 130);
 		
+		mDancePattern = new DancePattern();
+		mDancePattern.setPosition(Gdx.graphics.getWidth() - 400, 0);
+		
 		//HUD
 		addActor(mSugarBar);
+		addActor(mDancePattern);
 		addBackButton();
 		
 		initBlurShader();
