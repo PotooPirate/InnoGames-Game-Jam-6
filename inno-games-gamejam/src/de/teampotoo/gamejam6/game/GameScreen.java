@@ -19,10 +19,15 @@ import de.teampotoo.gamejam6.song.IStep;
 public class GameScreen extends Group implements IGameScreen {
 
 	private GameJam6 mGameJam6;
+	private Image mBackground;
 	
 	public GameScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
 		addBackButton();
+		
+		mBackground = new Image(ResourceLoader.BACKGROUND);
+		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		addActor(mBackground);
 	}
 	
 	@Override

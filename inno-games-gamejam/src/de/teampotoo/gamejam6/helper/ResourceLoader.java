@@ -10,13 +10,25 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class ResourceLoader {
+	
+	//Sugarbar
+	public static TextureRegion sSugarbarForderground;
+	public static TextureRegion sSugarbarBackground;
+	
+	public static TextureRegion BACKGROUND;
+	
 	public static Skin SKIN;
 	public static BitmapFont FONT;
 	public static BitmapFont BUTTON_FONT;
 	public static TextureRegion BUTTON;
 	public static TextureRegion BUTTON_PRESSED;
 	
-	public static void loadResources() {		
+	public static void loadResources() {	
+		sSugarbarBackground = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/sugarbar_background.png")));
+		sSugarbarForderground = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/sugarbar_forderground.png")));
+		
+		BACKGROUND = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/background.png")));
+		
 		BUTTON = new TextureRegion(new Texture(Gdx.files.internal("data/buttons/Button.png")));
 		BUTTON_PRESSED = new TextureRegion(new Texture(Gdx.files.internal("data/buttons/ButtonPressed.png")));
 		
