@@ -25,7 +25,7 @@ public class SugarBar extends Group {
 	
 	public void setValue(float value) {
 		value = value;
-		mForderground.addAction(Actions.scaleTo(100, value * 500, 0.25f));
+		mForderground.addAction(Actions.scaleTo(1, value, 2.25f));
 	}
 	
 }
