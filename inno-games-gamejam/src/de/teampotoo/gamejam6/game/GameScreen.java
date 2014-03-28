@@ -13,11 +13,15 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.game.gui.Arrow;
 import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
+import de.teampotoo.gamejam6.song.ISong;
 import de.teampotoo.gamejam6.song.IStep;
+import de.teampotoo.gamejam6.song.Song;
+import de.teampotoo.gamejam6.song.SongFactory;
 
 public class GameScreen extends Group implements IGameScreen {
 
@@ -30,6 +34,9 @@ public class GameScreen extends Group implements IGameScreen {
 	//HUD
 	private SugarBar mSugarBar;
 	private DancePattern mDancePattern;
+	
+	//Music
+	private ISong mCurrentSong;
 	
 	// Blur shader
 	private boolean blurShaderEnabled;
@@ -60,6 +67,10 @@ public class GameScreen extends Group implements IGameScreen {
 		addActor(mDancePattern);
 		addBackButton();
 		
+		//Let the music
+		mCurrentSong = SongFactory.createTestSong(this);
+		mCurrentSong.start();
+		
 		initBlurShader();
 	}
 	
@@ -74,7 +85,9 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	@Override
 	public void fireStep(IStep step) {
-		
+		System.out.println("FIRE");
+		Arrow a = new Arrow(Arrow.Direction.left, step.getTargetTime());
+		addActor(a);
 	}
 	
 	private void addBackButton() {
@@ -92,6 +105,13 @@ public class GameScreen extends Group implements IGameScreen {
 		});
 		
 		addActor(backButton);
+	}
+
+	@Override
+	public void act(float delta) {
+		super.act(delta);
+		
+		mCurrentSong.update(delta);
 	}
 
 	@Override

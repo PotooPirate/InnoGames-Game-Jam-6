@@ -17,6 +17,7 @@ public class ResourceLoader {
 	
 	//DancePattern
 	public static TextureRegion sDancePatternBackground;
+	public static TextureRegion sArrow;
 	
 	public static TextureRegion BACKGROUND;
 	
@@ -31,6 +32,7 @@ public class ResourceLoader {
 		sSugarbarForderground = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/sugarbar_forderground.png")));
 		
 		sDancePatternBackground = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/dancepattern_background.png")));
+		sArrow = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/arrow.png")));
 		
 		BACKGROUND = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/background.png")));
 		
