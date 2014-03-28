@@ -1,22 +1,20 @@
 package de.teampotoo.gamejam6.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import de.teampotoo.gamejam6.GameJam6;
-import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.DancePattern;
+import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.song.IStep;
@@ -51,13 +49,11 @@ public class GameScreen extends Group implements IGameScreen {
 		mSugarBar.setPosition(20, 130);
 		
 		mDancePattern = new DancePattern();
-		mDancePattern.setPosition(Gdx.graphics.getWidth() - 400, 0);
-
+		mDancePattern.setPosition(Gdx.graphics.getWidth() - 400, 0); 
 
 		player = new Player();
 		player.create();
 		player.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 20);
-
 		
 		//HUD
 		addActor(mSugarBar);
@@ -74,11 +70,6 @@ public class GameScreen extends Group implements IGameScreen {
 		blurShaderFBO = new FrameBuffer(Format.RGB565, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 		blurShaderTextureRegion = new TextureRegion(blurShaderFBO.getColorBufferTexture());
 		blurShaderTextureRegion.flip(false, true);
-	}
-	
-	@Override
-	public void draw (Batch batch, float parentAlpha) {
-		player.render(batch);
 	}
 	
 	@Override
@@ -105,11 +96,14 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		blurShaderFBO.begin();
+		/*blurShaderFBO.begin();
 		blurShaderTime += Gdx.graphics.getDeltaTime();
 		int width = Gdx.graphics.getWidth();
  	    int height = Gdx.graphics.getHeight();
-		super.draw(batch, parentAlpha);
+ 	    */
+		super.draw(batch, parentAlpha); 
+		player.render(batch);
+		/*
 		blurShaderFBO.end();
 		blurShaderProgram.begin();
 	    blurShaderProgram.setUniform2fv("u_radial_origin", new float[]{0.5f, 0.5f}, 0, 2);
@@ -120,5 +114,6 @@ public class GameScreen extends Group implements IGameScreen {
 	    blurShaderFBOBatch.begin();
 	    blurShaderFBOBatch.draw(blurShaderTextureRegion, 0, 0, width, height);               
 	    blurShaderFBOBatch.end();
+	    */
 	}
 }
