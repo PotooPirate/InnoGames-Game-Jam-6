@@ -11,20 +11,13 @@ public class BlurShader extends AbstractShader implements IBlurShader {
 	public static IBlurShader newInstance() {
 		return new BlurShader();
 	}
-
-	@Override
-	public void begin(float deltaTime) {
-		begin(deltaTime, 0f, 0f, 0f, 0f, 1f);
-	}
 	
 	@Override
 	public void begin(float deltaTime, float intensity, float originX, float originY, float blur, float bright) {
 		super.begin(deltaTime, intensity);
-	}
-
-	@Override
-	protected void draw() {
-		// TODO Auto-generated method stub
-		
+		mProgram.setUniform2fv("u_radial_origin", new float[]{originX, originY}, 0, 2);
+		mProgram.setUniform2fv("u_radial_size", new float[]{1f / mWidth, 1f / mHeight}, 0, 2);
+		mProgram.setUniformf("u_radial_blur", blur);
+		mProgram.setUniformf("u_radial_bright", bright);
 	}
 }
