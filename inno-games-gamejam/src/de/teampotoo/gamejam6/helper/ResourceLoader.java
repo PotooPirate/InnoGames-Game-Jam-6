@@ -15,6 +15,9 @@ public class ResourceLoader {
 	public static TextureRegion sSugarbarForderground;
 	public static TextureRegion sSugarbarBackground;
 	
+	//DancePattern
+	public static TextureRegion sDancePatternBackground;
+	
 	public static TextureRegion BACKGROUND;
 	
 	public static Skin SKIN;
@@ -26,6 +29,8 @@ public class ResourceLoader {
 	public static void loadResources() {	
 		sSugarbarBackground = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/sugarbar_background.png")));
 		sSugarbarForderground = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/sugarbar_forderground.png")));
+		
+		sDancePatternBackground = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/dancepattern_background.png")));
 		
 		BACKGROUND = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/background.png")));
 		

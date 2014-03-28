@@ -1,6 +1,7 @@
 package de.teampotoo.gamejam6.game.gui;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import de.teampotoo.gamejam6.helper.ResourceLoader;
@@ -15,14 +16,22 @@ public class SugarBar extends Group {
 	public SugarBar() {
 		mBackground = new Image(ResourceLoader.sSugarbarBackground);
 		mForderground = new Image(ResourceLoader.sSugarbarForderground);
+		mForderground.setScaleY(0f);
 		
 		addActor(mBackground);
+		addActor(mForderground);
 		
-		this.value = 0.5f;
+		setValue(0.5f);
+		addAction(Actions.alpha(0.75f));
 	}
 	
-	public void setValue() {
-		
+	public void setValue(float value) {
+		this.value = value;
+		mForderground.addAction(Actions.scaleTo(1, value, 1.0f));
+	}
+	
+	public boolean isEmpty() {
+		return value <= 0;
 	}
 	
 }
