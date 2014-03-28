@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.scenes.scene2d.Group;
 
 import de.teampotoo.gamejam6.game.IGameScreen;
 import de.teampotoo.gamejam6.song.IStep.StepType;
