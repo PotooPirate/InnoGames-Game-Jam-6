@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.song.IStep;
 
@@ -22,6 +23,9 @@ public class GameScreen extends Group implements IGameScreen {
 
 	private GameJam6 mGameJam6;
 	private Image mBackground;
+	
+	//HUD
+	private SugarBar mSugarBar;
 	
 	// Blur shader
 	private boolean blurShaderEnabled;
@@ -32,11 +36,18 @@ public class GameScreen extends Group implements IGameScreen {
 	private float blurShaderTime;
 	
 	public GameScreen(GameJam6 gameJam6) {
-		this.mGameJam6 = gameJam6;
-		addBackButton();		
+		this.mGameJam6 = gameJam6;		
 		mBackground = new Image(ResourceLoader.BACKGROUND);
 		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		addActor(mBackground);
+		
+		mSugarBar = new SugarBar();
+		mSugarBar.setPosition(20, 130);
+		
+		//HUD
+		addActor(mSugarBar);
+		addBackButton();
+		
 		initBlurShader();
 	}
 	
@@ -58,7 +69,7 @@ public class GameScreen extends Group implements IGameScreen {
 		Image backButton = new Image(ResourceLoader.BUTTON);
 		backButton.setWidth(100);
 		backButton.setHeight(50);
-		backButton.setPosition(0, Gdx.graphics.getHeight() - backButton.getHeight());
+		backButton.setPosition(20, Gdx.graphics.getHeight() - backButton.getHeight() - 20);
 		backButton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
