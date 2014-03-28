@@ -2,11 +2,7 @@ package de.teampotoo.gamejam6.song;
 
 public interface ISong {
 	
-	public enum Step {
-		left, right, up, down 
-	}
-	
-	public void start();
+	public boolean start();
 	
 	public void stop();
 	
