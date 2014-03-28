@@ -16,6 +16,7 @@ public class SugarBar extends Group {
 	public SugarBar() {
 		mBackground = new Image(ResourceLoader.sSugarbarBackground);
 		mForderground = new Image(ResourceLoader.sSugarbarForderground);
+		mForderground.setScaleY(0f);
 		
 		addActor(mBackground);
 		addActor(mForderground);

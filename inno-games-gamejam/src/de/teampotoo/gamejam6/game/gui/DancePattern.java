@@ -15,4 +15,6 @@ public class DancePattern extends Group {
 		
 		addAction(Actions.alpha(0.75f));
 	}
+	
+	
 }
