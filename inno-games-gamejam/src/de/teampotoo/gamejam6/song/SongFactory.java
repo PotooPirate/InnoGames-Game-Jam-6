@@ -8,19 +8,19 @@ import de.teampotoo.gamejam6.song.IStep.StepType;
 
 public class SongFactory {
 
-	public ISong createSong1(IGameScreen gameScreen) {
+	public static ISong createSong1(IGameScreen gameScreen) {
 		return null;
 	}
 	
-	public ISong createSong2(IGameScreen gameScreen) {
+	public static ISong createSong2(IGameScreen gameScreen) {
 		return null;
 	}
 	
-	public ISong createSong3(IGameScreen gameScreen) {
+	public static ISong createSong3(IGameScreen gameScreen) {
 		return null;
 	}
 	
-	public ISong createTestSong(IGameScreen gameScreen) {
+	public static ISong createTestSong(IGameScreen gameScreen) {
 		List<IStep> steps = new ArrayList<IStep>();
 		steps.add(Step.newInstance(StepType.up, 1000f, 1000f));
 		steps.add(Step.newInstance(StepType.left, 2000f, 1000f));
