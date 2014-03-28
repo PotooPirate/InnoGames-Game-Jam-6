@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
@@ -24,6 +25,9 @@ public class GameScreen extends Group implements IGameScreen {
 
 	private GameJam6 mGameJam6;
 	private Image mBackground;
+
+	// player stuff
+	private Player player;
 	
 	//HUD
 	private SugarBar mSugarBar;
@@ -48,6 +52,12 @@ public class GameScreen extends Group implements IGameScreen {
 		
 		mDancePattern = new DancePattern();
 		mDancePattern.setPosition(Gdx.graphics.getWidth() - 400, 0);
+
+
+		player = new Player();
+		player.create();
+		player.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 20);
+
 		
 		//HUD
 		addActor(mSugarBar);
@@ -64,6 +74,11 @@ public class GameScreen extends Group implements IGameScreen {
 		blurShaderFBO = new FrameBuffer(Format.RGB565, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 		blurShaderTextureRegion = new TextureRegion(blurShaderFBO.getColorBufferTexture());
 		blurShaderTextureRegion.flip(false, true);
+	}
+	
+	@Override
+	public void draw (Batch batch, float parentAlpha) {
+		player.render(batch);
 	}
 	
 	@Override
