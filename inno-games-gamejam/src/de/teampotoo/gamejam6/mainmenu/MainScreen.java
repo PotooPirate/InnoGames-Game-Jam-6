@@ -40,7 +40,7 @@ public class MainScreen extends Group {
 		creditsButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				mGameJam6.startCredits();
 			}
 		});
 
@@ -48,7 +48,7 @@ public class MainScreen extends Group {
 		endButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				mGameJam6.startHighscore();
 			}
 		});
 

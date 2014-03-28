@@ -7,64 +7,44 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class GameScreen implements Screen {
+import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.helper.ResourceLoader;
+import de.teampotoo.gamejam6.song.IStep;
 
-	private boolean blurShaderEnabled;
-	private FrameBuffer blurShaderFBO;
-	private TextureRegion blurShaderTextureRegion;
-	private SpriteBatch blurShaderFBOBatch;
-	private ShaderProgram blurShaderProgram;
+public class GameScreen extends Group implements IGameScreen {
+
+	private GameJam6 mGameJam6;
 	
-	public GameScreen() {
-		blurShaderEnabled = false;
- 		blurShaderFBOBatch = new SpriteBatch();
- 		blurShaderProgram = new ShaderProgram(Gdx.files.internal("data/shader/blur.vsh"), Gdx.files.internal("data/shader/blur.fsh"));
-		blurShaderFBO = new FrameBuffer(Format.RGB565, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
-		blurShaderTextureRegion = new TextureRegion(blurShaderFBO.getColorBufferTexture());
-		blurShaderTextureRegion.flip(false, true);
+	public GameScreen(GameJam6 gameJam6) {
+		this.mGameJam6 = gameJam6;
+		addBackButton();
 	}
 	
 	@Override
-	public void render(float delta) {
-		// TODO Auto-generated method stub
-
+	public void fireStep(IStep step) {
+		
 	}
-
-	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void show() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-
+	
+	private void addBackButton() {
+		Image backButton = new Image(ResourceLoader.BUTTON);
+		backButton.setWidth(100);
+		backButton.setHeight(50);
+		backButton.setPosition(0, Gdx.graphics.getHeight() - backButton.getHeight());
+		backButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				mGameJam6.startMainMenu();
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		addActor(backButton);
 	}
 
 }

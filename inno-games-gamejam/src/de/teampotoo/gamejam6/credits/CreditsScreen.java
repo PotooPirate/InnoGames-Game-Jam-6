@@ -1,49 +1,37 @@
 package de.teampotoo.gamejam6.credits;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class CreditsScreen implements Screen {
+import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.helper.ResourceLoader;
 
-	@Override
-	public void render(float delta) {
-		// TODO Auto-generated method stub
-
+public class CreditsScreen extends Group {
+	private GameJam6 mGameJam6;
+	
+	public CreditsScreen(GameJam6 gameJam6) {
+		this.mGameJam6 = gameJam6;
+		addBackButton();
 	}
-
-	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
+	
+	private void addBackButton() {
+		Image backButton = new Image(ResourceLoader.BUTTON);
+		backButton.setWidth(100);
+		backButton.setHeight(50);
+		backButton.setPosition(0, Gdx.graphics.getHeight() - backButton.getHeight());
+		backButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				mGameJam6.startMainMenu();
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		addActor(backButton);
 	}
-
-	@Override
-	public void show() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

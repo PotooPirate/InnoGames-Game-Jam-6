@@ -2,13 +2,12 @@ package de.teampotoo.gamejam6;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
+import de.teampotoo.gamejam6.credits.CreditsScreen;
+import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
+import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.mainmenu.MainScreen;
 
 public class GameJam6 implements ApplicationListener {
@@ -32,8 +31,16 @@ public class GameJam6 implements ApplicationListener {
 		state = STATE_MAINMENU;
 		
 		mGame = new Stage();
+		GameScreen game = new GameScreen(this);
+		mGame.addActor(game);
+		
 		mHighscore = new Stage();
+		HighscoreScreen highscore = new HighscoreScreen(this);
+		mHighscore.addActor(highscore);
+		
 		mCredits = new Stage();
+		CreditsScreen creditScreen = new CreditsScreen(this);
+		mCredits.addActor(creditScreen);
 		
 		mMainMenu = new Stage();
 		MainScreen mainScreen = new MainScreen(this);
@@ -86,5 +93,20 @@ public class GameJam6 implements ApplicationListener {
 	public void startGame() {
 		state = STATE_GAME;
 		Gdx.input.setInputProcessor(mGame);
+	}
+	
+	public void startHighscore() {
+		state = STATE_HIGHSCORE;
+		Gdx.input.setInputProcessor(mHighscore);
+	}
+	
+	public void startCredits() {
+		state = STATE_CREDITS;
+		Gdx.input.setInputProcessor(mCredits);
+	}
+	
+	public void startMainMenu() {
+		state = STATE_MAINMENU;
+		Gdx.input.setInputProcessor(mMainMenu);
 	}
 }
