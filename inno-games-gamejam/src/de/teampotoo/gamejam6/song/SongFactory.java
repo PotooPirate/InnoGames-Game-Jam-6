@@ -29,6 +29,6 @@ public class SongFactory {
 		steps.add(Step.newInstance(StepType.right, 5000f, 1000f));
 		steps.add(Step.newInstance(StepType.special, 6000f, 2500f));
 		
-		return Song.newInstance(gameScreen, steps);
+		return Song.newInstance(gameScreen, steps, "data/music/TestSong.mp3");
 	}
 }
