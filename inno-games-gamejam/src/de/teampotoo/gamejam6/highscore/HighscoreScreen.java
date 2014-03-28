@@ -26,7 +26,7 @@ public class HighscoreScreen extends Group {
 		Preferences prefs = Gdx.app.getPreferences("Highscores");
 		int place1 = prefs.getInteger("placeone", 0);
 		int place2 = prefs.getInteger("placetwo", 0);
-		int place3 ? prefs.getInteger("placethree", 0);
+		int place3 = prefs.getInteger("placethree", 0);
 	}
 
 	private void addBackButton() {
