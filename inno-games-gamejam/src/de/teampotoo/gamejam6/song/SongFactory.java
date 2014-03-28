@@ -1,5 +1,8 @@
 package de.teampotoo.gamejam6.song;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.teampotoo.gamejam6.game.IGameScreen;
 
 public class SongFactory {
@@ -17,6 +20,7 @@ public class SongFactory {
 	}
 	
 	public ISong createTestSong() {
+		List<IStep> steps = new ArrayList<IStep>();
 		return null;
 	}
 }

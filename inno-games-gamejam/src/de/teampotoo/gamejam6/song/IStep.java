@@ -6,7 +6,7 @@ public interface IStep {
 		left, right, up, down, special
 	}
 	
-	public StepType getStep();
+	public StepType getType();
 	
 	public float getFireTime();
 	
