@@ -1,0 +1,145 @@
+
+player1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Ellipse 1
+  rotate: false
+  xy: 2, 211
+  size: 476, 283
+  orig: 476, 283
+  offset: 0, 0
+  index: -1
+arm/left_hand
+  rotate: false
+  xy: 549, 89
+  size: 46, 57
+  orig: 46, 57
+  offset: 0, 0
+  index: -1
+arm/left_lower_arm
+  rotate: true
+  xy: 789, 207
+  size: 40, 87
+  orig: 40, 87
+  offset: 0, 0
+  index: -1
+arm/left_upper_arm
+  rotate: true
+  xy: 2, 14
+  size: 43, 146
+  orig: 43, 146
+  offset: 0, 0
+  index: -1
+arm/right_hand
+  rotate: false
+  xy: 989, 424
+  size: 31, 70
+  orig: 31, 70
+  offset: 0, 0
+  index: -1
+arm/right_lower_arm
+  rotate: true
+  xy: 883, 265
+  size: 48, 96
+  orig: 48, 96
+  offset: 0, 0
+  index: -1
+arm/right_upper_arm
+  rotate: true
+  xy: 479, 148
+  size: 51, 133
+  orig: 51, 133
+  offset: 0, 0
+  index: -1
+details/augen
+  rotate: false
+  xy: 614, 159
+  size: 134, 40
+  orig: 134, 40
+  offset: 0, 0
+  index: -1
+details/jacket_left
+  rotate: false
+  xy: 883, 407
+  size: 104, 87
+  orig: 104, 87
+  offset: 0, 0
+  index: -1
+details/jacket_right
+  rotate: false
+  xy: 883, 315
+  size: 96, 90
+  orig: 96, 90
+  offset: 0, 0
+  index: -1
+details/mund
+  rotate: false
+  xy: 150, 2
+  size: 47, 55
+  orig: 47, 55
+  offset: 0, 0
+  index: -1
+details/nase
+  rotate: false
+  xy: 474, 74
+  size: 73, 72
+  orig: 73, 72
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 480, 201
+  size: 293, 307
+  orig: 293, 307
+  offset: 0, 0
+  index: -1
+leg/left_foot
+  rotate: false
+  xy: 374, 108
+  size: 98, 43
+  orig: 98, 43
+  offset: 0, 0
+  index: -1
+leg/left_lower_leg
+  rotate: false
+  xy: 789, 362
+  size: 92, 132
+  orig: 92, 132
+  offset: 0, 0
+  index: -1
+leg/left_upper_leg
+  rotate: false
+  xy: 789, 249
+  size: 92, 111
+  orig: 92, 111
+  offset: 0, 0
+  index: -1
+leg/right_foot
+  rotate: false
+  xy: 374, 153
+  size: 103, 56
+  orig: 103, 56
+  offset: 0, 0
+  index: -1
+leg/right_lower_leg
+  rotate: false
+  xy: 197, 77
+  size: 81, 132
+  orig: 81, 132
+  offset: 0, 0
+  index: -1
+leg/right_upper_leg
+  rotate: false
+  xy: 280, 110
+  size: 92, 99
+  orig: 92, 99
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 2, 59
+  size: 193, 150
+  orig: 207, 151
+  offset: 10, 0
+  index: -1
