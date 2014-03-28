@@ -2,10 +2,16 @@ package de.teampotoo.gamejam6.mainmenu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.ObjectSet.SetIterator;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.helper.ResourceLoader;
 
 public class MainScreen implements Screen {
 
@@ -13,9 +19,45 @@ public class MainScreen implements Screen {
 	
 	public MainScreen() {
 		mStage = new Stage();
-		MainMenuActor actor = new MainMenuActor();
-		mStage.addActor(actor);
 		Gdx.input.setInputProcessor(mStage);
+		
+		Image startButton = new Image(ResourceLoader.BUTTON);
+		startButton.setPosition(Gdx.graphics.getWidth()/2 - startButton.getWidth()/2, Gdx.graphics.getHeight()/2 + startButton.getHeight()*2);
+		Image creditsButton = new Image(ResourceLoader.BUTTON);
+		creditsButton.setPosition(Gdx.graphics.getWidth()/2 - startButton.getWidth()/2, Gdx.graphics.getHeight()/2);
+		Image highscoreButton = new Image(ResourceLoader.BUTTON);
+		highscoreButton.setPosition(Gdx.graphics.getWidth()/2 - startButton.getWidth()/2, Gdx.graphics.getHeight()/2 - startButton.getHeight()*2);
+		
+		startButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				System.out.println("START");
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		creditsButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				System.out.println("CREDITS");
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		highscoreButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				System.out.println("HIGHSCORE");
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		mStage.addActor(startButton);
+		mStage.addActor(creditsButton);
+		mStage.addActor(highscoreButton);
 	}
 	
 	@Override
@@ -29,6 +71,7 @@ public class MainScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
+		mStage.getViewport().update(width, height);
 	}
 
 	@Override
@@ -57,10 +100,42 @@ public class MainScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		mStage.dispose();
 	}
 	
-	
+	private void createMenu() {		
+		Table table = new Table();
+		
+		TextButton startButton = new TextButton("Starte Spiel", ResourceLoader.SKIN);
+		startButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
+
+		TextButton creditsButton = new TextButton("Credits", ResourceLoader.SKIN);	
+		creditsButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
+
+		TextButton endButton = new TextButton("Highscore", ResourceLoader.SKIN);
+		endButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
+
+		table.add(startButton).row().pad(15f);
+		table.add(creditsButton).row();
+		table.add(endButton);
+
+		table.setPosition(1280/2, 720/1.5f);
+		mStage.addActor(table);
+	}
 
 }
