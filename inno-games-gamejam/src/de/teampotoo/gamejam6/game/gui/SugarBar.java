@@ -24,8 +24,12 @@ public class SugarBar extends Group {
 	}
 	
 	public void setValue(float value) {
-		value = value;
+		this.value = value;
 		mForderground.addAction(Actions.scaleTo(1, value, 1.0f));
+	}
+	
+	public boolean isEmpty() {
+		return value <= 0;
 	}
 	
 }
