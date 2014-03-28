@@ -1,1 +1,5 @@
 */bin/*
+inno-games-gamejam-android/gen/de/teampotoo/gamejam6/BuildConfig.java
+inno-games-gamejam-android/gen/de/teampotoo/gamejam6/R.java
+inno-games-gamejam-html/war/WEB-INF/classes/de/teampotoo/gamejam6/GwtDefinition.gwt.xml
+inno-games-gamejam-html/war/WEB-INF/classes/de/teampotoo/gamejam6/client/GwtLauncher.class
