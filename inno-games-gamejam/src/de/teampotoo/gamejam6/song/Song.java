@@ -18,6 +18,10 @@ public class Song implements ISong {
 		mSteps = steps;
 	}
 	
+	public static ISong newInstance(IGameScreen gameScreen, List<IStep> steps){
+		return new Song(gameScreen,steps);
+	}
+	
 	@Override
 	public boolean start() {
 		if (mSteps.size() < 1)
