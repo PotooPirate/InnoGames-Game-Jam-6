@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 
 import de.teampotoo.gamejam6.credits.CreditsScreen;
 import de.teampotoo.gamejam6.game.GameScreen;
+import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.mainmenu.MainScreen;
 
 public class GameJam6 extends Game {
@@ -15,6 +16,8 @@ public class GameJam6 extends Game {
 	
 	@Override
 	public void create() {
+		ResourceLoader.loadResources();
+		
 		this.mMainScreen = new MainScreen();
 		this.mCredetsScreen = new CreditsScreen();
 		this.mHighscoreScreen = new MainScreen();

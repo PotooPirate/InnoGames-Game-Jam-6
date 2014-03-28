@@ -16,14 +16,14 @@ public class ResourceLoader {
 	public static TextureRegion BUTTON;
 	public static TextureRegion BUTTON_PRESSED;
 	
-	public static void loadResources() {
-		BUTTON = new TextureRegion(new Texture(Gdx.files.internal("/GUI/Buttons/Button.png")));
-		BUTTON_PRESSED = new TextureRegion(new Texture(Gdx.files.internal("/GUI/Buttons/ButtonPressed.png")));
+	public static void loadResources() {		
+		BUTTON = new TextureRegion(new Texture(Gdx.files.internal("data/buttons/Button.png")));
+		BUTTON_PRESSED = new TextureRegion(new Texture(Gdx.files.internal("data/buttons/ButtonPressed.png")));
 		
 		//Creating the Skin
 		SKIN = new Skin();
 
-		FONT = new BitmapFont(Gdx.files.internal("data/font/UnFont.fnt"));
+		FONT = new BitmapFont(Gdx.files.internal("data/font/ButtonFont.fnt"));
 		SKIN.add("button_font", FONT);
 
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
