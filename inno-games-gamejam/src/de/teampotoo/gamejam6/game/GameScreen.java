@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -27,6 +28,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private TextureRegion blurShaderTextureRegion;
 	private SpriteBatch blurShaderFBOBatch;
 	private ShaderProgram blurShaderProgram;
+	private float blurShaderTime;
 	
 	public GameScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
@@ -67,6 +69,20 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+		blurShaderFBO.begin();
+		blurShaderTime += Gdx.graphics.getDeltaTime();
+		int width = Gdx.graphics.getWidth();
+ 	    int height = Gdx.graphics.getHeight();
 		super.draw(batch, parentAlpha);
+		blurShaderFBO.end();
+		blurShaderProgram.begin();
+	    blurShaderProgram.setUniform2fv("u_radial_origin", new float[]{0.5f, 0.5f}, 0, 2);
+	    blurShaderProgram.setUniform2fv("u_radial_size", new float[]{1f / width, 1f / height}, 0, 2);
+	    blurShaderProgram.setUniformf("u_radial_blur", 0f); // 0.5f + (MathUtils.sin(blurShaderTime * 10f) / 2));
+	    blurShaderProgram.setUniformf("u_radial_bright", 1f);
+	    blurShaderFBOBatch.setShader(blurShaderProgram);
+	    blurShaderFBOBatch.begin();
+	    blurShaderFBOBatch.draw(blurShaderTextureRegion, 0, 0, width, height);               
+	    blurShaderFBOBatch.end();
 	}
 }
