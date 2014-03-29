@@ -63,10 +63,6 @@ public class DancePattern extends Group {
 	}
 	
 	public void removeArrow(Arrow arrow) {
-		if(arrow.isActive()) {
-			GameScreen parent = (GameScreen)getParent();
-			parent.setSugarBar(parent.getSugarBarValue()-0.05f);
-		}
 		mArrows.remove(arrow);
 	}
 	

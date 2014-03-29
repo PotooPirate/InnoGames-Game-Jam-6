@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.song.IStep;
 
@@ -50,6 +51,10 @@ public class Arrow extends Group {
 				Actions.run(new Runnable() {
 					@Override
 					public void run() {
+						if(isActive()) {
+							GameScreen parent = (GameScreen)(getParent().getParent());
+							parent.setSugarBar(parent.getSugarBarValue()-0.05f);
+						}
 						mActive = false;
 					}
 				}),
