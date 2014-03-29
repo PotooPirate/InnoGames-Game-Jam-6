@@ -57,12 +57,24 @@ public class MainScreen extends Group {
 		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
 				mLowerBackground.getHeight());
 		addActor(mLowerBackground);
+
+		SugarRocket rocket = new SugarRocket(200, 20);
+		addActor(rocket);
+		SugarRocket rocket2 = new SugarRocket(400, 10);
+		addActor(rocket2);
+		SugarRocket rocket3 = new SugarRocket(500, 15);
+		addActor(rocket3);
+		SugarRocket rocket4 = new SugarRocket(700, 5);
+		addActor(rocket4);
+		SugarRocket rocket5 = new SugarRocket(800, 7);
+		addActor(rocket5);
+		SugarRocket rocket6 = new SugarRocket(100, 3);
+		addActor(rocket6);
 		
 		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
 		mUpperBackground.setBounds(0, 0, mUpperBackground.getWidth(),
 				mUpperBackground.getHeight());
-		addActor(mUpperBackground);
-		
+		addActor(mUpperBackground); 
 
 		createMenu();
 		
@@ -111,6 +123,7 @@ public class MainScreen extends Group {
 		
 		mRevolutionLabel.addAction(Actions.moveTo(Gdx.graphics.getWidth() / 2,
 				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 8, 1.5f));
+		
 	}
 	
 	/****************************************************************************

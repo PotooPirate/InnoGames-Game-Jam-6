@@ -37,4 +37,16 @@ public class Beat implements IBeat {
 	public float getBlurIntensity() {
 		return mBlurIntensity;
 	}
+
+	@Override
+	public float getIntervalLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getInterval() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

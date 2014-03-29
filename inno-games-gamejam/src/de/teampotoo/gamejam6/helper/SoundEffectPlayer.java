@@ -10,7 +10,7 @@ public class SoundEffectPlayer {
 	 ****************************************************************************/
 
 	public enum Effect{
-		cheering,awesome,brilliant,cccombobreaker,combobreaker,extreme,fantastic,fatality,great,
+		awesome,brilliant,cccombobreaker,combobreaker,extreme,fantastic,fatality,great,
 		greatjob,highscore,kimjungundancerevolution,kimjungun,looser,potoo,ridiculus,youareawesome,
 		youbeatthehighscore
 	}
@@ -19,7 +19,6 @@ public class SoundEffectPlayer {
 	 * variables
 	 ****************************************************************************/
 
-	private static Sound cheering;
 	private static Sound awesome ;
 	private static Sound brilliant;
 	private static Sound cccombobreaker;
@@ -49,9 +48,6 @@ public class SoundEffectPlayer {
 			
 	public static void Play(Effect playEffect) {
 		switch(playEffect){
-		case cheering:
-			cheering.play();
-			break;
 		case awesome:
 			awesome.play();
 			break;
@@ -108,7 +104,6 @@ public class SoundEffectPlayer {
 	}
 
 	public static void loadSounds() {
-		cheering = getSound("Applause.mp3");
 		awesome = getSound("Awesome.mp3");
 		brilliant = getSound("Brilliant.mp3");
 		cccombobreaker = getSound("CoCoCoComboBreaker.mp3");
