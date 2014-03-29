@@ -33,6 +33,8 @@ public class Player {
 	boolean useShadow = true;
 	boolean useNormals = true;
 	boolean flipY = false;
+	
+	private SpriteBatch batch = new SpriteBatch();
  
 	public void create() { 
 		renderer = new SkeletonRenderer();
@@ -76,7 +78,9 @@ public class Player {
 		skeleton.setY(y);
 	} 
 
-	public void render(Batch batch) {
+	public void render() {
+		batch.begin();
+		
 		state.update(Gdx.graphics.getDeltaTime());
 		state.apply(skeleton);
 
@@ -84,6 +88,8 @@ public class Player {
 		skeleton.update(Gdx.graphics.getDeltaTime());
 		
 		renderer.draw(batch, skeleton);
+		
+		batch.end();
 	}
 
 	public void setState(DanceStyle newDance) {
