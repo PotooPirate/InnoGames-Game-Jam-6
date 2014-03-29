@@ -3,14 +3,7 @@ package de.teampotoo.gamejam6.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
@@ -40,7 +33,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private GameJam6 mGameJam6;
 	private HighscoreScreen mHighscore;
 	private Image mUpperBackground;
-	private Image mRocket1, mRocket2;
+	private Image mRocket1;
 	private Image mLowerBackground;
 
 	private int mPlayerPoints; // current points while the game runs
@@ -60,8 +53,6 @@ public class GameScreen extends Group implements IGameScreen {
 
 	// Blur shader
 	private IBlurShader mBlurShader = ShaderFactory.createBlurShader();
-	private IBlurShader mPlayerBlurShader = ShaderFactory.createBlurShader();
-	private SpriteBatch mPlayerBatch = new SpriteBatch();
 
 	/****************************************************************************
 	 * constructor
@@ -213,7 +204,6 @@ public class GameScreen extends Group implements IGameScreen {
 		mBlurShader.end();
 
 		player.render();
-//		}
 	}
 
 	public void setPlayerPoints(int points) {
