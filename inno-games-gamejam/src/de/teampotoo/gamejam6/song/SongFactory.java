@@ -24,7 +24,9 @@ public class SongFactory {
 		int bpm = 132;
 		float beatLength = (60f / bpm);
 		int beatCount = 0;
-		for (int i = 0; i < 8; i++) {
+		beats.add(Beat.newInstance(BeatType.none, beatCount * beatLength * 4, 0f, 0f));
+		beatCount++;
+		for (int i = 0; i < 7; i++) {
 			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
 			beatCount++;
 		}
@@ -88,16 +90,16 @@ public class SongFactory {
 				// Set timestamps for steps per beat
 				List<Float> offset = new ArrayList<Float>();
 				if (currentBeat.getType() == BeatType.easy) {
-					offset.add(3f * beatLength);
+					offset.add(0f * beatLength);
 				} else if (currentBeat.getType() == BeatType.medium) {
-					offset.add(1f * beatLength);
-					offset.add(3f * beatLength);
+					offset.add(0f * beatLength);
+					offset.add(2f * beatLength);
 				} else if (currentBeat.getType() == BeatType.hard) {
 					offset.add(0f * beatLength);
 					offset.add(1f * beatLength);
 					offset.add(2f * beatLength);
 					offset.add(3f * beatLength);
-				} else {
+				} else if (currentBeat.getType() == BeatType.ridiculus) {
 					offset.add(0f * beatLength);
 					offset.add(0.5f * beatLength);
 					offset.add(1f * beatLength);
@@ -119,7 +121,7 @@ public class SongFactory {
 			// Add current beat layout for this beat
 			for (Map.Entry<StepType, List<Float>> entry : stepsPerBeat.entrySet()) {
 				for (Float timestamp : entry.getValue()) {
-					steps.add(Step.newInstance(entry.getKey(), currentBeat.getTimestamp() + timestamp, difficulty));
+					steps.add(Step.newInstance(entry.getKey(), currentBeat.getTimestamp() + timestamp + 0.25f, difficulty));
 				}
 			}
 			

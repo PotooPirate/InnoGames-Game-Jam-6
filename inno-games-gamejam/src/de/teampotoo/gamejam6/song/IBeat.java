@@ -3,7 +3,7 @@ package de.teampotoo.gamejam6.song;
 public interface IBeat {
 
 	public enum BeatType {
-		easy, medium, hard, ridiculus
+		none, easy, medium, hard, ridiculus
 	}
 	
 	public float getRetroIntensity();
