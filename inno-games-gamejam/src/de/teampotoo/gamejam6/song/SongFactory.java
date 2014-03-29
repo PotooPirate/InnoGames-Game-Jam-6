@@ -1,22 +1,18 @@
 package de.teampotoo.gamejam6.song;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.badlogic.gdx.math.MathUtils;
 
 import de.teampotoo.gamejam6.game.IGameScreen;
 import de.teampotoo.gamejam6.game.IGameScreen.Difficulty;
+import de.teampotoo.gamejam6.song.IBeat.BeatType;
 import de.teampotoo.gamejam6.song.IStep.StepType;
 
 public class SongFactory {
-
-	/****************************************************************************
-	 * enum
-	 ****************************************************************************/
-	public enum BeatType {
-		none, flat, slow, normal, fast, ridiculus
-	}
 
 	/****************************************************************************
 	 * methods
@@ -24,81 +20,96 @@ public class SongFactory {
 
 	public static ISong createSong1(IGameScreen gameScreen,
 			Difficulty difficulty) {
-		List<BeatType> beats = new ArrayList<BeatType>();
-		for (int i = 0; i < 8; i++)
-			beats.add(BeatType.flat);
-		for (int i = 0; i < 8; i++)
-			beats.add(BeatType.slow);
-		for (int i = 0; i < 8; i++)
-			beats.add(BeatType.normal);
-		for (int i = 0; i < 8; i++)
-			beats.add(BeatType.fast);
-		for (int i = 0; i < 8; i++)
-			beats.add(BeatType.normal);
-		for (int i = 0; i < 8; i++)
-			beats.add(BeatType.slow);
-		for (int i = 0; i < 8; i++)
-			beats.add(BeatType.flat);
-		return createSong(gameScreen, beats, 132,
+		List<IBeat> beats = new ArrayList<IBeat>();
+		int bpm = 132;
+		float beatLength = (60f / bpm);
+		int beatCount = 0;
+		for (int i = 0; i < 8; i++) {
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 8; i++) {
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 8; i++) {
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 8; i++) {
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 8; i++) {
+			beats.add(Beat.newInstance(BeatType.ridiculus, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 8; i++) {
+			beats.add(Beat.newInstance(BeatType.ridiculus, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		return createSong(gameScreen, beats, beatLength,
 				"data/music/Crazy_Gameboy.wav", difficulty);
 	}
 
 	public static ISong createSong(IGameScreen gameScreen,
-			List<BeatType> beats, int bpm, String path, Difficulty difficulty) {
+			List<IBeat> beats, float beatLength, String path, Difficulty difficulty) {
 		List<IStep> steps = new ArrayList<IStep>();
-		float beatLength = (60f / bpm);
-		BeatType lastBeat = BeatType.none;
-		StepType[][] beatStep = new StepType[4][2];
+		Map<StepType, List<Float>> stepsPerBeat = new HashMap<IStep.StepType, List<Float>>();
+		IBeat currentBeat = null;
+		IBeat lastBeat = null;
 		for (int i = 0; i < beats.size(); i++) {
-			if (beats.get(i) != lastBeat) {
-				lastBeat = beats.get(i);
-				for (int j = 0; j < 4; j++) {
-					for (int k = 0; k < 2; k++) {
-						beatStep[j][k] = StepType.none;
-					}
+			currentBeat = beats.get(i);
+			
+			// Update beat layout if another beat occurs
+			if (lastBeat == null || currentBeat.getType() != lastBeat.getType()) {
+				stepsPerBeat.clear();
+				
+				// Set timestamps for steps per beat
+				List<Float> offset = new ArrayList<Float>();
+				if (currentBeat.getType() == BeatType.easy) {
+					offset.add(3f * beatLength);
+				} else if (currentBeat.getType() == BeatType.medium) {
+					offset.add(1f * beatLength);
+					offset.add(3f * beatLength);
+				} else if (currentBeat.getType() == BeatType.hard) {
+					offset.add(0f * beatLength);
+					offset.add(1f * beatLength);
+					offset.add(2f * beatLength);
+					offset.add(3f * beatLength);
+				} else {
+					offset.add(0f * beatLength);
+					offset.add(0.5f * beatLength);
+					offset.add(1f * beatLength);
+					offset.add(1.5f * beatLength);
+					offset.add(2f * beatLength);
+					offset.add(2.5f * beatLength);
+					offset.add(3f * beatLength);
+					offset.add(3.5f * beatLength);
 				}
-				if (lastBeat == BeatType.flat || lastBeat == BeatType.slow
-						|| lastBeat == BeatType.normal
-						|| lastBeat == BeatType.fast
-						|| lastBeat == BeatType.ridiculus) {
-					beatStep[3][0] = MathUtils.randomBoolean() ? StepType.up
-							: MathUtils.randomBoolean() ? StepType.down
-									: StepType.none;
-					beatStep[3][1] = MathUtils.randomBoolean() ? StepType.left
-							: MathUtils.randomBoolean() ? StepType.right
-									: StepType.none;
-				}
-
-				if (lastBeat == BeatType.slow || lastBeat == BeatType.normal
-						|| lastBeat == BeatType.fast
-						|| lastBeat == BeatType.ridiculus) {
-					beatStep[1][0] = MathUtils.randomBoolean() ? StepType.up
-							: MathUtils.randomBoolean() ? StepType.down
-									: StepType.none;
-					beatStep[1][1] = MathUtils.randomBoolean() ? StepType.left
-							: MathUtils.randomBoolean() ? StepType.right
-									: StepType.none;
-				}
-
-				if (lastBeat == BeatType.normal || lastBeat == BeatType.fast
-						|| lastBeat == BeatType.ridiculus) {
-					beatStep[1][0] = MathUtils.randomBoolean() ? StepType.up
-							: MathUtils.randomBoolean() ? StepType.down
-									: StepType.none;
-					beatStep[1][1] = MathUtils.randomBoolean() ? StepType.left
-							: MathUtils.randomBoolean() ? StepType.right
-									: StepType.none;
+				
+				// Set step types
+				if (MathUtils.randomBoolean()) {
+					stepsPerBeat.put(MathUtils.randomBoolean() ? StepType.up : StepType.down, offset);
+				} else {
+					stepsPerBeat.put(MathUtils.randomBoolean() ? StepType.left : StepType.right, offset);
 				}
 			}
-			for (int j = 0; j < 4; j++) {
-				for (int k = 0; k < 2; k++) {
-					if (beatStep[j][k] != StepType.none) {
-						steps.add(Step.newInstance(beatStep[j][k], beatLength
-								* ((i * 4) + j), difficulty));
-					}
+			
+			// Add current beat layout for this beat
+			for (Map.Entry<StepType, List<Float>> entry : stepsPerBeat.entrySet()) {
+				for (Float timestamp : entry.getValue()) {
+					//System.out.println((beatLength * i) + timestamp);
+					//System.out.println(lastBeat.getTimestamp());
+					//System.out.println("??? " + timestamp);
+					steps.add(Step.newInstance(entry.getKey(), currentBeat.getTimestamp() + timestamp, difficulty));
 				}
 			}
+			
+			// Set the current beat as the last beat
+			lastBeat = currentBeat;
 		}
+		System.out.println(steps.toString());
 		return Song.newInstance(gameScreen, steps, path);
 	}
 
