@@ -46,6 +46,13 @@ public class GameJam6 implements ApplicationListener {
 		mGame = new Stage();
 		mGameGroup = new GameScreen(this, mHighscoreScreen);
 		mGame.addActor(mGameGroup);
+		mGame.addListener(new InputListener() {
+			@Override
+			public boolean keyDown(InputEvent event, int keycode) {
+				mGameGroup.checkArrows(keycode);
+				return super.keyDown(event, keycode);
+			}
+		});
 		
 		mCredits = new Stage();
 		CreditsScreen creditScreen = new CreditsScreen(this);
@@ -109,13 +116,6 @@ public class GameJam6 implements ApplicationListener {
 	
 	public void startGame() {
 		state = STATE_GAME;
-		mGame.addListener(new InputListener() {
-			@Override
-			public boolean keyDown(InputEvent event, int keycode) {
-				mGameGroup.checkArrows(keycode);
-				return super.keyDown(event, keycode);
-			}
-		});
 		mGameGroup.startGame();
 		Gdx.input.setInputProcessor(mGame);
 		
