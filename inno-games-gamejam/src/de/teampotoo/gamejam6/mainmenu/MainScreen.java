@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.game.SugarRocket;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.Player.DanceStyle;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
@@ -40,6 +41,10 @@ public class MainScreen extends Group {
 	private Actor mMovementActor = new Actor();
 	private float mInitOffScreenPosition = 0;
 	private float mInitTargetPosition = 0;
+
+	private Image mLowerBackground;
+
+	private Image mUpperBackground;
 	
 	/****************************************************************************
 	 * constructor
@@ -48,6 +53,16 @@ public class MainScreen extends Group {
 	public MainScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
 		createMenu();
+		
+		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
+		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
+				mLowerBackground.getHeight());
+		addActor(mLowerBackground);
+		
+		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
+		mUpperBackground.setBounds(0, 0, mUpperBackground.getWidth(),
+				mUpperBackground.getHeight());
+		addActor(mUpperBackground);
 		
 		addActor(mMovementActor);
 		mMovementActor.setPosition(0, 0);
