@@ -100,6 +100,14 @@ public class GameScreen extends Group implements IGameScreen {
 		}
 	}
 	
+	public float getSugarBarValue() {
+		return mSugarBar.getValue();
+	}
+	
+	public void setSugarBar(float value) {
+		mSugarBar.setValue(value);
+	}
+	
 	@Override
 	public void fireStep(IStep step) {
 		mDancePattern.fireArrow(step.getType(), step.getTargetTime());
@@ -154,7 +162,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mPlayerPoints = 0;
 		mPointsLabel.setText("Punkte: 0");
 	}
-
+	
 	@Override
 	public void songEnd() {
 		mCurrentSong.start();
