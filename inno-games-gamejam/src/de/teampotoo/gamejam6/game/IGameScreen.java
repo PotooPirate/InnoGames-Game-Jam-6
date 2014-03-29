@@ -6,6 +6,6 @@ public interface IGameScreen {
 
 	void fireStep(IStep step);
 	
-	
+	void songEnd();
 	
 }

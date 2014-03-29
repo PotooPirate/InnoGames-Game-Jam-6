@@ -69,8 +69,7 @@ public class GameScreen extends Group implements IGameScreen {
 		addBackButton();
 		
 		//Let the music
-		mCurrentSong = SongFactory.createTestSong(this);
-		mCurrentSong.start();
+		mCurrentSong = SongFactory.createSong1(this);
 		
 		mBlurShader = ShaderFactory.createBlurShader();
 	}
@@ -78,19 +77,22 @@ public class GameScreen extends Group implements IGameScreen {
 	public void checkArrows(int keycode) {
 		switch(keycode) {
 			case Input.Keys.LEFT:
+				mDancePattern.checkArrow(StepType.left);
 				break;
 			case Input.Keys.UP:
+				mDancePattern.checkArrow(StepType.up);
 				break;
 			case Input.Keys.DOWN:
+				mDancePattern.checkArrow(StepType.down);
 				break;
 			case Input.Keys.RIGHT:
+				mDancePattern.checkArrow(StepType.right);
 				break;
 		}
 	}
 	
 	@Override
 	public void fireStep(IStep step) {
-		System.out.println("FIRE");
 		mDancePattern.fireArrow(step.getType(), step.getTargetTime());
 	}
 	
@@ -106,6 +108,8 @@ public class GameScreen extends Group implements IGameScreen {
 				mGameJam6.startMainMenu();
 				return super.touchDown(event, x, y, pointer, button);
 			}
+
+			
 		});
 		
 		addActor(backButton);
@@ -129,5 +133,15 @@ public class GameScreen extends Group implements IGameScreen {
 		player.render(mPlayerBatch);
 		mPlayerBatch.end();
 		mPlayerBlurShader.end();
+	}
+	
+	public void startMusic()
+	{
+		mCurrentSong.start();
+	}
+
+	@Override
+	public void songEnd() {
+		mCurrentSong.start();
 	}
 }

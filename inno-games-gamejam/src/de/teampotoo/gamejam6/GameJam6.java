@@ -1,5 +1,7 @@
 package de.teampotoo.gamejam6;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,6 +13,7 @@ import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.mainmenu.MainScreen;
+import de.teampotoo.musikeditor.musikMappingEditor;
 
 public class GameJam6 implements ApplicationListener {
 
@@ -28,6 +31,7 @@ public class GameJam6 implements ApplicationListener {
 	
 	private GameScreen mGameGroup;
 	private HighscoreScreen mHighscoreScreen;
+	private musikMappingEditor editor;
 	
 	@Override
 	public void create() {
@@ -50,6 +54,14 @@ public class GameJam6 implements ApplicationListener {
 		mMainMenu = new Stage();
 		MainScreen mainScreen = new MainScreen(this);
 		mMainMenu.addActor(mainScreen);
+		
+		try {
+			editor = new musikMappingEditor();
+		} catch (IOException e) {
+			System.out.println("fehlgeschlagen");
+			e.printStackTrace();
+		}
+		mGameGroup.addActor(editor);
 		
 		Gdx.input.setInputProcessor(mMainMenu);
 	}
@@ -104,6 +116,8 @@ public class GameJam6 implements ApplicationListener {
 				return super.keyDown(event, keycode);
 			}
 		});
+		mGameGroup.startMusic();
+		editor.start();
 		Gdx.input.setInputProcessor(mGame);
 	}
 	
