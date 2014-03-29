@@ -25,7 +25,10 @@ public class HighscoreScreen extends Group {
 		addBackButton();
 		loadHighscoreFromPreferences();
 		addLabels();
-		
+//		RESET THE SCORES
+//		Preferences prefs = Gdx.app.getPreferences("Highscores");
+//		prefs.clear();
+//		prefs.flush();
 	}
 	
 	private void loadHighscoreFromPreferences(){
@@ -43,13 +46,13 @@ public class HighscoreScreen extends Group {
 		mHighscores = new int[]{place1,place2,place3,place4,place5,place6,place7,place8,place9,place10}; 
 	}
 	
-	private void saveHighscoreToPreferences(){
+	public void saveHighscoreToPreferences(){
 		Preferences prefs = Gdx.app.getPreferences("Highscores");
 		prefs.putInteger("placeone", mHighscores[0]);
 		prefs.putInteger("placetwo", mHighscores[1]);
 		prefs.putInteger("placethree", mHighscores[2]);
 		prefs.putInteger("placefour", mHighscores[3]);
-		prefs.putInteger("placefife", mHighscores[4]);
+		prefs.putInteger("placefive", mHighscores[4]);
 		prefs.putInteger("placesix", mHighscores[5]);
 		prefs.putInteger("placeseven", mHighscores[6]);
 		prefs.putInteger("placeeight", mHighscores[7]);
