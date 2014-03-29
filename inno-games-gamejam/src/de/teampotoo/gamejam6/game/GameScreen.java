@@ -92,7 +92,7 @@ public class GameScreen extends Group implements IGameScreen {
 		// HUD
 		addActor(mSugarBar);
 		addActor(mDancePattern);
-		this.mPointsLabel = new Label("Punkte: 0", ResourceLoader.SKIN);
+		this.mPointsLabel = new Label("Points: 0", ResourceLoader.SKIN);
 		this.mPointsLabel.setPosition(Gdx.graphics.getWidth() / 2
 				- mPointsLabel.getWidth() / 2, Gdx.graphics.getHeight()
 				- mPointsLabel.getHeight() - 20);
@@ -232,7 +232,7 @@ public class GameScreen extends Group implements IGameScreen {
 
 	public void setPlayerPoints(int points) {
 		this.mPlayerPoints = points;
-		mPointsLabel.setText("Punkte: " + this.mPlayerPoints);
+		mPointsLabel.setText("Points: " + this.mPlayerPoints);
 		
 		switch(mDancePattern.getComboCounter()) {
 			case 9:
@@ -257,7 +257,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mCurrentSong.start();
 		mPlayerPoints = 0;
 		mSugarBar.setValue(0.5f);
-		mPointsLabel.setText("Punkte: 0");
+		mPointsLabel.setText("Points: 0");
 	}
 	
 	public void stopCurrentSong() {
