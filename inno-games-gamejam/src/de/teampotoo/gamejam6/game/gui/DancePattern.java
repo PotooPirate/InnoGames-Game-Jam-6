@@ -20,13 +20,11 @@ public class DancePattern extends Group {
 	/****************************************************************************
 	 * variables
 	 ****************************************************************************/
-
-	private Image mBackground;
-
 	private Rectangle mPerfect, mGood, mBad;
 	private List<Arrow> mArrows;
 	private ShapeRenderer mDebugRenderer;
 	private int mStepCounter;
+	private int mComboCounter;
 
 	/****************************************************************************
 	 * constructor
@@ -35,8 +33,7 @@ public class DancePattern extends Group {
 	public DancePattern() {
 		mArrows = new ArrayList<Arrow>();
 		mStepCounter = 0;
-		mBackground = new Image(ResourceLoader.sDancePatternBackground);
-		addActor(mBackground);
+		mComboCounter = 0;
 
 		mPerfect = new Rectangle(0, 540, 400, 20);
 		mGood = new Rectangle(0, 520, 400, 60);
@@ -48,13 +45,21 @@ public class DancePattern extends Group {
 	}
 
 	/****************************************************************************
+	 * getter and setter
+	 ****************************************************************************/
+
+	public int getComboCounter() {
+		return mComboCounter;
+	}
+	
+	/****************************************************************************
 	 * methods
 	 ****************************************************************************/
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+		batch.draw(ResourceLoader.sDancePatternBackground, getX(), getY());
 		super.draw(batch, parentAlpha);
-
 		batch.end();
 		mDebugRenderer.begin(ShapeType.Line);
 		mDebugRenderer.setColor(1f, 0f, 0f, 1f);
@@ -78,6 +83,14 @@ public class DancePattern extends Group {
 		mArrows.add(arrow);
 	}
 
+	public void addComboCounter() {
+		this.mComboCounter++;
+	}
+	
+	public void resetComboCounter() {
+		this.mComboCounter = 0;
+	}
+	
 	public void removeArrow(Arrow arrow) {
 		mArrows.remove(arrow);
 	}
@@ -95,6 +108,7 @@ public class DancePattern extends Group {
 					a.getArrowImage().setColor(0, 1f, 0, 1f);
 					a.setActive(false);
 					hit = true;
+					addComboCounter();
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
@@ -102,6 +116,7 @@ public class DancePattern extends Group {
 					a.getArrowImage().setColor(1f, 0.5f, 0, 1f);
 					a.setActive(false);
 					hit = true;
+					addComboCounter();
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
@@ -109,6 +124,7 @@ public class DancePattern extends Group {
 					a.getArrowImage().setColor(1f, 0, 0, 1f);
 					a.setActive(false);
 					hit = true;
+					addComboCounter();
 				}
 			}
 		}

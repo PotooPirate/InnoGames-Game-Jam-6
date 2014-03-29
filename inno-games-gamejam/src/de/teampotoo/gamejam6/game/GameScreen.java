@@ -5,9 +5,12 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
@@ -33,11 +36,16 @@ public class GameScreen extends Group implements IGameScreen {
 
 	private GameJam6 mGameJam6;
 	private HighscoreScreen mHighscore;
-	private Image mBackground;
+	private Image mUpperBackground;
+	private Image mLowerBackground;
 
 	private int mPlayerPoints; // current points while the game runs
 	private int mHighscorePoints; // Frozen points after the game finished
-
+	
+	//Special HACK
+	private Matrix4 mx4Font = new Matrix4();
+	private SpriteBatch spriteFont;
+	
 	// player stuff
 	private Player player;
 
@@ -45,7 +53,8 @@ public class GameScreen extends Group implements IGameScreen {
 	private SugarBar mSugarBar;
 	private DancePattern mDancePattern;
 	private Label mPointsLabel;
-
+	private Label mComboLabel;
+	
 	// Music
 	private ISong mCurrentSong;
 
@@ -63,10 +72,15 @@ public class GameScreen extends Group implements IGameScreen {
 		this.mHighscore = highscore;
 		this.mPlayerPoints = 0;
 
-		mBackground = new Image(ResourceLoader.BACKGROUND);
-		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(),
-				Gdx.graphics.getHeight());
-		addActor(mBackground);
+		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
+		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
+				mLowerBackground.getHeight());
+		addActor(mLowerBackground);
+
+		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
+		mUpperBackground.setBounds(0, 350, mUpperBackground.getWidth(),
+				mUpperBackground.getHeight());
+		addActor(mUpperBackground);
 
 		mSugarBar = SugarBar.createSugarBar(5);
 		mSugarBar.setPosition(20, 130);
@@ -82,13 +96,19 @@ public class GameScreen extends Group implements IGameScreen {
 		// HUD
 		addActor(mSugarBar);
 		addActor(mDancePattern);
-		addBackButton();
 		this.mPointsLabel = new Label("Punkte: 0", ResourceLoader.SKIN);
 		this.mPointsLabel.setPosition(Gdx.graphics.getWidth() / 2
 				- mPointsLabel.getWidth() / 2, Gdx.graphics.getHeight()
 				- mPointsLabel.getHeight() - 20);
 		addActor(mPointsLabel);
+		this.mComboLabel = new Label("COMBO 0", ResourceLoader.sComboSkin);
+		this.mComboLabel.setPosition(Gdx.graphics.getWidth() / 4
+				- mComboLabel.getWidth() / 2, Gdx.graphics.getHeight()
+				- mComboLabel.getHeight() - 150);
+		addActor(mComboLabel);
 
+		spriteFont = new SpriteBatch();
+		
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
 
@@ -141,31 +161,13 @@ public class GameScreen extends Group implements IGameScreen {
 		mPlayerPoints = mHighscorePoints = 0;
 		mSugarBar.clearActions();
 		mSugarBar.setValue(0.5f);
+		mDancePattern.clear();
 		mGameJam6.startHighscore();
 	}
 
 	@Override
 	public void fireStep(IStep step) {
 		mDancePattern.fireArrow(step.getType(), step.getTargetTime());
-	}
-
-	private void addBackButton() {
-		Image backButton = new Image(ResourceLoader.BUTTON);
-		backButton.setWidth(100);
-		backButton.setHeight(50);
-		backButton.setPosition(20,
-				Gdx.graphics.getHeight() - backButton.getHeight() - 20);
-		backButton.addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				mGameJam6.startMainMenu();
-				return super.touchDown(event, x, y, pointer, button);
-			}
-
-		});
-
-		addActor(backButton);
 	}
 
 	@Override
@@ -190,6 +192,12 @@ public class GameScreen extends Group implements IGameScreen {
 			player.setState(DanceStyle.crazy);
 		}  
 		
+		if(mDancePattern.getComboCounter() > 0) {
+			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter());
+		}else{
+			mComboLabel.setText("");
+		}
+		
 		mCurrentSong.update(delta);
 	}
 
@@ -200,6 +208,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mBlurShader.end();
 
 		player.render();
+//		}
 	}
 
 	public void setPlayerPoints(int points) {

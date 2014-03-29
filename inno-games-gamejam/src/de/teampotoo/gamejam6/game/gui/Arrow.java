@@ -3,6 +3,7 @@ package de.teampotoo.gamejam6.game.gui;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -62,6 +63,7 @@ public class Arrow extends Group {
 				if (isActive()) {
 					GameScreen parent = (GameScreen) (getParent().getParent());
 					parent.setSugarBar(parent.getSugarBarValue() - 0.05f);
+					((DancePattern)getParent()).resetComboCounter();
 				}
 				mActive = false;
 			}
@@ -72,7 +74,6 @@ public class Arrow extends Group {
 						deleteArrow();
 					}
 				}));
-
 		addAction(seq);
 	}
 
