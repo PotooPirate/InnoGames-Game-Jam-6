@@ -33,7 +33,7 @@ public class MainScreen extends Group {
 	private Image mRainbowImage1;
 	private Image mRainbowImage2;
 	
-	private static final float ANIMATION_TIME = 2.0f;
+	private static final float ANIMATION_TIME = 3.0f;
 	private float mTimerCounter = 0;
 	private Random mRandom = new Random();
 	
@@ -80,15 +80,20 @@ public class MainScreen extends Group {
 		triggerAnimation();
 		
 		mTitleLabel = new Label("Kim Jong Dance:", ResourceLoader.SKIN_BIG);
-		mTitleLabel.setPosition(Gdx.graphics.getWidth() / 2 - (mTitleLabel.getWidth() / 2),
-				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6); 
+		mTitleLabel.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() + 100); 
 		
 		addActor(mTitleLabel);
+		
+		mTitleLabel.addAction(Actions.moveTo(Gdx.graphics.getWidth() / 2 - (mTitleLabel.getWidth() / 2),
+				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6, 1.0f));
 
 		mRevolutionLabel = new Label("Revolution!!!", ResourceLoader.sComboSkinBig);
-		mRevolutionLabel.setPosition(Gdx.graphics.getWidth() / 2,
-				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 8); 
+		mRevolutionLabel.setPosition(Gdx.graphics.getWidth() / 2 - mRevolutionLabel.getWidth(),
+				Gdx.graphics.getHeight() + 100); 
 		addActor(mRevolutionLabel);
+		
+		mRevolutionLabel.addAction(Actions.moveTo(Gdx.graphics.getWidth() / 2,
+				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 8, 1.5f));
 	}
 	
 	/****************************************************************************

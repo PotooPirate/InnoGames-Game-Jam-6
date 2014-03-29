@@ -173,9 +173,7 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void act(float delta) {
-		super.act(delta);
-
-		System.out.println("Level: " + mSugarBar.getAnimationLevel());
+		super.act(delta); 
 		
 		if (mSugarBar.getAnimationLevel() == 1) {
 			player.setState(DanceStyle.light);

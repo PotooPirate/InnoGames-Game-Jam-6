@@ -85,7 +85,7 @@ public class CreditsScreen extends Group {
 	private void addCredits() {
 		Table tabelle = new Table();
 		
-		Label headline = createCreditLabel("Title!!", ResourceLoader.SKIN);
+		Label headline = createCreditLabel("Kim Jong Dance: Revolution!!!", ResourceLoader.SKIN);
 		Label copyright = createCreditLabel("Copyright 2014. All rights reserved.", ResourceLoader.SKIN);
 		Label filler1 = createCreditLabel("\n", ResourceLoader.SKIN); 
 
