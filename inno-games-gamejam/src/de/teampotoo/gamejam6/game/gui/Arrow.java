@@ -1,10 +1,8 @@
 package de.teampotoo.gamejam6.game.gui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -12,8 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
-import de.teampotoo.gamejam6.shader.IBlurShader;
-import de.teampotoo.gamejam6.shader.ShaderFactory;
 import de.teampotoo.gamejam6.song.IStep;
 
 public class Arrow extends Group {
@@ -26,7 +22,7 @@ public class Arrow extends Group {
 	private IStep.StepType mStepType;
 	private int mId;
 	private boolean mActive;
-	private IBlurShader mShader = ShaderFactory.createBlurShader();
+	
 	/****************************************************************************
 	 * constructor
 	 ****************************************************************************/
@@ -147,9 +143,7 @@ public class Arrow extends Group {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		mShader.begin(Gdx.graphics.getDeltaTime(), mArrow.getX(), mArrow.getY(), 0.0f, 1f);
 		super.draw(batch, parentAlpha);
-		mShader.end();
 		if (sr != null) {
 			batch.end();
 			sr.begin(ShapeType.Line);

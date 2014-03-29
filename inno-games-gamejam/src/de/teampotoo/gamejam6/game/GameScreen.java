@@ -16,8 +16,6 @@ import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.helper.SoundEffectPlayer;
 import de.teampotoo.gamejam6.helper.SoundEffectPlayer.Effect;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
-import de.teampotoo.gamejam6.shader.IBlurShader;
-import de.teampotoo.gamejam6.shader.ShaderFactory;
 import de.teampotoo.gamejam6.song.IBeat;
 import de.teampotoo.gamejam6.song.ISong;
 import de.teampotoo.gamejam6.song.IStep;
@@ -50,9 +48,6 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	// Music
 	private ISong mCurrentSong;
-
-	// Blur shader
-	private IBlurShader mBlurShader = ShaderFactory.createBlurShader();
 
 	/****************************************************************************
 	 * constructor
@@ -103,8 +98,6 @@ public class GameScreen extends Group implements IGameScreen {
 		
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
-
-		mBlurShader = ShaderFactory.createBlurShader();
 	}
 
 	/****************************************************************************
@@ -202,10 +195,7 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		mBlurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0f, 1f);
 		super.draw(batch, parentAlpha);
-		mBlurShader.end();
-
 		player.render();
 	}
 

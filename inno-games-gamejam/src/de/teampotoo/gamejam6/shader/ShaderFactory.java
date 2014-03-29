@@ -4,7 +4,7 @@ public final class ShaderFactory {
 
 	private ShaderFactory() {}
 	
-	public static IBlurShader createBlurShader() {
+	public static IBlurShader createBlurShaderNew() {
 		return BlurShader.newInstance();
 	}
 }
