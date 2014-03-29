@@ -52,7 +52,6 @@ public class MainScreen extends Group {
 	
 	public MainScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
-		createMenu();
 		
 		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
 		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
@@ -63,6 +62,9 @@ public class MainScreen extends Group {
 		mUpperBackground.setBounds(0, 0, mUpperBackground.getWidth(),
 				mUpperBackground.getHeight());
 		addActor(mUpperBackground);
+		
+
+		createMenu();
 		
 		addActor(mMovementActor);
 		mMovementActor.setPosition(0, 0);
