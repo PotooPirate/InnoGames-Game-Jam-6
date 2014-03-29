@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import de.teampotoo.gamejam6.credits.CreditsScreen;
 import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
+import de.teampotoo.gamejam6.helper.SoundEffectPlayer;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.mainmenu.MainScreen;
 import de.teampotoo.musikeditor.musikMappingEditor;
@@ -44,6 +45,7 @@ public class GameJam6 implements ApplicationListener {
 	@Override
 	public void create() {
 		ResourceLoader.loadResources();
+		SoundEffectPlayer.loadSounds();
 		
 		state = STATE_MAINMENU;
 		
