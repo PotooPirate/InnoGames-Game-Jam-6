@@ -27,6 +27,7 @@ public class GameJam6 implements ApplicationListener {
 	private Stage mHighscore;
 	
 	private GameScreen mGameGroup;
+	private HighscoreScreen mHighscoreScreen;
 	
 	@Override
 	public void create() {
@@ -39,8 +40,8 @@ public class GameJam6 implements ApplicationListener {
 		mGame.addActor(mGameGroup);
 		
 		mHighscore = new Stage();
-		HighscoreScreen highscore = new HighscoreScreen(this);
-		mHighscore.addActor(highscore);
+		mHighscoreScreen = new HighscoreScreen(this);
+		mHighscore.addActor(mHighscoreScreen);
 		
 		mCredits = new Stage();
 		CreditsScreen creditScreen = new CreditsScreen(this);

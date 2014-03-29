@@ -19,6 +19,8 @@ import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
+import de.teampotoo.gamejam6.shader.IBlurShader;
+import de.teampotoo.gamejam6.shader.ShaderFactory;
 import de.teampotoo.gamejam6.song.ISong;
 import de.teampotoo.gamejam6.song.IStep;
 import de.teampotoo.gamejam6.song.IStep.StepType;
@@ -41,12 +43,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private ISong mCurrentSong;
 	
 	// Blur shader
-	private boolean blurShaderEnabled;
-	private FrameBuffer blurShaderFBO;
-	private TextureRegion blurShaderTextureRegion;
-	private SpriteBatch blurShaderFBOBatch;
-	private ShaderProgram blurShaderProgram;
-	private float blurShaderTime;
+	private IBlurShader mBlurShader;
 	
 	public GameScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;		
@@ -73,9 +70,9 @@ public class GameScreen extends Group implements IGameScreen {
 		mCurrentSong = SongFactory.createTestSong(this);
 		mCurrentSong.start();
 		
-		initBlurShader();
+		mBlurShader = ShaderFactory.createBlurShader();
 	}
-	
+
 	public void checkArrows(int keycode) {
 		switch(keycode) {
 			case Input.Keys.LEFT:
@@ -89,20 +86,10 @@ public class GameScreen extends Group implements IGameScreen {
 		}
 	}
 	
-	private void initBlurShader() {
-		blurShaderEnabled = false;
- 		blurShaderFBOBatch = new SpriteBatch();
- 		blurShaderProgram = new ShaderProgram(Gdx.files.internal("data/shader/blur.vsh"), Gdx.files.internal("data/shader/blur.fsh"));
-		blurShaderFBO = new FrameBuffer(Format.RGB565, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
-		blurShaderTextureRegion = new TextureRegion(blurShaderFBO.getColorBufferTexture());
-		blurShaderTextureRegion.flip(false, true);
-	}
-	
 	@Override
 	public void fireStep(IStep step) {
 		System.out.println("FIRE");
-//		Arrow a = new Arrow(Arrow.Direction.left, step.getTargetTime());
-//		addActor(a);
+		mDancePattern.fireArrow(step.getType(), step.getTargetTime());
 	}
 	
 	private void addBackButton() {
@@ -131,24 +118,9 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		/*blurShaderFBO.begin();
-		blurShaderTime += Gdx.graphics.getDeltaTime();
-		int width = Gdx.graphics.getWidth();
- 	    int height = Gdx.graphics.getHeight();
- 	    */
+		mBlurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0f, 1f);
 		super.draw(batch, parentAlpha); 
 		player.render(batch);
-		/*
-		blurShaderFBO.end();
-		blurShaderProgram.begin();
-	    blurShaderProgram.setUniform2fv("u_radial_origin", new float[]{0.5f, 0.5f}, 0, 2);
-	    blurShaderProgram.setUniform2fv("u_radial_size", new float[]{1f / width, 1f / height}, 0, 2);
-	    blurShaderProgram.setUniformf("u_radial_blur", 0f); // 0.5f + (MathUtils.sin(blurShaderTime * 10f) / 2));
-	    blurShaderProgram.setUniformf("u_radial_bright", 1f);
-	    blurShaderFBOBatch.setShader(blurShaderProgram);
-	    blurShaderFBOBatch.begin();
-	    blurShaderFBOBatch.draw(blurShaderTextureRegion, 0, 0, width, height);               
-	    blurShaderFBOBatch.end();
-	    */
+		mBlurShader.end();
 	}
 }

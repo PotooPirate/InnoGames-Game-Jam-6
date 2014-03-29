@@ -10,8 +10,7 @@ uniform vec2 u_radial_size;
 uniform float u_radial_blur;
 uniform float u_radial_bright;
 
-void main()
-{
+void main() {
 	vec4 sumColor = vec4(0.0, 0.0, 0.0, 0.0);
 	vec2 texCoords = v_texCoords;
 	texCoords += u_radial_size * 0.5 - u_radial_origin;
