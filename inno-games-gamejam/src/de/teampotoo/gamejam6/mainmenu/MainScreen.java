@@ -3,11 +3,13 @@ package de.teampotoo.gamejam6.mainmenu;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -29,6 +31,8 @@ public class MainScreen extends Group {
 	private Player mPlayer;
 	private Label mTitleLabel; 
 	private Label mRevolutionLabel; 
+	private Image mRainbowImage1;
+	private Image mRainbowImage2;
 	
 	private static final float ANIMATION_TIME = 2.0f;
 	private float mTimerCounter = 0;
@@ -55,21 +59,37 @@ public class MainScreen extends Group {
 		mPlayer.setPosition(mMovementActor.getX(), mMovementActor.getY());
 		mPlayer.setState(DanceStyle.crazy);
 		 
+		mRainbowImage1 = new Image(new Texture("data/eyecandy/rainbow.png"));
+		addActor(mRainbowImage1);
+		mRainbowImage1.setPosition(-180, -80);
+		mRainbowImage1.setRotation(-45);
+		mRainbowImage1.addAction(Actions.moveTo(-100, 150, 2.f));
+		mRainbowImage1.addAction(Actions.scaleTo(2.0f, 2.0f, 2.0f));
+		mRainbowImage1.addAction(Actions.repeat(-1, Actions.sequence(Actions.rotateBy(20, 0.5f), Actions.rotateBy(-20, 0.5f))));
+		
+		mRainbowImage2 = new Image(new Texture("data/eyecandy/rainbow.png"));
+		addActor(mRainbowImage2);
+		mRainbowImage2.setPosition(Gdx.graphics.getWidth() + 180, -80);
+		mRainbowImage2.setRotation(15);
+		mRainbowImage2.addAction(Actions.moveTo(Gdx.graphics.getWidth() - mRainbowImage2.getWidth(), -100, 2.f));
+		mRainbowImage2.addAction(Actions.scaleTo(2.0f, 2.0f, 2.0f));
+		mRainbowImage2.addAction(Actions.repeat(-1, Actions.sequence(Actions.rotateBy(20, 0.5f), Actions.rotateBy(-20, 0.5f))));
+		
 		mInitOffScreenPosition = -mPlayer.getHeight();
 		mInitTargetPosition = mPlayer.getHeight() / 2.5f;
 		mMovementActor.setPosition(Gdx.graphics.getWidth() / 2, mInitOffScreenPosition + mInitTargetPosition);
 		triggerAnimation();
 		
 		mTitleLabel = new Label("Kim Jong Dance", ResourceLoader.SKIN);
-		mTitleLabel.setPosition(Gdx.graphics.getWidth() / 2 - mTitleLabel.getWidth() / 2,
+		mTitleLabel.setPosition(Gdx.graphics.getWidth() / 2 - (mTitleLabel.getWidth() / 2) * 2,
 				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6);
 		mTitleLabel.setFontScale(1.5f);
 		
 		addActor(mTitleLabel);
 
-		mRevolutionLabel = new Label("Revolution!!!", ResourceLoader.SKIN);
+		mRevolutionLabel = new Label("Revolution!!!", ResourceLoader.sComboSkin);
 		mRevolutionLabel.setPosition(Gdx.graphics.getWidth() / 2,
-				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 20);
+				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 10);
 		mRevolutionLabel.setFontScale(1.5f);
 		addActor(mRevolutionLabel);
 	}
