@@ -22,12 +22,12 @@ public class SongFactory {
 	
 	public static ISong createTestSong(IGameScreen gameScreen) {
 		List<IStep> steps = new ArrayList<IStep>();
-		steps.add(Step.newInstance(StepType.up, 1000f, 1000f));
-		steps.add(Step.newInstance(StepType.left, 2000f, 1000f));
-		steps.add(Step.newInstance(StepType.right, 3000f, 2000f));
-		steps.add(Step.newInstance(StepType.left, 4000f, 1000f));
-		steps.add(Step.newInstance(StepType.right, 5000f, 1000f));
-		steps.add(Step.newInstance(StepType.special, 6000f, 2500f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.left, 2f, 1f));
+		steps.add(Step.newInstance(StepType.right, 3f, 2f));
+		steps.add(Step.newInstance(StepType.left, 4f, 1f));
+		steps.add(Step.newInstance(StepType.right, 5f, 1f));
+		steps.add(Step.newInstance(StepType.special, 6f, 2.5f));
 		
 		return Song.newInstance(gameScreen, steps, "data/music/TestSong.mp3");
 	}
