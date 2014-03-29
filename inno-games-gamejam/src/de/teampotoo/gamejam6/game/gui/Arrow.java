@@ -1,5 +1,8 @@
 package de.teampotoo.gamejam6.game.gui;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -12,6 +15,7 @@ public class Arrow extends Group {
 	
 	private Image mArrow;
 	private IStep.StepType mStepType;
+	private ShapeRenderer debugRenderer;
 	
 	public Arrow(IStep.StepType dir, float targetTime) {
 		mArrow = new Image(ResourceLoader.sArrow);
@@ -60,4 +64,24 @@ public class Arrow extends Group {
 	private void deleteArrow() {
 		getParent().removeActor(this);
 	}
+	
+	public void setDebugRenderer(ShapeRenderer debugRenderer) {
+		this.debugRenderer = debugRenderer;
+	}
+
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
+		
+		if(debugRenderer != null) {
+			batch.end();
+			debugRenderer.begin(ShapeType.Line);
+			debugRenderer.setColor(1f, 0f, 0f, 1f);
+			debugRenderer.circle(getX()+50, getY()+50, 3);
+			debugRenderer.end();
+			batch.begin();
+		}
+	}
+	
+	
 }

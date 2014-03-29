@@ -54,6 +54,7 @@ public class DancePattern extends Group {
 
 	public void fireArrow(IStep.StepType direction, float targetTime) {
 		Arrow arrow = new Arrow(direction, targetTime);
+		arrow.setDebugRenderer(mDebugRenderer);
 		addActor(arrow);
 		mArrows.add(arrow);
 	}

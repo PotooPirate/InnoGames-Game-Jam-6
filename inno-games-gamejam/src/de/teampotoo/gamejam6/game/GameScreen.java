@@ -129,6 +129,6 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void songEnd() {
-		
+		mCurrentSong.start();
 	}
 }
