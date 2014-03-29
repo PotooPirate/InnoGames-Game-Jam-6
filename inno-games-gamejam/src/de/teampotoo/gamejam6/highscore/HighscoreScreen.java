@@ -49,7 +49,7 @@ public class HighscoreScreen extends Group {
 		prefs.putInteger("placetwo", mHighscores[1]);
 		prefs.putInteger("placethree", mHighscores[2]);
 		prefs.putInteger("placefour", mHighscores[3]);
-		prefs.putInteger("placefife", mHighscores[4]);
+		prefs.putInteger("placefive", mHighscores[4]);
 		prefs.putInteger("placesix", mHighscores[5]);
 		prefs.putInteger("placeseven", mHighscores[6]);
 		prefs.putInteger("placeeight", mHighscores[7]);
