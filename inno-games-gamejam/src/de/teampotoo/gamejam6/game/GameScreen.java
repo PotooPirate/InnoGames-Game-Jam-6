@@ -113,6 +113,8 @@ public class GameScreen extends Group implements IGameScreen {
 		mHighscore.saveHighscoreToPreferences();
 		mHighscore.refreshLabels();
 		mPlayerPoints = mHighscorePoints = 0;
+		mSugarBar.clearActions();
+		mSugarBar.setValue(0.5f);
 		mGameJam6.startHighscore();
 	}
 	
