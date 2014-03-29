@@ -36,7 +36,7 @@ public class DancePattern extends Group {
 	
 	private Label mPerfectLabel;
 	
-	private Image mDebugCenter;
+	//private Image mDebugCenter;
 
 	/****************************************************************************
 	 * constructor
@@ -64,8 +64,8 @@ public class DancePattern extends Group {
 		mPerfectLabel.setPosition(40, 605);
 		mPerfectLabel.addAction(Actions.sequence(Actions.fadeOut(0.0f)));
 		
-		mDebugCenter = new Image(new Texture("data/eyecandy/HitTest.png"));
-		addActor(mDebugCenter);
+		//mDebugCenter = new Image(new Texture("data/eyecandy/HitTest.png"));
+		//addActor(mDebugCenter);
 	}
 
 	/****************************************************************************
@@ -146,7 +146,7 @@ public class DancePattern extends Group {
 					hit = true;
 					addComboCounter();
 
-					mDebugCenter.setPosition(centerX, centerY);
+					//mDebugCenter.setPosition(centerX, centerY);
 					labelAction("Perfect!");
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
@@ -157,7 +157,7 @@ public class DancePattern extends Group {
 					hit = true;
 					addComboCounter();
 					labelAction("Good!");
-					mDebugCenter.setPosition(centerX, centerY);
+					//mDebugCenter.setPosition(centerX, centerY);
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + BAD_SCORE);
@@ -167,7 +167,7 @@ public class DancePattern extends Group {
 					hit = true;
 					addComboCounter();
 					labelAction("Bad!");
-					mDebugCenter.setPosition(centerX, centerY);
+					//mDebugCenter.setPosition(centerX, centerY);
 				}
 			}
 		}
