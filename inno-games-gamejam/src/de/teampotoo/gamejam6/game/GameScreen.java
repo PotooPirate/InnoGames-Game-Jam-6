@@ -81,7 +81,7 @@ public class GameScreen extends Group implements IGameScreen {
 		addActor(mPointsLabel);
 		
 		//Let the music
-		mCurrentSong = SongFactory.createSong1(this);
+		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
 		
 		mBlurShader = ShaderFactory.createBlurShader();
 	}
