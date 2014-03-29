@@ -52,7 +52,8 @@ public class GameScreen extends Group implements IGameScreen {
 	private ISong mCurrentSong;
 	
 	private IBlurShader shader = ShaderFactory.createBlurShaderNew();
-
+	private float shaderIntensity = 0f;
+	
 	/****************************************************************************
 	 * constructor
 	 ****************************************************************************/
@@ -192,9 +193,9 @@ public class GameScreen extends Group implements IGameScreen {
 			player.setState(DanceStyle.level5);
 		}  
 		
-		if(mDancePattern.getComboCounter() > 0) {
+		if (mDancePattern.getComboCounter() > 0) {
 			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter());
-		}else{
+		} else {
 			mComboLabel.setText("");
 		}
 		
@@ -203,7 +204,11 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		shader.begin(0f, 0.5f, 0.5f, 0f, 1f);
+		shaderIntensity -= Gdx.graphics.getDeltaTime() / 2;
+		if (shaderIntensity < 0) {
+			shaderIntensity = 0f;
+		}
+		shader.begin(0f, 0.5f, 0.5f, shaderIntensity, 1f);
 		super.draw(batch, parentAlpha);
 		player.render();
 		shader.end();
@@ -239,8 +244,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mPointsLabel.setText("Punkte: 0");
 	}
 	
-	public void stopCurrentSong()
-	{
+	public void stopCurrentSong() {
 		mCurrentSong.stop();
 	}
 
@@ -251,7 +255,6 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void fireBeat(IBeat beat) {
-		// TODO Auto-generated method stub
-		
+		shaderIntensity = 0.3f;
 	}
 }

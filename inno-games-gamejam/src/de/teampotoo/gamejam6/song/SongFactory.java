@@ -99,9 +99,6 @@ public class SongFactory {
 			// Add current beat layout for this beat
 			for (Map.Entry<StepType, List<Float>> entry : stepsPerBeat.entrySet()) {
 				for (Float timestamp : entry.getValue()) {
-					//System.out.println((beatLength * i) + timestamp);
-					//System.out.println(lastBeat.getTimestamp());
-					//System.out.println("??? " + timestamp);
 					steps.add(Step.newInstance(entry.getKey(), currentBeat.getTimestamp() + timestamp, difficulty));
 				}
 			}
