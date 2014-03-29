@@ -28,8 +28,12 @@ public class SongFactory {
 			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
 			beatCount++;
 		}
-		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
+		for (int i = 0; i < 7; i++) {
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 1; i++) {
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
@@ -41,11 +45,27 @@ public class SongFactory {
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.ridiculus, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 4; i++) {
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 2; i++) {
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 5; i++) {
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.ridiculus, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0f, 0f));
+			beatCount++;
+		}
+		for (int i = 0; i < 5; i++) {
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
 			beatCount++;
 		}
 		return createSong(gameScreen, beats, beatLength,
