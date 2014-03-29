@@ -1,6 +1,7 @@
 package de.teampotoo.gamejam6.credits;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.game.gui.Player;
+import de.teampotoo.gamejam6.game.gui.Player.DanceStyle;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 
 public class CreditsScreen extends Group {
@@ -18,6 +21,9 @@ public class CreditsScreen extends Group {
 	 * variables
 	 ****************************************************************************/
 	private static final float FONT_SCALE = 0.5f;
+	
+	private Player mPlayer1;
+	private Player mPlayer2;
 
 	private GameJam6 mGameJam6;
 
@@ -29,6 +35,15 @@ public class CreditsScreen extends Group {
 		this.mGameJam6 = gameJam6;
 		addBackButton();
 		addCredits();
+		
+		mPlayer1 = new Player();
+		mPlayer1.create();
+		mPlayer1.setPosition(Gdx.graphics.getWidth()  / 5, Gdx.graphics.getHeight() / 14);
+		mPlayer1.setState(DanceStyle.middle);
+		mPlayer2 = new Player();
+		mPlayer2.create();
+		mPlayer2.setPosition(Gdx.graphics.getWidth() - Gdx.graphics.getWidth()  / 5, Gdx.graphics.getHeight() / 14);
+		mPlayer2.setState(DanceStyle.crazy);
 	}
 
 	/****************************************************************************
@@ -58,6 +73,13 @@ public class CreditsScreen extends Group {
 		result.setFontScale(FONT_SCALE);
 		
 		return result;
+	}
+	
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
+		mPlayer1.render();
+		mPlayer2.render();
 	}
 
 	private void addCredits() {

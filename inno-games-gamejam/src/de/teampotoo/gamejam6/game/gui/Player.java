@@ -27,6 +27,8 @@ public class Player {
 	 * variables
 	 ****************************************************************************/
 
+	private static final float DEFAULT_SCALE = 0.65f;
+	
 	private DanceStyle currentState;
 
 	private SkeletonRenderer renderer;
@@ -42,6 +44,10 @@ public class Player {
 	boolean flipY = false;
 
 	private SpriteBatch batch = new SpriteBatch();
+	
+	private int height = 800;
+	private int width = 300;
+	private float scale = 1.0f;
 
 	/****************************************************************************
 	 * getter and setter
@@ -88,7 +94,8 @@ public class Player {
 		atlasTexture = atlas.getRegions().first().getTexture();
 
 		SkeletonJson json = new SkeletonJson(atlas);
-		json.setScale(0.65f);
+		scale = DEFAULT_SCALE;
+		json.setScale(scale);
 		skeletonData = json.readSkeletonData(Gdx.files
 				.internal("data/player/player1.json"));
 
@@ -114,7 +121,7 @@ public class Player {
 
 		skeleton.setToSetupPose();
 		skeleton = new Skeleton(skeleton);
-		skeleton.updateWorldTransform();
+		skeleton.updateWorldTransform(); 
 	}
 
 	public void render() {
@@ -134,4 +141,12 @@ public class Player {
 	public void dispose() {
 		atlasTexture.dispose();
 	}
+
+	public int getHeight() {
+		return (int) (height * scale);
+	}
+
+	public int getWidth() {
+		return (int) (width * scale);
+	} 
 }
