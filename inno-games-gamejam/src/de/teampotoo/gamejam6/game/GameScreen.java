@@ -35,7 +35,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private GameJam6 mGameJam6;
 	private HighscoreScreen mHighscore;
 	private Image mUpperBackground;
-	private SugarRocket mRocket1, mRocket2;
+	private SugarRocket mRocket1;
 	private Image mLowerBackground;
 
 	private int mPlayerPoints; // current points while the game runs

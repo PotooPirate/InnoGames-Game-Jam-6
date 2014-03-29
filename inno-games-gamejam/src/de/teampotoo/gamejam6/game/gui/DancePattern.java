@@ -175,6 +175,7 @@ public class DancePattern extends Group {
 			}
 		}
 		if (!hit) {
+			resetComboCounter();
 			GameScreen parent = (GameScreen) getParent();
 			parent.setSugarBar(parent.getSugarBarValue() + MISS_SCORE);
 			if (parent.getPlayerPoints() - 5 >= 0) {
