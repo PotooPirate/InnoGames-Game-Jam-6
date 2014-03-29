@@ -3,6 +3,7 @@ package de.teampotoo.gamejam6.highscore;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -26,6 +27,8 @@ public class HighscoreScreen extends Group {
 	private Table mHighscoreTable;
 	
 	private Player mPlayer;
+	private Actor mLowerBackground;
+	private Actor mUpperBackground;
 
 	/****************************************************************************
 	 * constructor
@@ -33,6 +36,17 @@ public class HighscoreScreen extends Group {
 
 	public HighscoreScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
+		
+		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
+		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
+				mLowerBackground.getHeight());
+		addActor(mLowerBackground);
+		
+		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
+		mUpperBackground.setBounds(0, 0, mUpperBackground.getWidth(),
+				mUpperBackground.getHeight());
+		addActor(mUpperBackground);
+		
 		addBackButton();
 		addClearHighscoreButton();
 		loadHighscoreFromPreferences();

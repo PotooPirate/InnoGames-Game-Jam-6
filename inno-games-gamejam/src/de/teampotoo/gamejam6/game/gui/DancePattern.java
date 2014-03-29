@@ -3,14 +3,12 @@ package de.teampotoo.gamejam6.game.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import de.teampotoo.gamejam6.game.GameScreen;
@@ -26,7 +24,7 @@ public class DancePattern extends Group {
 	private static final float PERFECT_SCORE = 0.080f;
 	private static final float GOOD_SCORE = 0.040f;
 	private static final float BAD_SCORE = 0.020f;
-	private static final float MISS_SCORE = -0.05f;
+	private static final float MISS_SCORE = -0.15f;
 	
 	private Rectangle mPerfect, mGood, mBad;
 	private List<Arrow> mArrows;
@@ -36,7 +34,7 @@ public class DancePattern extends Group {
 	
 	private Label mPerfectLabel;
 	
-	private Image mDebugCenter;
+	//private Image mDebugCenter;
 
 	/****************************************************************************
 	 * constructor
@@ -64,8 +62,8 @@ public class DancePattern extends Group {
 		mPerfectLabel.setPosition(40, 605);
 		mPerfectLabel.addAction(Actions.sequence(Actions.fadeOut(0.0f)));
 		
-		mDebugCenter = new Image(new Texture("data/eyecandy/HitTest.png"));
-		addActor(mDebugCenter);
+		//mDebugCenter = new Image(new Texture("data/eyecandy/HitTest.png"));
+		//addActor(mDebugCenter);
 	}
 
 	/****************************************************************************
@@ -146,7 +144,7 @@ public class DancePattern extends Group {
 					hit = true;
 					addComboCounter();
 
-					mDebugCenter.setPosition(centerX, centerY);
+					//mDebugCenter.setPosition(centerX, centerY);
 					labelAction("Perfect!");
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
@@ -157,7 +155,7 @@ public class DancePattern extends Group {
 					hit = true;
 					addComboCounter();
 					labelAction("Good!");
-					mDebugCenter.setPosition(centerX, centerY);
+					//mDebugCenter.setPosition(centerX, centerY);
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + BAD_SCORE);
@@ -167,7 +165,7 @@ public class DancePattern extends Group {
 					hit = true;
 					addComboCounter();
 					labelAction("Bad!");
-					mDebugCenter.setPosition(centerX, centerY);
+					//mDebugCenter.setPosition(centerX, centerY);
 				}
 			}
 		}

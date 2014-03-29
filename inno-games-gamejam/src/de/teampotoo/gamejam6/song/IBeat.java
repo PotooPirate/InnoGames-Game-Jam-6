@@ -5,6 +5,9 @@ public interface IBeat {
 	public enum BeatType {
 		none, easy, medium, hard, ridiculus
 	}
+	public float getIntervalLength();
+	
+	public int getInterval();
 	
 	public float getRetroIntensity();
 	

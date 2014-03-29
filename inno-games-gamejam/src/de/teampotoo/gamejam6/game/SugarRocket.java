@@ -15,10 +15,12 @@ public class SugarRocket extends Group {
 	private Image[] mFireArray;
 	private int mCurrentFire;
 	private float changeCounter = CHANGE_TIME;
+	private float mSpeed;
 	
-	public SugarRocket(float x) {
+	public SugarRocket(float x, float speed) {
 		mRocket = new Image(ResourceLoader.sRocket);
 		addActor(mRocket);
+		mSpeed = speed;
 		
 		mFireArray = new Image[] {
 				new Image(ResourceLoader.sFire[0]),
@@ -45,7 +47,7 @@ public class SugarRocket extends Group {
 	
 	public void startRocket() {
 		addAction(Actions.sequence(Actions.moveBy(0, Gdx.graphics.getHeight() + mRocket.getHeight()*2
-				, 30f, Interpolation.sineIn), Actions.delay(10f), Actions.run(new Runnable() {
+				, mSpeed, Interpolation.sineIn), Actions.delay(10f), Actions.run(new Runnable() {
 					@Override
 					public void run() {
 						resetRocket();
@@ -55,6 +57,7 @@ public class SugarRocket extends Group {
 	
 	public void resetRocket() {
 		setPosition((float) (Math.random()*800), -mRocket.getHeight());
+		startRocket();
 	}
 
 	@Override

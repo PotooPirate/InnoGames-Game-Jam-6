@@ -2,6 +2,7 @@ package de.teampotoo.gamejam6.credits;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.game.SugarRocket;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.Player.DanceStyle;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
@@ -27,12 +29,40 @@ public class CreditsScreen extends Group {
 
 	private GameJam6 mGameJam6;
 
+	private Image mLowerBackground;
+
+	private Actor mUpperBackground;
+
 	/****************************************************************************
 	 * constructor
 	 ****************************************************************************/
 
 	public CreditsScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
+		
+		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
+		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
+				mLowerBackground.getHeight());
+		addActor(mLowerBackground);
+
+		SugarRocket rocket = new SugarRocket(200, 20);
+		addActor(rocket);
+		SugarRocket rocket2 = new SugarRocket(400, 10);
+		addActor(rocket2);
+		SugarRocket rocket3 = new SugarRocket(500, 15);
+		addActor(rocket3);
+		SugarRocket rocket4 = new SugarRocket(700, 5);
+		addActor(rocket4);
+		SugarRocket rocket5 = new SugarRocket(800, 7);
+		addActor(rocket5);
+		SugarRocket rocket6 = new SugarRocket(100, 3);
+		addActor(rocket6);
+		
+		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
+		mUpperBackground.setBounds(0, 0, mUpperBackground.getWidth(),
+				mUpperBackground.getHeight());
+		addActor(mUpperBackground);
+		
 		addBackButton();
 		addCredits();
 		
@@ -102,7 +132,7 @@ public class CreditsScreen extends Group {
 				ResourceLoader.SKIN);
 		Label filler4 = createCreditLabel("\n", ResourceLoader.SKIN);
 		Label topicLabel3 = createCreditLabel("Sound:\n", ResourceLoader.SKIN);
-		Label nameLabel8 = createCreditLabel("Jason\n", ResourceLoader.SKIN);
+		Label nameLabel8 = createCreditLabel("\"Jason\" Florian Jahrstorfer\n", ResourceLoader.SKIN);
 
 		tabelle.add(headline).row();
 		tabelle.add(copyright).row();
