@@ -31,7 +31,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private GameJam6 mGameJam6;
 	private HighscoreScreen mHighscore;
 	private Image mUpperBackground;
-	private Image mRocket1;
+	private Image mRocket1, mRocket2;
 	private Image mLowerBackground;
 
 	private int mPlayerPoints; // current points while the game runs
@@ -65,6 +65,9 @@ public class GameScreen extends Group implements IGameScreen {
 
 		mRocket1 = new Image(ResourceLoader.sRocket);
 		mRocket1.setPosition(150, -mRocket1.getHeight());
+
+		mRocket2 = new Image(ResourceLoader.sRocket);
+		mRocket2.setPosition(650, -mRocket2.getHeight());
 		
 		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
 		mUpperBackground.setBounds(0, 350, mUpperBackground.getWidth(),
