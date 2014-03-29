@@ -42,12 +42,6 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	// Blur shader
 	private IBlurShader blurShader;
-	private boolean blurShaderEnabled;
-	private FrameBuffer blurShaderFBO;
-	private TextureRegion blurShaderTextureRegion;
-	private SpriteBatch blurShaderFBOBatch;
-	private ShaderProgram blurShaderProgram;
-	private float blurShaderTime;
 	
 	public GameScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;		
@@ -74,17 +68,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mCurrentSong = SongFactory.createTestSong(this);
 		mCurrentSong.start();
 		
-		initBlurShader();
-	}
-	
-	private void initBlurShader() {
 		blurShader = ShaderFactory.createBlurShader();
-		blurShaderEnabled = false;
- 		blurShaderFBOBatch = new SpriteBatch();
- 		blurShaderProgram = new ShaderProgram(Gdx.files.internal("data/shader/blur.vsh"), Gdx.files.internal("data/shader/blur.fsh"));
-		blurShaderFBO = new FrameBuffer(Format.RGB565, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
-		blurShaderTextureRegion = new TextureRegion(blurShaderFBO.getColorBufferTexture());
-		blurShaderTextureRegion.flip(false, true);
 	}
 	
 	@Override
@@ -120,26 +104,9 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		/*blurShaderFBO.begin();
-		blurShaderTime += Gdx.graphics.getDeltaTime();
-		int width = Gdx.graphics.getWidth();
- 	    int height = Gdx.graphics.getHeight();
- 	    */
 		blurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0f, 1f);
 		super.draw(batch, parentAlpha); 
 		player.render(batch);
 		blurShader.end();
-		/*
-		blurShaderFBO.end();
-		blurShaderProgram.begin();
-	    blurShaderProgram.setUniform2fv("u_radial_origin", new float[]{0.5f, 0.5f}, 0, 2);
-	    blurShaderProgram.setUniform2fv("u_radial_size", new float[]{1f / width, 1f / height}, 0, 2);
-	    blurShaderProgram.setUniformf("u_radial_blur", 0f); // 0.5f + (MathUtils.sin(blurShaderTime * 10f) / 2));
-	    blurShaderProgram.setUniformf("u_radial_bright", 1f);
-	    blurShaderFBOBatch.setShader(blurShaderProgram);
-	    blurShaderFBOBatch.begin();
-	    blurShaderFBOBatch.draw(blurShaderTextureRegion, 0, 0, width, height);               
-	    blurShaderFBOBatch.end();
-	    */
 	}
 }
