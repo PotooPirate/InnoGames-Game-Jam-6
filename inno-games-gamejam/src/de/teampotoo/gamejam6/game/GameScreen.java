@@ -51,7 +51,7 @@ public class GameScreen extends Group implements IGameScreen {
 	// Music
 	private ISong mCurrentSong;
 	
-	private IBlurShader shader = ShaderFactory.createBlurShaderNew();
+	private IBlurShader shader = ShaderFactory.createBlurShader();
 	private float shaderIntensity = 0f;
 	
 	/****************************************************************************

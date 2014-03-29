@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-abstract class AbstractShader implements IShader {
+abstract class AbstractShader {
 	
 	protected ShaderProgram mProgram;
 	
@@ -34,7 +34,6 @@ abstract class AbstractShader implements IShader {
 		mTime = 0f;
 	}
 	
-	@Override
 	public void begin(float deltaTime) {
 		mFBO.begin();
 		Gdx.gl.glClearColor(0.3f, 0.5f, 0.7f, 0f);
@@ -42,7 +41,6 @@ abstract class AbstractShader implements IShader {
 		mTime += deltaTime;
 	}
 	
-	@Override
 	public void end() {
 		mFBO.end();
 		mProgram.begin();
@@ -55,7 +53,6 @@ abstract class AbstractShader implements IShader {
 	
 	abstract void setUniforms();
 	
-	@Override
 	public void resize(int width, int height) {
 		mWidth = width;
 		mHeight = height;

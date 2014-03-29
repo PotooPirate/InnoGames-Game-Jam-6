@@ -19,7 +19,6 @@ public class BlurShader extends AbstractShader implements IBlurShader {
 		return new BlurShader();
 	}
 	
-	@Override
 	public void begin(float deltaTime) {
 		super.begin(deltaTime);
 		mOriginX = 0.5f;
