@@ -89,11 +89,11 @@ public class SongFactory {
 				}
 				
 				// Set step types
-				if (MathUtils.randomBoolean()) {
-					stepsPerBeat.put(MathUtils.randomBoolean() ? StepType.up : StepType.down, offset);
-				} else {
-					stepsPerBeat.put(MathUtils.randomBoolean() ? StepType.left : StepType.right, offset);
-				}
+//				if (MathUtils.randomBoolean()) {
+					stepsPerBeat.put(StepType.random, offset);
+//				} else {
+//					stepsPerBeat.put(MathUtils.randomBoolean() ? StepType.left : StepType.right, offset);
+//				}
 			}
 			
 			// Add current beat layout for this beat
