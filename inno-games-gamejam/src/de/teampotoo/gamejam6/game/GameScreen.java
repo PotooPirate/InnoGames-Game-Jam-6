@@ -147,6 +147,7 @@ public class GameScreen extends Group implements IGameScreen {
 	}
 
 	public void gameOver() {
+		System.out.println(mHighscorePoints);
 		boolean inHighscore = mHighscore.insertScore(mHighscorePoints);
 		mHighscore.saveHighscoreToPreferences();
 		mHighscore.refreshLabels();
@@ -162,6 +163,23 @@ public class GameScreen extends Group implements IGameScreen {
 		mGameJam6.startHighscore();
 		mCurrentSong.stop();
 
+	}
+	
+	public void successGameOver(int finalscore)
+	{
+		boolean inHighscore = mHighscore.insertScore(finalscore);
+		mHighscore.saveHighscoreToPreferences();
+		mHighscore.refreshLabels();
+		mPlayerPoints = mHighscorePoints = 0;
+		mSugarBar.clearActions();
+		mSugarBar.setValue(0.5f);
+		mDancePattern.clear();
+		mDancePattern.createLabel();
+		if (inHighscore)
+			SoundEffectPlayer.Play(Effect.highscore);
+		else
+			SoundEffectPlayer.Play(Effect.looser);
+		mGameJam6.startHighscore();
 	}
 
 	@Override
@@ -249,7 +267,7 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void songEnd() {
-		//TODO
+		successGameOver(mPlayerPoints);
 	}
 
 	@Override
