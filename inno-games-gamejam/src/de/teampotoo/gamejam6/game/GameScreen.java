@@ -205,8 +205,20 @@ public class GameScreen extends Group implements IGameScreen {
 		mPointsLabel.setText("Punkte: " + this.mPlayerPoints);
 		
 		switch(mDancePattern.getComboCounter()) {
-			case 10:
+			case 9:
+				SoundEffectPlayer.Play(Effect.great);
+				break;
+			case 19:
 				SoundEffectPlayer.Play(Effect.awesome);
+				break;
+			case 39:
+				SoundEffectPlayer.Play(Effect.fantastic);
+				break;
+			case 59:
+				SoundEffectPlayer.Play(Effect.brilliant);
+				break;
+			case 99:
+				SoundEffectPlayer.Play(Effect.potoo);
 				break;
 		}
 	}
