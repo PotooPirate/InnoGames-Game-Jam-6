@@ -65,7 +65,7 @@ public class Song implements ISong {
 		mTime += deltaTime;
 
 		boolean loop = true;
-		while (mBeatIndex < mSteps.size() && loop) {
+		while (mBeatIndex < mBeats.size() && loop) {
 			IBeat beat = mBeats.get(mBeatIndex);
 			if (beat.getTimestamp() <= mTime) {
 				mGameScreen.fireBeat(beat);
