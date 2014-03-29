@@ -17,14 +17,9 @@ public class SugarRocket extends Group {
 	private int mCurrentFire;
 	private float changeCounter = CHANGE_TIME;
 	private float mSpeed;
-	
-<<<<<<< HEAD
-	public SugarRocket(float x) {
-		mRocket = new Image(ResourceLoader.sRockets[MathUtils.random(0, ResourceLoader.sRockets.length-1)]);
-=======
+	   
 	public SugarRocket(float x, float speed) {
-		mRocket = new Image(ResourceLoader.sRocket);
->>>>>>> f3b7100c6dc46925c69b3530ebaed523e74c6de7
+	mRocket = new Image(ResourceLoader.sRockets[MathUtils.random(0, ResourceLoader.sRockets.length-1)]);
 		addActor(mRocket);
 		mSpeed = speed;
 		
