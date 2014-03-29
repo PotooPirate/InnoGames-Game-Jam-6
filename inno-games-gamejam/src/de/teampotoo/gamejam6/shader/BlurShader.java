@@ -44,5 +44,7 @@ public class BlurShader extends AbstractShader implements IBlurShader {
 		mProgram.setUniform2fv("u_radial_size", new float[]{1f / mWidth, 1f / mHeight}, 0, 2);
 		mProgram.setUniformf("u_radial_blur", mBlur);
 		mProgram.setUniformf("u_radial_bright", mBright);
+		mProgram.setUniformf("u_width_ratio", 1f / 320);
+		mProgram.setUniformf("u_height_ratio", 1f / 240);
 	}
 }
