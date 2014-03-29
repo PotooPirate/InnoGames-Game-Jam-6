@@ -15,6 +15,7 @@ public class SugarBar extends Group {
 
 	private Image mBackground;
 	private Image mForderground;
+	private Image mAtom;
 
 	private float mValue;
 	private int animationlevels;
@@ -33,6 +34,9 @@ public class SugarBar extends Group {
 		mBackground = new Image(ResourceLoader.sSugarbarBackground);
 		mForderground = new Image(ResourceLoader.sSugarbarForderground);
 		mForderground.setScaleY(0f);
+		mAtom = new Image(ResourceLoader.sAtom);
+		mAtom.setPosition(5, 205);
+		addActor(mAtom);
 
 		addActor(mBackground);
 		addActor(mForderground);
