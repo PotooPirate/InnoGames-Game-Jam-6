@@ -20,6 +20,8 @@ import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.Player.DanceStyle;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
+import de.teampotoo.gamejam6.helper.SoundEffectPlayer;
+import de.teampotoo.gamejam6.helper.SoundEffectPlayer.Effect;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.shader.IBlurShader;
 import de.teampotoo.gamejam6.shader.ShaderFactory;
@@ -37,14 +39,11 @@ public class GameScreen extends Group implements IGameScreen {
 	private GameJam6 mGameJam6;
 	private HighscoreScreen mHighscore;
 	private Image mUpperBackground;
+	private Image mRocket1, mRocket2;
 	private Image mLowerBackground;
 
 	private int mPlayerPoints; // current points while the game runs
 	private int mHighscorePoints; // Frozen points after the game finished
-	
-	//Special HACK
-	private Matrix4 mx4Font = new Matrix4();
-	private SpriteBatch spriteFont;
 	
 	// player stuff
 	private Player player;
@@ -77,6 +76,9 @@ public class GameScreen extends Group implements IGameScreen {
 				mLowerBackground.getHeight());
 		addActor(mLowerBackground);
 
+		mRocket1 = new Image(ResourceLoader.sRocket);
+		mRocket1.setPosition(150, -mRocket1.getHeight());
+		
 		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
 		mUpperBackground.setBounds(0, 350, mUpperBackground.getWidth(),
 				mUpperBackground.getHeight());
@@ -106,8 +108,6 @@ public class GameScreen extends Group implements IGameScreen {
 				- mComboLabel.getWidth() / 2, Gdx.graphics.getHeight()
 				- mComboLabel.getHeight() - 150);
 		addActor(mComboLabel);
-
-		spriteFont = new SpriteBatch();
 		
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
@@ -214,6 +214,12 @@ public class GameScreen extends Group implements IGameScreen {
 	public void setPlayerPoints(int points) {
 		this.mPlayerPoints = points;
 		mPointsLabel.setText("Punkte: " + this.mPlayerPoints);
+		
+		switch(mDancePattern.getComboCounter()) {
+			case 10:
+				SoundEffectPlayer.Play(Effect.awesome);
+				break;
+		}
 	}
 
 	public void startGame() {

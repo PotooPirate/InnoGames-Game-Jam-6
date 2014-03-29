@@ -25,6 +25,7 @@ public class ResourceLoader {
 
 	public static TextureRegion sGameLowerBackground;
 	public static TextureRegion sGameUpperBackground;
+	public static TextureRegion sRocket;
 
 	public static Skin SKIN;
 	public static Skin sComboSkin;
@@ -44,6 +45,10 @@ public class ResourceLoader {
 		sSugarbarForderground = new TextureRegion(new Texture(
 				Gdx.files.internal("data/gfx/sugarbar_forderground.png")));
 
+		sRocket = new TextureRegion(new Texture(
+				Gdx.files.internal("data/gfx/rocket.png")));
+		
+		
 		sDancePatternBackground = new TextureRegion(new Texture(
 				Gdx.files.internal("data/gfx/dancepattern_background.png")));
 		sArrow = new TextureRegion(new Texture(
