@@ -70,7 +70,7 @@ public class Player {
 				state.setAnimation(0, "move1", true);
 			} else if (currentState == DanceStyle.middle) {
 
-				state.setAnimation(0, "move2", false);
+				state.setAnimation(0, "move2", true);
 			} else if (currentState == DanceStyle.crazy) {
 
 				state.setAnimation(0, "move3", true);
