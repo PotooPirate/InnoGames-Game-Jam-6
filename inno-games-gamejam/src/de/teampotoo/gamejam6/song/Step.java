@@ -14,10 +14,10 @@ public class Step implements IStep {
 	private final float mFireTime;
 	private final float mTargetTime;
 	
-	private static final float EASY_SUBSTRACT = 1.5f;
-	private static final float MEDIUM_SUBSTRACT = 1.0f;
-	private static final float HARD_SUBSTRACT = 0.5f;
-	private static final float REDIC_SUBSTRACT = 0.3f;
+	private static final float EASY_SUBSTRACT = 3.0f;
+	private static final float MEDIUM_SUBSTRACT = 2.0f;
+	private static final float HARD_SUBSTRACT = 1.0f;
+	private static final float REDIC_SUBSTRACT = 0.6f;
 	
 	/****************************************************************************
 	 * constructor

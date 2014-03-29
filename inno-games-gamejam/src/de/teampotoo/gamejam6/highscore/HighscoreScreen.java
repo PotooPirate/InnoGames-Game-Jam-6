@@ -34,6 +34,7 @@ public class HighscoreScreen extends Group {
 	public HighscoreScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
 		addBackButton();
+		addClearHighscoreButton();
 		loadHighscoreFromPreferences();
 		addLabels();
 		// RESET THE SCORES
@@ -107,6 +108,22 @@ public class HighscoreScreen extends Group {
 		return inserted;
 	}
 
+	private void addClearHighscoreButton(){
+		Image clearButton = new Image(ResourceLoader.BUTTON);
+		clearButton.setBounds(0, 0, 100, 50);
+		clearButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				resetHighscore();
+				return super.touchDown(event, x, y, pointer, button);
+			}
+			
+		});
+		addActor(clearButton);
+	}
+	
+	
 	private void addBackButton() {
 		Image backButton = new Image(ResourceLoader.BUTTON);
 		backButton.setWidth(100);
@@ -203,5 +220,14 @@ public class HighscoreScreen extends Group {
 		mHighscoreTable.setPosition(Gdx.graphics.getWidth() / 2,
 				Gdx.graphics.getHeight() / 2);
 		addActor(mHighscoreTable);
+	}
+	
+	private void resetHighscore()
+	{
+		 Preferences prefs = Gdx.app.getPreferences("Highscores");
+		 prefs.clear();
+		 prefs.flush();
+		 
+		 refreshLabels();
 	}
 }
