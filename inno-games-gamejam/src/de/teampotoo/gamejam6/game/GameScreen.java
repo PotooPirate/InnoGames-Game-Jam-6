@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import de.teampotoo.gamejam6.GameJam6;
 import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.Player;
+import de.teampotoo.gamejam6.game.gui.Player.DanceStyle;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
@@ -171,6 +172,24 @@ public class GameScreen extends Group implements IGameScreen {
 	public void act(float delta) {
 		super.act(delta);
 
+		System.out.println("Level: " + mSugarBar.getAnimationLevel());
+		
+		if (mSugarBar.getAnimationLevel() == 1) {
+			player.setState(DanceStyle.light);
+		} else if (mSugarBar.getAnimationLevel() == 2) {
+
+			player.setState(DanceStyle.light);
+		} else if (mSugarBar.getAnimationLevel() == 3) {
+
+			player.setState(DanceStyle.light);
+		} else if (mSugarBar.getAnimationLevel() == 4) {
+
+			player.setState(DanceStyle.middle);
+		}  else if (mSugarBar.getAnimationLevel() == 5) {
+
+			player.setState(DanceStyle.crazy);
+		}  
+		
 		mCurrentSong.update(delta);
 	}
 
