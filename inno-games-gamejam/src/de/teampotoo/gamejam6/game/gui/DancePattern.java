@@ -21,7 +21,7 @@ public class DancePattern extends Group {
 	 * variables
 	 ****************************************************************************/
 	
-	private static final float PERFECT_SCORE = 0.100f;
+	private static final float PERFECT_SCORE = 0.080f;
 	private static final float GOOD_SCORE = 0.040f;
 	private static final float BAD_SCORE = 0.020f;
 	private static final float MISS_SCORE = -0.05f;
