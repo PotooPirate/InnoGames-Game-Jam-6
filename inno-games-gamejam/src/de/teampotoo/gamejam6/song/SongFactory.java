@@ -25,11 +25,11 @@ public class SongFactory {
 		beats.add(Beat.newInstance(BeatType.none, beatCount * beatLength * 4, 0f, 0f, 0f));
 		beatCount++;
 		for (int i = 0; i < 7; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0.1f, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 7; i++) {
-			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0.1f, 0f, 0.3f));
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f, 0.3f));
 			beatCount++;
 		}
 		for (int i = 0; i < 1; i++) {
