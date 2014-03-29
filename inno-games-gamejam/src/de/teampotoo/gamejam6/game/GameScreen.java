@@ -172,20 +172,23 @@ public class GameScreen extends Group implements IGameScreen {
 	public void act(float delta) {
 		super.act(delta); 
 		
-		if (mSugarBar.getAnimationLevel() == 1) {
-			player.setState(DanceStyle.light);
+		if (mSugarBar.getAnimationLevel() == 0) {
+			player.setState(DanceStyle.losing);
+		} else if (mSugarBar.getAnimationLevel() == 1) {
+
+			player.setState(DanceStyle.level1);
 		} else if (mSugarBar.getAnimationLevel() == 2) {
 
-			player.setState(DanceStyle.light);
+			player.setState(DanceStyle.level2);
 		} else if (mSugarBar.getAnimationLevel() == 3) {
 
-			player.setState(DanceStyle.light);
-		} else if (mSugarBar.getAnimationLevel() == 4) {
+			player.setState(DanceStyle.level3);
+		}  else if (mSugarBar.getAnimationLevel() == 4) {
 
-			player.setState(DanceStyle.middle);
-		}  else if (mSugarBar.getAnimationLevel() == 5) {
+			player.setState(DanceStyle.level4);
+		}    else if (mSugarBar.getAnimationLevel() == 5) {
 
-			player.setState(DanceStyle.crazy);
+			player.setState(DanceStyle.level5);
 		}  
 		
 		if(mDancePattern.getComboCounter() > 0) {

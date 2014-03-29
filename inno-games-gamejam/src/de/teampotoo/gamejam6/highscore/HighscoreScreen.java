@@ -45,7 +45,7 @@ public class HighscoreScreen extends Group {
 		mPlayer.create();
 		
 		mPlayer.setPosition(Gdx.graphics.getWidth()  / 5, Gdx.graphics.getHeight() / 14);
-		mPlayer.setState(DanceStyle.crazy);
+		mPlayer.setState(DanceStyle.level2);
 	}
 
 	/****************************************************************************
