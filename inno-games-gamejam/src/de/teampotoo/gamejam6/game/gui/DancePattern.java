@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import de.teampotoo.gamejam6.game.GameScreen;
@@ -21,6 +20,12 @@ public class DancePattern extends Group {
 	/****************************************************************************
 	 * variables
 	 ****************************************************************************/
+	
+	private static final float PERFECT_SCORE = 0.050f;
+	private static final float GOOD_SCORE = 0.025f;
+	private static final float BAD_SCORE = 0.015f;
+	private static final float MISS_SCORE = -0.05f;
+	
 	private Rectangle mPerfect, mGood, mBad;
 	private List<Arrow> mArrows;
 	private ShapeRenderer mDebugRenderer;
@@ -117,7 +122,7 @@ public class DancePattern extends Group {
 				float centerY = a.getCenterY();
 				if (mPerfect.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
-					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
+					parent.setSugarBar(parent.getSugarBarValue() + PERFECT_SCORE);
 					parent.setPlayerPoints(parent.getPlayerPoints() + 20);
 					a.getArrowImage().setColor(0, 1f, 0, 1f);
 					a.setActive(false);
@@ -127,7 +132,7 @@ public class DancePattern extends Group {
 					labelAction("Perfect!");
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
-					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
+					parent.setSugarBar(parent.getSugarBarValue() + GOOD_SCORE);
 					parent.setPlayerPoints(parent.getPlayerPoints() + 10);
 					a.getArrowImage().setColor(1f, 0.5f, 0, 1f);
 					a.setActive(false);
@@ -136,7 +141,7 @@ public class DancePattern extends Group {
 					labelAction("Good!");
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
-					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
+					parent.setSugarBar(parent.getSugarBarValue() + BAD_SCORE);
 					parent.setPlayerPoints(parent.getPlayerPoints() + 5);
 					a.getArrowImage().setColor(1f, 0, 0, 1f);
 					a.setActive(false);
@@ -148,7 +153,7 @@ public class DancePattern extends Group {
 		}
 		if (!hit) {
 			GameScreen parent = (GameScreen) getParent();
-			parent.setSugarBar(parent.getSugarBarValue() - 0.10f);
+			parent.setSugarBar(parent.getSugarBarValue() + MISS_SCORE);
 			if (parent.getPlayerPoints() - 5 >= 0) {
 				parent.setPlayerPoints(parent.getPlayerPoints() - 5);
 			}
