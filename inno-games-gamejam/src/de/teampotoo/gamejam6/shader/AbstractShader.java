@@ -2,6 +2,7 @@ package de.teampotoo.gamejam6.shader;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -27,7 +28,7 @@ abstract class AbstractShader implements IShader {
 		mBatch.setShader(mProgram); 		
  		mWidth = Gdx.graphics.getWidth();
  		mHeight = Gdx.graphics.getHeight();
- 		mFBO = new FrameBuffer(Format.RGB565, mWidth, mHeight, false);
+ 		mFBO = new FrameBuffer(Format.RGBA8888, mWidth, mHeight, true);
 		mTextureRegion = new TextureRegion(mFBO.getColorBufferTexture());
 		mTextureRegion.flip(false, true);
 		mTime = 0f;
@@ -36,6 +37,8 @@ abstract class AbstractShader implements IShader {
 	@Override
 	public void begin(float deltaTime) {
 		mFBO.begin();
+		Gdx.gl.glClearColor(1f, 1f, 1f, 0f);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		mTime += deltaTime;
 	}
 	
@@ -56,7 +59,7 @@ abstract class AbstractShader implements IShader {
 	public void resize(int width, int height) {
 		mWidth = width;
 		mHeight = height;
-		mFBO = new FrameBuffer(Format.RGB565, mWidth, mHeight, false);
+		mFBO = new FrameBuffer(Format.RGB565, mWidth, mHeight, true);
 		mTextureRegion = new TextureRegion(mFBO.getColorBufferTexture());
 		mTextureRegion.flip(false, true);
 	}

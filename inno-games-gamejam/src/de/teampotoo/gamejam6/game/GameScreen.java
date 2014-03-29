@@ -43,7 +43,9 @@ public class GameScreen extends Group implements IGameScreen {
 	private ISong mCurrentSong;
 	
 	// Blur shader
-	private IBlurShader mBlurShader;
+	private IBlurShader mBlurShader = ShaderFactory.createBlurShader();
+	private IBlurShader mPlayerBlurShader = ShaderFactory.createBlurShader();
+	private SpriteBatch mPlayerBatch = new SpriteBatch();
 	
 	public GameScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;		
@@ -122,10 +124,15 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		mBlurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0f, 1f);
+		mBlurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0.0f, 1f);
 		super.draw(batch, parentAlpha); 
-		player.render(batch);
 		mBlurShader.end();
+		
+		mPlayerBlurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0.2f, 1f);
+		mPlayerBatch.begin();
+		player.render(mPlayerBatch);
+		mPlayerBatch.end();
+		mPlayerBlurShader.end();
 	}
 	
 	public void startMusic()
