@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -34,6 +35,8 @@ public class GameJam6 implements ApplicationListener {
 	private Stage mCredits;
 	private Stage mHighscore;
 	
+	private Music mainMenuMusic;
+	
 	private GameScreen mGameGroup;
 	private HighscoreScreen mHighscoreScreen;
 	private musikMappingEditor editor;
@@ -46,6 +49,9 @@ public class GameJam6 implements ApplicationListener {
 	public void create() {
 		ResourceLoader.loadResources();
 		SoundEffectPlayer.loadSounds();
+		
+		mainMenuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/Nordkorea.mp3"));
+		mainMenuMusic.play();
 		
 		state = STATE_MAINMENU;
 		
@@ -111,6 +117,10 @@ public class GameJam6 implements ApplicationListener {
 				break;
 		}
 	}
+	
+	private void stopMusic(){
+		mainMenuMusic.stop();
+	}
 
 	@Override
 	public void pause() {
@@ -131,25 +141,27 @@ public class GameJam6 implements ApplicationListener {
 	
 	public void startGame() {
 		state = STATE_GAME;
+		
 		mGameGroup.startGame();
 		Gdx.input.setInputProcessor(mGame);
-		
-		//RIKI EDITOR FOR MAKING AWESOMEMUSIC
-		editor.start();
+		stopMusic();
 	}
 	
 	public void startHighscore() {
 		state = STATE_HIGHSCORE;
 		Gdx.input.setInputProcessor(mHighscore);
+		stopMusic();
 	}
 	
 	public void startCredits() {
 		state = STATE_CREDITS;
 		Gdx.input.setInputProcessor(mCredits);
+		stopMusic();
 	}
 	
 	public void startMainMenu() {
 		state = STATE_MAINMENU;
 		Gdx.input.setInputProcessor(mMainMenu);
+		mainMenuMusic.play();
 	}
 }
