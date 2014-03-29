@@ -31,6 +31,7 @@ public class ResourceLoader {
 	public static TextureRegion[] sRockets;
 	public static TextureRegion[] sFire;
 	public static TextureRegion sButtonFlag;
+	public static TextureRegion sAtom;
 
 	public static Skin SKIN;
 	public static Skin SKIN_BIG;
@@ -59,6 +60,8 @@ public class ResourceLoader {
 				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/rakete_2.png"))),
 				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/rakete_3.png")))
 		};
+		
+		sAtom = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/atomzeichen.png")));
 		
 		sDancePatternBackground = new TextureRegion(new Texture(
 				Gdx.files.internal("data/gfx/dancepattern_background.png")));
