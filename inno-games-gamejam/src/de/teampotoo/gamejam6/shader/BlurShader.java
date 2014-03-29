@@ -8,6 +8,8 @@ public class BlurShader extends AbstractShader implements IBlurShader {
 	private float mOriginY;
 	private float mBlur;
 	private float mBright;
+	private float mWidthRatio;
+	private float mHeightRatio;
 	
 	private BlurShader() {
 		super(Gdx.files.internal("data/shader/post.vsh"), Gdx.files.internal("data/shader/blur.fsh"));
@@ -24,6 +26,8 @@ public class BlurShader extends AbstractShader implements IBlurShader {
 		mOriginY = 0.5f;
 		mBlur = 0f;
 		mBright = 1f;
+		mWidthRatio = 1f / mWidth;
+		mHeightRatio = 1f / mHeight;
 	}
 	
 	@Override

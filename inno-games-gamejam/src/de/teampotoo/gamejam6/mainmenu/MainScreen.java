@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -65,32 +64,30 @@ public class MainScreen extends Group {
 		mRainbowImage1.setRotation(-45);
 		mRainbowImage1.addAction(Actions.moveTo(-100, 150, 2.f));
 		mRainbowImage1.addAction(Actions.scaleTo(2.0f, 2.0f, 2.0f));
-		mRainbowImage1.addAction(Actions.repeat(-1, Actions.sequence(Actions.rotateBy(20, 0.5f), Actions.rotateBy(-20, 0.5f))));
+		mRainbowImage1.addAction(Actions.repeat(-1, Actions.sequence(Actions.rotateBy(20, 0.5f), Actions.rotateBy(-20, 0.6f))));
 		
 		mRainbowImage2 = new Image(new Texture("data/eyecandy/rainbow.png"));
 		addActor(mRainbowImage2);
 		mRainbowImage2.setPosition(Gdx.graphics.getWidth() + 180, -80);
 		mRainbowImage2.setRotation(15);
-		mRainbowImage2.addAction(Actions.moveTo(Gdx.graphics.getWidth() - mRainbowImage2.getWidth(), -100, 2.f));
+		mRainbowImage2.addAction(Actions.moveTo(Gdx.graphics.getWidth() - mRainbowImage2.getWidth() * 1.1f, -120, 2.f));
 		mRainbowImage2.addAction(Actions.scaleTo(2.0f, 2.0f, 2.0f));
-		mRainbowImage2.addAction(Actions.repeat(-1, Actions.sequence(Actions.rotateBy(20, 0.5f), Actions.rotateBy(-20, 0.5f))));
+		mRainbowImage2.addAction(Actions.repeat(-1, Actions.sequence(Actions.rotateBy(20, 0.6f), Actions.rotateBy(-20, 0.5f))));
 		
 		mInitOffScreenPosition = -mPlayer.getHeight();
 		mInitTargetPosition = mPlayer.getHeight() / 2.5f;
 		mMovementActor.setPosition(Gdx.graphics.getWidth() / 2, mInitOffScreenPosition + mInitTargetPosition);
 		triggerAnimation();
 		
-		mTitleLabel = new Label("Kim Jong Dance", ResourceLoader.SKIN);
-		mTitleLabel.setPosition(Gdx.graphics.getWidth() / 2 - (mTitleLabel.getWidth() / 2) * 2,
-				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6);
-		mTitleLabel.setFontScale(1.5f);
+		mTitleLabel = new Label("Kim Jong Dance:", ResourceLoader.SKIN_BIG);
+		mTitleLabel.setPosition(Gdx.graphics.getWidth() / 2 - (mTitleLabel.getWidth() / 2),
+				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6); 
 		
 		addActor(mTitleLabel);
 
-		mRevolutionLabel = new Label("Revolution!!!", ResourceLoader.sComboSkin);
+		mRevolutionLabel = new Label("Revolution!!!", ResourceLoader.sComboSkinBig);
 		mRevolutionLabel.setPosition(Gdx.graphics.getWidth() / 2,
-				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 10);
-		mRevolutionLabel.setFontScale(1.5f);
+				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 8); 
 		addActor(mRevolutionLabel);
 	}
 	
@@ -127,10 +124,10 @@ public class MainScreen extends Group {
 		mPlayer.render();
 	}
 	
-	private void createMenu() {		
+	private void createMenu() {
 		Table table = new Table();
 		
-		TextButton startButton = new TextButton("Starte Spiel", ResourceLoader.SKIN);
+		TextButton startButton = new TextButton("Start Game", ResourceLoader.SKIN);
 		startButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {

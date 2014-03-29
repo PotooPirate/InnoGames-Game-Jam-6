@@ -25,6 +25,7 @@ import de.teampotoo.gamejam6.helper.SoundEffectPlayer.Effect;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.shader.IBlurShader;
 import de.teampotoo.gamejam6.shader.ShaderFactory;
+import de.teampotoo.gamejam6.song.IBeat;
 import de.teampotoo.gamejam6.song.ISong;
 import de.teampotoo.gamejam6.song.IStep;
 import de.teampotoo.gamejam6.song.IStep.StepType;
@@ -232,5 +233,11 @@ public class GameScreen extends Group implements IGameScreen {
 	@Override
 	public void songEnd() {
 		mCurrentSong.start();
+	}
+
+	@Override
+	public void fireBeat(IBeat beat) {
+		// TODO Auto-generated method stub
+		
 	}
 }
