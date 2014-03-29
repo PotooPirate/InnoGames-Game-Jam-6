@@ -109,7 +109,7 @@ public class DancePattern extends Group {
 		
 		if (direction == IStep.StepType.none || direction == IStep.StepType.random || direction == IStep.StepType.special) {
 			return;
-		} 
+		}
 		
 		mStepCounter++;
 		Arrow arrow = new Arrow(direction, targetTime, mStepCounter);
