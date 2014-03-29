@@ -13,7 +13,7 @@ public class SugarBar extends Group {
 	private Image mForderground;
 	
 	private float mValue;
-	private short animationlevels;
+	private int animationlevels;
 	
 	public static SugarBar createSugarBar(int animationLevels){
 		animationLevels = animationLevels;
@@ -43,13 +43,16 @@ public class SugarBar extends Group {
 		return this.mValue;
 	}
 	
-//	public float getAnimationLevel(){
-//		return calcAnimationLevel();
-//	}
-//	
-//	private float calcAnimationLevel(){
-//		
-//	}
+	public int getAnimationLevel(){
+		return calcAnimationLevel();
+	}
+	
+	private int calcAnimationLevel(){
+		float divident = 1 / (float)animationlevels;
+		divident = divident* 100;
+		int tempwert = (int) (mValue * 100);
+		return (int) (tempwert / divident);
+	}
 	
 	public void setValue(float value) {
 		if(value >= 0 && value <= 1) {
