@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
@@ -89,12 +90,16 @@ public class GameScreen extends Group implements IGameScreen {
 		// HUD
 		addActor(mSugarBar);
 		addActor(mDancePattern);
-		addBackButton();
 		this.mPointsLabel = new Label("Punkte: 0", ResourceLoader.SKIN);
 		this.mPointsLabel.setPosition(Gdx.graphics.getWidth() / 2
 				- mPointsLabel.getWidth() / 2, Gdx.graphics.getHeight()
 				- mPointsLabel.getHeight() - 20);
 		addActor(mPointsLabel);
+		this.mComboLabel = new Label("COMBO 0", ResourceLoader.sComboSkin);
+		this.mComboLabel.setPosition(Gdx.graphics.getWidth() / 4
+				- mComboLabel.getWidth() / 2, Gdx.graphics.getHeight()
+				- mComboLabel.getHeight() - 150);
+		addActor(mComboLabel);
 
 		spriteFont = new SpriteBatch();
 		
@@ -159,24 +164,6 @@ public class GameScreen extends Group implements IGameScreen {
 		mDancePattern.fireArrow(step.getType(), step.getTargetTime());
 	}
 
-	private void addBackButton() {
-		Image backButton = new Image(ResourceLoader.BUTTON);
-		backButton.setWidth(100);
-		backButton.setHeight(50);
-		backButton.setPosition(20,
-				Gdx.graphics.getHeight() - backButton.getHeight() - 20);
-		backButton.addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				mGameJam6.startMainMenu();
-				return super.touchDown(event, x, y, pointer, button);
-			}
-		});
-
-		addActor(backButton);
-	}
-
 	@Override
 	public void act(float delta) {
 		super.act(delta);
@@ -199,6 +186,12 @@ public class GameScreen extends Group implements IGameScreen {
 			player.setState(DanceStyle.crazy);
 		}  
 		
+		if(mDancePattern.getComboCounter() > 0) {
+			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter());
+		}else{
+			mComboLabel.setText("");
+		}
+		
 		mCurrentSong.update(delta);
 	}
 
@@ -209,14 +202,6 @@ public class GameScreen extends Group implements IGameScreen {
 		mBlurShader.end();
 
 		player.render();
-//		
-//		if(mDancePattern.getComboCounter() > 0) {
-		spriteFont.setTransformMatrix(mx4Font);
-		spriteFont.begin();
-		ResourceLoader.sComboFont.draw(spriteFont,
-				"COMBO " + mDancePattern.getComboCounter(),
-				400, 400);
-		spriteFont.end();
 //		}
 	}
 
