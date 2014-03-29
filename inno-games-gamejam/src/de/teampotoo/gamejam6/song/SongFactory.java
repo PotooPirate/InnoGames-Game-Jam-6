@@ -132,7 +132,6 @@ public class SongFactory {
 			// Set the current beat as the last beat
 			lastBeat = currentBeat;
 		}
-		System.out.println(steps.toString());
 		return Song.newInstance(gameScreen, beats, steps, path);
 	}
 

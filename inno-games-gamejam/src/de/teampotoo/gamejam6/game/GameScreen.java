@@ -147,7 +147,6 @@ public class GameScreen extends Group implements IGameScreen {
 	}
 
 	public void gameOver() {
-		System.out.println(mHighscorePoints);
 		boolean inHighscore = mHighscore.insertScore(mHighscorePoints);
 		mHighscore.saveHighscoreToPreferences();
 		mHighscore.refreshLabels();
