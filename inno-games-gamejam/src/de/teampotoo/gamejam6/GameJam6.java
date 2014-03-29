@@ -39,13 +39,13 @@ public class GameJam6 implements ApplicationListener {
 		
 		state = STATE_MAINMENU;
 		
-		mGame = new Stage();
-		mGameGroup = new GameScreen(this);
-		mGame.addActor(mGameGroup);
-		
 		mHighscore = new Stage();
 		mHighscoreScreen = new HighscoreScreen(this);
 		mHighscore.addActor(mHighscoreScreen);
+		
+		mGame = new Stage();
+		mGameGroup = new GameScreen(this, mHighscoreScreen);
+		mGame.addActor(mGameGroup);
 		
 		mCredits = new Stage();
 		CreditsScreen creditScreen = new CreditsScreen(this);

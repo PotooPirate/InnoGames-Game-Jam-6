@@ -20,6 +20,7 @@ import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
+import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.shader.IBlurShader;
 import de.teampotoo.gamejam6.shader.ShaderFactory;
 import de.teampotoo.gamejam6.song.ISong;
@@ -31,6 +32,7 @@ import de.teampotoo.gamejam6.song.SongFactory;
 public class GameScreen extends Group implements IGameScreen {
 
 	private GameJam6 mGameJam6;
+	private HighscoreScreen mHighscore;
 	private Image mBackground;
 
 	private int mPlayerPoints;
@@ -51,8 +53,9 @@ public class GameScreen extends Group implements IGameScreen {
 	private IBlurShader mPlayerBlurShader = ShaderFactory.createBlurShader();
 	private SpriteBatch mPlayerBatch = new SpriteBatch();
 	
-	public GameScreen(GameJam6 gameJam6) {
-		this.mGameJam6 = gameJam6;	
+	public GameScreen(GameJam6 gameJam6, HighscoreScreen highscore) {
+		this.mGameJam6 = gameJam6;
+		this.mHighscore = highscore;
 		this.mPlayerPoints = 0;
 		
 		mBackground = new Image(ResourceLoader.BACKGROUND);
@@ -105,6 +108,13 @@ public class GameScreen extends Group implements IGameScreen {
 	}
 	
 	public void setSugarBar(float value) {
+		if(value < 0) {
+			mHighscore.insertScore(mPlayerPoints);
+			mHighscore.saveHighscoreToPreferences();
+			mHighscore.refreshLabels();
+			mPlayerPoints = 0;
+			mGameJam6.startHighscore();
+		}
 		mSugarBar.setValue(value);
 	}
 	
@@ -159,7 +169,8 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	public void startGame() {
 		mCurrentSong.start();
-		mPlayerPoints = 0;
+		mPlayerPoints = 999990;
+		mSugarBar.setValue(0.5f);
 		mPointsLabel.setText("Punkte: 0");
 	}
 	

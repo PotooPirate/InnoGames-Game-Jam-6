@@ -43,7 +43,7 @@ public class HighscoreScreen extends Group {
 		mHighscores = new int[]{place1,place2,place3,place4,place5,place6,place7,place8,place9,place10}; 
 	}
 	
-	private void saveHighscoreToPreferences(){
+	public void saveHighscoreToPreferences(){
 		Preferences prefs = Gdx.app.getPreferences("Highscores");
 		prefs.putInteger("placeone", mHighscores[0]);
 		prefs.putInteger("placetwo", mHighscores[1]);
