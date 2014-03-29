@@ -28,7 +28,7 @@ public class DancePattern extends Group {
 	
 	private Rectangle mPerfect, mGood, mBad;
 	private List<Arrow> mArrows;
-	private ShapeRenderer mDebugRenderer;
+	//private ShapeRenderer mDebugRenderer;
 	private int mStepCounter;
 	private int mComboCounter;
 	
@@ -51,7 +51,7 @@ public class DancePattern extends Group {
 
 		addAction(Actions.alpha(0.75f));
 
-		mDebugRenderer = new ShapeRenderer();
+		//mDebugRenderer = new ShapeRenderer();
 		
 		createLabel();
 	}
@@ -88,7 +88,11 @@ public class DancePattern extends Group {
 	public void draw(Batch batch, float parentAlpha) {
 		batch.draw(ResourceLoader.sDancePatternBackground, getX(), getY());
 		super.draw(batch, parentAlpha);
+		
+
+		/*
 		batch.end();
+		
 		mDebugRenderer.begin(ShapeType.Line);
 		mDebugRenderer.setColor(1f, 0f, 0f, 1f);
 		mDebugRenderer.rect(mBad.x + getX(), mBad.y + getY(), mBad.width,
@@ -101,6 +105,7 @@ public class DancePattern extends Group {
 				mPerfect.width, mPerfect.height);
 		mDebugRenderer.end();
 		batch.begin();
+		*/
 	}
 
 	public void fireArrow(IStep.StepType direction, float targetTime) { 
@@ -111,7 +116,7 @@ public class DancePattern extends Group {
 		
 		mStepCounter++;
 		Arrow arrow = new Arrow(direction, targetTime, mStepCounter);
-		arrow.setShapeRenderer(mDebugRenderer);
+		//arrow.setShapeRenderer(mDebugRenderer);
 		addActor(arrow);
 		mArrows.add(arrow);
 	}
