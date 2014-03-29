@@ -257,4 +257,8 @@ public class GameScreen extends Group implements IGameScreen {
 	public void fireBeat(IBeat beat) {
 		shaderIntensity = 0.3f;
 	}
+	
+	public void resize(int width, int height) {
+		shader.resize(width, height);
+	}
 }

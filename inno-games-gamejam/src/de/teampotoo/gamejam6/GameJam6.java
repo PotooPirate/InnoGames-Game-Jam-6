@@ -91,6 +91,7 @@ public class GameJam6 implements ApplicationListener {
 
 	@Override
 	public void resize(int width, int height) {
+		mGameGroup.resize(width, height);
 	}
 
 	@Override
