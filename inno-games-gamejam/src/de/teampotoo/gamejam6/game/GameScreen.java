@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -38,6 +40,10 @@ public class GameScreen extends Group implements IGameScreen {
 	private int mPlayerPoints; // current points while the game runs
 	private int mHighscorePoints; // Frozen points after the game finished
 	
+	//Special HACK
+	private Matrix4 mx4Font = new Matrix4();
+	private SpriteBatch spriteFont;
+	
 	// player stuff
 	private Player player;
 
@@ -46,7 +52,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private DancePattern mDancePattern;
 	private Label mPointsLabel;
 	private Label mComboLabel;
-
+	
 	// Music
 	private ISong mCurrentSong;
 
@@ -89,12 +95,9 @@ public class GameScreen extends Group implements IGameScreen {
 				- mPointsLabel.getWidth() / 2, Gdx.graphics.getHeight()
 				- mPointsLabel.getHeight() - 20);
 		addActor(mPointsLabel);
-		this.mComboLabel = new Label("COMBO 0", ResourceLoader.SKIN);
-		this.mComboLabel.setPosition(Gdx.graphics.getWidth() / 2
-				- mComboLabel.getWidth() / 2, Gdx.graphics.getHeight()
-				- mComboLabel.getHeight()*3 - 20);
-		addActor(mComboLabel);
 
+		spriteFont = new SpriteBatch();
+		
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
 
@@ -197,12 +200,6 @@ public class GameScreen extends Group implements IGameScreen {
 		}  
 		
 		mCurrentSong.update(delta);
-
-		if(mDancePattern.getComboCounter() > 0) {
-			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter());
-		}else{
-			mComboLabel.setText("");
-		}
 	}
 
 	@Override
@@ -212,6 +209,15 @@ public class GameScreen extends Group implements IGameScreen {
 		mBlurShader.end();
 
 		player.render();
+//		
+//		if(mDancePattern.getComboCounter() > 0) {
+		spriteFont.setTransformMatrix(mx4Font);
+		spriteFont.begin();
+		ResourceLoader.sComboFont.draw(spriteFont,
+				"COMBO " + mDancePattern.getComboCounter(),
+				400, 400);
+		spriteFont.end();
+//		}
 	}
 
 	public void setPlayerPoints(int points) {

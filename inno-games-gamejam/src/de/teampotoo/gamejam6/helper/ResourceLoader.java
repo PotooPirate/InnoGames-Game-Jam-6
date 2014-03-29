@@ -26,6 +26,8 @@ public class ResourceLoader {
 	public static TextureRegion BACKGROUND;
 
 	public static Skin SKIN;
+	public static Skin sComboSkin;
+	public static BitmapFont sComboFont;
 	public static BitmapFont FONT;
 	public static BitmapFont BUTTON_FONT;
 	public static TextureRegion BUTTON;
@@ -54,6 +56,16 @@ public class ResourceLoader {
 		BUTTON_PRESSED = new TextureRegion(new Texture(
 				Gdx.files.internal("data/buttons/ButtonPressed.png")));
 
+		//Creating the combo skin
+		sComboSkin = new Skin();
+		
+		sComboFont = new BitmapFont(Gdx.files.internal("data/font/ComboFont.fnt"),true);
+		sComboSkin.add("combo_font", sComboFont);
+		
+		LabelStyle comboLabelStyle = new LabelStyle();
+		comboLabelStyle.font = sComboSkin.get("combo_font", BitmapFont.class);
+		sComboSkin.add("default", comboLabelStyle);
+		
 		// Creating the Skin
 		SKIN = new Skin();
  
