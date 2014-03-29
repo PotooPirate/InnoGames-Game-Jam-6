@@ -20,6 +20,7 @@ public class Song implements ISong {
 
 	private float time = 0f;
 	private int index = 0;
+	private String musicPath;
 
 	/****************************************************************************
 	 * constructor
@@ -27,6 +28,7 @@ public class Song implements ISong {
 
 	private Song(IGameScreen gameScreen, List<IStep> steps, String musicPath) {
 		mGameScreen = gameScreen;
+		this.musicPath = musicPath;
 		mSteps = steps;
 		mSongMusic = Gdx.audio.newMusic(Gdx.files.internal(musicPath));
 	}
