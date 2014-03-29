@@ -150,6 +150,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mSugarBar.clearActions();
 		mSugarBar.setValue(0.5f);
 		mDancePattern.clear();
+		mDancePattern.createLabel();
 		if (inHighscore)
 			SoundEffectPlayer.Play(Effect.highscore);
 		else

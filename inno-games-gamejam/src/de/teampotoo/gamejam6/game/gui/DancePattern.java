@@ -21,9 +21,9 @@ public class DancePattern extends Group {
 	 * variables
 	 ****************************************************************************/
 	
-	private static final float PERFECT_SCORE = 0.050f;
-	private static final float GOOD_SCORE = 0.025f;
-	private static final float BAD_SCORE = 0.015f;
+	private static final float PERFECT_SCORE = 0.100f;
+	private static final float GOOD_SCORE = 0.040f;
+	private static final float BAD_SCORE = 0.020f;
 	private static final float MISS_SCORE = -0.05f;
 	
 	private Rectangle mPerfect, mGood, mBad;
@@ -51,6 +51,10 @@ public class DancePattern extends Group {
 
 		mDebugRenderer = new ShapeRenderer();
 		
+		createLabel();
+	}
+	
+	public void createLabel(){ 
 		mPerfectLabel = new Label("Perfect!", ResourceLoader.sComboSkin);
 		addActor(mPerfectLabel);
 		mPerfectLabel.setPosition(40, 605);
