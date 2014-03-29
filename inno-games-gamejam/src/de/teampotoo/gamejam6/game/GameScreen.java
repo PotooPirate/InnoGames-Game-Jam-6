@@ -1,6 +1,7 @@
 package de.teampotoo.gamejam6.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +21,7 @@ import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.song.ISong;
 import de.teampotoo.gamejam6.song.IStep;
+import de.teampotoo.gamejam6.song.IStep.StepType;
 import de.teampotoo.gamejam6.song.Song;
 import de.teampotoo.gamejam6.song.SongFactory;
 
@@ -57,7 +59,7 @@ public class GameScreen extends Group implements IGameScreen {
 		
 		mDancePattern = new DancePattern();
 		mDancePattern.setPosition(Gdx.graphics.getWidth() - 400, 0); 
-
+		
 		player = new Player();
 		player.create();
 		player.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 20);
@@ -74,6 +76,19 @@ public class GameScreen extends Group implements IGameScreen {
 		initBlurShader();
 	}
 	
+	public void checkArrows(int keycode) {
+		switch(keycode) {
+			case Input.Keys.LEFT:
+				break;
+			case Input.Keys.UP:
+				break;
+			case Input.Keys.DOWN:
+				break;
+			case Input.Keys.RIGHT:
+				break;
+		}
+	}
+	
 	private void initBlurShader() {
 		blurShaderEnabled = false;
  		blurShaderFBOBatch = new SpriteBatch();
@@ -86,8 +101,8 @@ public class GameScreen extends Group implements IGameScreen {
 	@Override
 	public void fireStep(IStep step) {
 		System.out.println("FIRE");
-		Arrow a = new Arrow(Arrow.Direction.left, step.getTargetTime());
-		addActor(a);
+//		Arrow a = new Arrow(Arrow.Direction.left, step.getTargetTime());
+//		addActor(a);
 	}
 	
 	private void addBackButton() {

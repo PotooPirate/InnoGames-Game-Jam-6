@@ -2,6 +2,8 @@ package de.teampotoo.gamejam6;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import de.teampotoo.gamejam6.credits.CreditsScreen;
@@ -24,6 +26,8 @@ public class GameJam6 implements ApplicationListener {
 	private Stage mCredits;
 	private Stage mHighscore;
 	
+	private GameScreen mGameGroup;
+	
 	@Override
 	public void create() {
 		ResourceLoader.loadResources();
@@ -31,8 +35,8 @@ public class GameJam6 implements ApplicationListener {
 		state = STATE_MAINMENU;
 		
 		mGame = new Stage();
-		GameScreen game = new GameScreen(this);
-		mGame.addActor(game);
+		mGameGroup = new GameScreen(this);
+		mGame.addActor(mGameGroup);
 		
 		mHighscore = new Stage();
 		HighscoreScreen highscore = new HighscoreScreen(this);
@@ -92,6 +96,13 @@ public class GameJam6 implements ApplicationListener {
 	
 	public void startGame() {
 		state = STATE_GAME;
+		mGame.addListener(new InputListener() {
+			@Override
+			public boolean keyDown(InputEvent event, int keycode) {
+				mGameGroup.checkArrows(keycode);
+				return super.keyDown(event, keycode);
+			}
+		});
 		Gdx.input.setInputProcessor(mGame);
 	}
 	

@@ -2,7 +2,7 @@ package de.teampotoo.gamejam6.song;
 
 public interface IStep {
 
-	enum StepType {
+	public enum StepType {
 		left, right, up, down, special
 	}
 	
