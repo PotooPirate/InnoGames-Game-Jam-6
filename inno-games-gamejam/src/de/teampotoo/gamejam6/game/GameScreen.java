@@ -176,7 +176,7 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	public void startGame() {
 		mCurrentSong.start();
-		mPlayerPoints = 999990;
+		mPlayerPoints = 0;
 		mSugarBar.setValue(0.5f);
 		mPointsLabel.setText("Punkte: 0");
 	}
