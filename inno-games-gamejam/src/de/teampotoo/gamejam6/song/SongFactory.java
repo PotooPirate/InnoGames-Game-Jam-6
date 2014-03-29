@@ -274,6 +274,21 @@ public class SongFactory {
 		steps.add(Step.newInstance(StepType.up, 118.665054f, 0.5f));
 		steps.add(Step.newInstance(StepType.up, 119.11527f, 0.5f));
 		steps.add(Step.newInstance(StepType.up, 119.54899f, 0.5f));
+		
+		steps.clear();
+		float beatLength = (60f / 132);
+		int beat = 0;
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 8; j++) {
+				for (int k = 0; k < 4; k++) {
+					beat++;
+					if (beat % 4 == 0) {
+						steps.add(Step.newInstance(i % 2 == 0 ? StepType.left : StepType.up, (beatLength * beat) - 0.5f, 0.5f));
+					}
+				}
+			}
+		}
+		
 		return Song.newInstance(gameScreen, steps, "data/music/Crazy_Gameboy.wav");
 	}
 	
