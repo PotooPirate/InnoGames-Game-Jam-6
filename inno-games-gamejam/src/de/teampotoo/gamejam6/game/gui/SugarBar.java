@@ -13,8 +13,14 @@ public class SugarBar extends Group {
 	private Image mForderground;
 	
 	private float mValue;
+	private short animationlevels;
 	
-	public SugarBar() {
+	public static SugarBar createSugarBar(short animationLevels){
+		animationLevels = animationLevels;
+		return new SugarBar();
+	}
+	
+	private SugarBar() {
 		mBackground = new Image(ResourceLoader.sSugarbarBackground);
 		mForderground = new Image(ResourceLoader.sSugarbarForderground);
 		mForderground.setScaleY(0f);
@@ -28,6 +34,14 @@ public class SugarBar extends Group {
 	
 	public float getValue() {
 		return this.mValue;
+	}
+	
+	public float getAnimationLevel(){
+		return calcAnimationLevel();
+	}
+	
+	private float calcAnimationLevel(){
+		
 	}
 	
 	public void setValue(float value) {
