@@ -19,24 +19,24 @@ public class SoundEffectPlayer {
 	 * variables
 	 ****************************************************************************/
 
-	private static Sound cheering = getSound("Applause.mp3");
-	private static Sound awesome = getSound("Awesome.mp3");
-	private static Sound brilliant = getSound("Brilliant.mp3");
-	private static Sound cccombobreaker = getSound("CoCoCoComboBreaker.mp3");
-	private static Sound combobreaker = getSound("ComboBreaker.mp3");
-	private static Sound extreme = getSound("Extreme.mp3");
-	private static Sound fantastic = getSound("Fantastic.mp3");
-	private static Sound fatality = getSound("Fatality.mp3");
-	private static Sound great = getSound("Great.mp3");
-	private static Sound greatjob = getSound("GreatJob.mp3");
-	private static Sound highscore = getSound("Highscore.mp3");
-	private static Sound kimjungundancerevolution = getSound("KimJungDanceRevolution.mp3");
-	private static Sound kimjungun = getSound("KimJungUn.mp3");
-	private static Sound looser = getSound("Looser.mp3");
-	private static Sound potoo = getSound("Potoo.mp3");
-	private static Sound ridiculus = getSound("Ridiculus.mp3");
-	private static Sound youareawesome = getSound("YouAreAwesome.mp3");
-	private static Sound youbeatthehighscore = getSound("YouBeatTheHighscore.mp3");
+	private static Sound cheering;
+	private static Sound awesome ;
+	private static Sound brilliant;
+	private static Sound cccombobreaker;
+	private static Sound combobreaker;
+	private static Sound extreme;
+	private static Sound fantastic;
+	private static Sound fatality;
+	private static Sound great;
+	private static Sound greatjob;
+	private static Sound highscore;
+	private static Sound kimjungundancerevolution;
+	private static Sound kimjungun;
+	private static Sound looser;
+	private static Sound potoo;
+	private static Sound ridiculus;
+	private static Sound youareawesome;
+	private static Sound youbeatthehighscore;
 	
 
 	/****************************************************************************
@@ -104,6 +104,28 @@ public class SoundEffectPlayer {
 			youbeatthehighscore.play();
 			break;
 		}
+		
+	}
+
+	public static void loadSounds() {
+		cheering = getSound("Applause.mp3");
+		awesome = getSound("Awesome.mp3");
+		brilliant = getSound("Brilliant.mp3");
+		cccombobreaker = getSound("CoCoCoComboBreaker.mp3");
+		combobreaker = getSound("ComboBreaker.mp3");
+		extreme = getSound("Extreme.mp3");
+		fantastic = getSound("Fantastic.mp3");
+		fatality = getSound("Fatalaty.mp3");
+		great = getSound("Great.mp3");
+		greatjob = getSound("GreatJob.mp3");
+		highscore = getSound("Highscore.mp3");
+		kimjungundancerevolution = getSound("KimJungDanceRevolution.mp3");
+		kimjungun = getSound("KimJungUn.mp3");
+		looser = getSound("Looser.mp3");
+		potoo = getSound("Potoo.mp3");
+		ridiculus = getSound("Ridiculus.mp3");
+		youareawesome = getSound("YouAreAwesome.mp3");
+		youbeatthehighscore = getSound("YouBeatTheHighscore.mp3");
 		
 	}
 	
