@@ -25,7 +25,7 @@ public class DancePattern extends Group {
 	
 	public DancePattern() {
 		mArrows = new ArrayList<Arrow>();
-		mStepCounter = 1;
+		mStepCounter = 0;
 		mBackground = new Image(ResourceLoader.sDancePatternBackground);
 		addActor(mBackground);
 		
@@ -63,27 +63,48 @@ public class DancePattern extends Group {
 	}
 	
 	public void removeArrow(Arrow arrow) {
+		if(arrow.isActive()) {
+			GameScreen parent = (GameScreen)getParent();
+			parent.setSugarBar(parent.getSugarBarValue()-0.05f);
+		}
 		mArrows.remove(arrow);
 	}
 	
 	public void checkArrow(IStep.StepType direction) {
+		boolean hit = false;
 		for(Arrow a : mArrows) {
 			if(a.getStepType().equals(direction)) {
 				float centerX = a.getCenterX() ;
 				float centerY = a.getCenterY() ;
-				if(mPerfect.contains(centerX, centerY)) {
+				if(mPerfect.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen)getParent();
+					parent.setSugarBar(parent.getSugarBarValue()+0.05f);
 					parent.setPlayerPoints(parent.getPlayerPoints()+20);
 					a.getArrowImage().setColor(0, 1f, 0, 1f);
-				}else if(mGood.contains(centerX, centerY)) {
+					a.setActive(false);
+					hit = true;
+				}else if(mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen)getParent();
+					parent.setSugarBar(parent.getSugarBarValue()+0.05f);
 					parent.setPlayerPoints(parent.getPlayerPoints()+10);
 					a.getArrowImage().setColor(1f, 0.5f, 0, 1f);
-				}else if(mBad.contains(centerX, centerY)) {
+					a.setActive(false);
+					hit = true;
+				}else if(mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen)getParent();
+					parent.setSugarBar(parent.getSugarBarValue()+0.05f);
 					parent.setPlayerPoints(parent.getPlayerPoints()+5);
 					a.getArrowImage().setColor(1f, 0, 0, 1f);
+					a.setActive(false);
+					hit = true;
 				}
+			}
+		}
+		if(!hit) {
+			GameScreen parent = (GameScreen)getParent();
+			parent.setSugarBar(parent.getSugarBarValue()-0.05f);
+			if(parent.getPlayerPoints()-5 >= 0) {
+				parent.setPlayerPoints(parent.getPlayerPoints()-5);
 			}
 		}
 	}

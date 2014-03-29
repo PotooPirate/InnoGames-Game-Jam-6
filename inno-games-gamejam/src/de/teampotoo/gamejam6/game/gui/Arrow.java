@@ -16,8 +16,10 @@ public class Arrow extends Group {
 	private Image mArrow;
 	private IStep.StepType mStepType;
 	private int mId;
+	private boolean mActive;
 	
 	public Arrow(IStep.StepType dir, float targetTime, int id) {
+		mActive = true;
 		mArrow = new Image(ResourceLoader.sArrow);
 		mStepType = dir;
 		mId = id;
@@ -44,10 +46,15 @@ public class Arrow extends Group {
 				mArrow.setPosition(300, -mArrow.getHeight());
 				break;
 		}
-		
-		SequenceAction seq = new SequenceAction(Actions.moveBy(0, 600, targetTime),
+		SequenceAction seq = new SequenceAction(Actions.moveBy(0, 650, targetTime),
+				Actions.run(new Runnable() {
+					@Override
+					public void run() {
+						mActive = false;
+					}
+				}),
 				Actions.parallel(Actions.moveBy(0, 150, 1f),
-				Actions.fadeOut(1f)),
+						Actions.fadeOut(1f)),
 				Actions.run(new Runnable() {
 					@Override
 					public void run() {
@@ -58,6 +65,14 @@ public class Arrow extends Group {
 		addAction(seq);
 	}
 	
+	public boolean isActive() {
+		return mActive;
+	}
+
+	public void setActive(boolean mActive) {
+		this.mActive = mActive;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

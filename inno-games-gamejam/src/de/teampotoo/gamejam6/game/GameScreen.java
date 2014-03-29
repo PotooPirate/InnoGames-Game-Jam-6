@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import de.teampotoo.gamejam6.GameJam6;
 import de.teampotoo.gamejam6.game.gui.Arrow;
@@ -40,6 +41,7 @@ public class GameScreen extends Group implements IGameScreen {
 	//HUD
 	private SugarBar mSugarBar;
 	private DancePattern mDancePattern;
+	private Label mPointsLabel;
 	
 	//Music
 	private ISong mCurrentSong;
@@ -52,6 +54,7 @@ public class GameScreen extends Group implements IGameScreen {
 	public GameScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;	
 		this.mPlayerPoints = 0;
+		
 		mBackground = new Image(ResourceLoader.BACKGROUND);
 		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		addActor(mBackground);
@@ -70,6 +73,9 @@ public class GameScreen extends Group implements IGameScreen {
 		addActor(mSugarBar);
 		addActor(mDancePattern);
 		addBackButton();
+		this.mPointsLabel = new Label("Punkte: 0", ResourceLoader.SKIN);
+		this.mPointsLabel.setPosition(Gdx.graphics.getWidth()/2 - mPointsLabel.getWidth()/2, Gdx.graphics.getHeight() - mPointsLabel.getHeight()-20);
+		addActor(mPointsLabel);
 		
 		//Let the music
 		mCurrentSong = SongFactory.createSong1(this);
@@ -92,6 +98,14 @@ public class GameScreen extends Group implements IGameScreen {
 				mDancePattern.checkArrow(StepType.right);
 				break;
 		}
+	}
+	
+	public float getSugarBarValue() {
+		return mSugarBar.getValue();
+	}
+	
+	public void setSugarBar(float value) {
+		mSugarBar.setValue(value);
 	}
 	
 	@Override
@@ -127,7 +141,7 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		mBlurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0.1f, 1f);
+		mBlurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0f, 1f);
 		super.draw(batch, parentAlpha); 
 		mBlurShader.end();
 		
@@ -136,6 +150,7 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	public void setPlayerPoints(int points) {
 		this.mPlayerPoints = points;
+		mPointsLabel.setText("Punkte: " + this.mPlayerPoints);
 	}
 	
 	public int getPlayerPoints() {
@@ -145,8 +160,9 @@ public class GameScreen extends Group implements IGameScreen {
 	public void startGame() {
 		mCurrentSong.start();
 		mPlayerPoints = 0;
+		mPointsLabel.setText("Punkte: 0");
 	}
-
+	
 	@Override
 	public void songEnd() {
 		mCurrentSong.start();
