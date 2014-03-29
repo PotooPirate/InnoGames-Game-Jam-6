@@ -36,7 +36,8 @@ public class GameScreen extends Group implements IGameScreen {
 
 	private GameJam6 mGameJam6;
 	private HighscoreScreen mHighscore;
-	private Image mBackground;
+	private Image mUpperBackground;
+	private Image mLowerBackground;
 
 	private int mPlayerPoints; // current points while the game runs
 	private int mHighscorePoints; // Frozen points after the game finished
@@ -71,10 +72,15 @@ public class GameScreen extends Group implements IGameScreen {
 		this.mHighscore = highscore;
 		this.mPlayerPoints = 0;
 
-		mBackground = new Image(ResourceLoader.BACKGROUND);
-		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(),
-				Gdx.graphics.getHeight());
-		addActor(mBackground);
+		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
+		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
+				mLowerBackground.getHeight());
+		addActor(mLowerBackground);
+
+		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
+		mUpperBackground.setBounds(0, 350, mUpperBackground.getWidth(),
+				mUpperBackground.getHeight());
+		addActor(mUpperBackground);
 
 		mSugarBar = SugarBar.createSugarBar(5);
 		mSugarBar.setPosition(20, 130);

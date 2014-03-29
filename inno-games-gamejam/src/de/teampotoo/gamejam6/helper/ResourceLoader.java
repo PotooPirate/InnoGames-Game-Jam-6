@@ -23,7 +23,8 @@ public class ResourceLoader {
 	public static TextureRegion sDancePatternBackground;
 	public static TextureRegion sArrow;
 
-	public static TextureRegion BACKGROUND;
+	public static TextureRegion sGameLowerBackground;
+	public static TextureRegion sGameUpperBackground;
 
 	public static Skin SKIN;
 	public static Skin sComboSkin;
@@ -48,8 +49,10 @@ public class ResourceLoader {
 		sArrow = new TextureRegion(new Texture(
 				Gdx.files.internal("data/gfx/arrow.png")));
 
-		BACKGROUND = new TextureRegion(new Texture(
-				Gdx.files.internal("data/gfx/background.jpg")));
+		sGameLowerBackground = new TextureRegion(new Texture(
+				Gdx.files.internal("data/gfx/game_lowerbackground.png")));
+		sGameUpperBackground = new TextureRegion(new Texture(
+				Gdx.files.internal("data/gfx/game_upperbackground.png")));
 
 		BUTTON = new TextureRegion(new Texture(
 				Gdx.files.internal("data/buttons/Button.png")));
