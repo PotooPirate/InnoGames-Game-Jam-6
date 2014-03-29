@@ -9,6 +9,23 @@ import de.teampotoo.gamejam6.song.IStep.StepType;
 public class SongFactory {
 
 	public static ISong createSong1(IGameScreen gameScreen) {
+		List<IStep> steps = new ArrayList<IStep>();
+		steps.add(Step.newInstance(StepType.up, 0f, 0.5f));
+		steps.add(Step.newInstance(StepType.up, 0.5f, 0.45f));
+		steps.add(Step.newInstance(StepType.up, 0.95f, 0.5f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		steps.add(Step.newInstance(StepType.up, 1f, 1f));
+		
 		return null;
 	}
 	
