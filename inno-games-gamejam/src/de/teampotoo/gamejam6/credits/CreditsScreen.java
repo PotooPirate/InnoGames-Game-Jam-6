@@ -10,6 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 import de.teampotoo.gamejam6.GameJam6;
 import de.teampotoo.gamejam6.game.SugarRocket;
@@ -81,20 +84,14 @@ public class CreditsScreen extends Group {
 	 ****************************************************************************/
 
 	private void addBackButton() {
-		Image backButton = new Image(ResourceLoader.BUTTON);
-		backButton.setWidth(100);
-		backButton.setHeight(50);
-		backButton.setPosition(0,
-				Gdx.graphics.getHeight() - backButton.getHeight());
-		backButton.addListener(new InputListener() {
+		TextButton backButton = new TextButton("Back", ResourceLoader.SKIN);
+		backButton.addListener(new ChangeListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+			public void changed(ChangeEvent event, Actor actor) {
 				mGameJam6.startMainMenu();
-				return super.touchDown(event, x, y, pointer, button);
 			}
 		});
-
+		backButton.setPosition(0, Gdx.graphics.getHeight() - backButton.getHeight());
 		addActor(backButton);
 	}
 

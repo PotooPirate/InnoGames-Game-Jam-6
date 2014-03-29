@@ -30,6 +30,7 @@ public class ResourceLoader {
 	public static TextureRegion sGameUpperBackground;
 	public static TextureRegion[] sRockets;
 	public static TextureRegion[] sFire;
+	public static TextureRegion sButtonFlag;
 
 	public static Skin SKIN;
 	public static Skin SKIN_BIG;
@@ -58,8 +59,6 @@ public class ResourceLoader {
 				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/rakete_2.png"))),
 				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/rakete_3.png")))
 		};
-				
-		
 		
 		sDancePatternBackground = new TextureRegion(new Texture(
 				Gdx.files.internal("data/gfx/dancepattern_background.png")));
@@ -86,6 +85,8 @@ public class ResourceLoader {
 		BUTTON_PRESSED = new TextureRegion(new Texture(
 				Gdx.files.internal("data/buttons/ButtonPressed.png")));
 
+		sButtonFlag = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/button.png")));
+		
 		sFire = new TextureRegion[] {
 				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/Feuer_1_3.png"))),
 				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/Feuer_2_3.png"))),
@@ -121,10 +122,10 @@ public class ResourceLoader {
 		SKIN_BIG.add("button_font_big", FONT_BIG);
 
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
-		textButtonStyle.up = new TextureRegionDrawable(BUTTON);
-		textButtonStyle.down = new TextureRegionDrawable(BUTTON_PRESSED);
-		textButtonStyle.over = new TextureRegionDrawable(BUTTON_PRESSED);
-		textButtonStyle.checked = new TextureRegionDrawable(BUTTON_PRESSED);
+		textButtonStyle.up = new TextureRegionDrawable(sButtonFlag);
+		textButtonStyle.down = new TextureRegionDrawable(sButtonFlag);
+		textButtonStyle.over = new TextureRegionDrawable(sButtonFlag);
+		textButtonStyle.checked = new TextureRegionDrawable(sButtonFlag);
 		textButtonStyle.font = SKIN.get("button_font", BitmapFont.class);
 		SKIN.add("default", textButtonStyle);
 
