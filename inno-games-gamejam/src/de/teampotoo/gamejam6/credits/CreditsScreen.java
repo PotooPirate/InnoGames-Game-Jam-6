@@ -2,6 +2,7 @@ package de.teampotoo.gamejam6.credits;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -27,12 +28,27 @@ public class CreditsScreen extends Group {
 
 	private GameJam6 mGameJam6;
 
+	private Image mLowerBackground;
+
+	private Actor mUpperBackground;
+
 	/****************************************************************************
 	 * constructor
 	 ****************************************************************************/
 
 	public CreditsScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
+		
+		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
+		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
+				mLowerBackground.getHeight());
+		addActor(mLowerBackground);
+		
+		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
+		mUpperBackground.setBounds(0, 0, mUpperBackground.getWidth(),
+				mUpperBackground.getHeight());
+		addActor(mUpperBackground);
+		
 		addBackButton();
 		addCredits();
 		
