@@ -147,6 +147,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mPlayerPoints = mHighscorePoints = 0;
 		mSugarBar.clearActions();
 		mSugarBar.setValue(0.5f);
+		mDancePattern.clear();
 		mGameJam6.startHighscore();
 	}
 

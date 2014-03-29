@@ -20,9 +20,6 @@ public class DancePattern extends Group {
 	/****************************************************************************
 	 * variables
 	 ****************************************************************************/
-
-	private Image mBackground;
-
 	private Rectangle mPerfect, mGood, mBad;
 	private List<Arrow> mArrows;
 	private ShapeRenderer mDebugRenderer;
@@ -37,8 +34,6 @@ public class DancePattern extends Group {
 		mArrows = new ArrayList<Arrow>();
 		mStepCounter = 0;
 		mComboCounter = 0;
-		mBackground = new Image(ResourceLoader.sDancePatternBackground);
-		addActor(mBackground);
 
 		mPerfect = new Rectangle(0, 540, 400, 20);
 		mGood = new Rectangle(0, 520, 400, 60);
@@ -63,8 +58,8 @@ public class DancePattern extends Group {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+		batch.draw(ResourceLoader.sDancePatternBackground, getX(), getY());
 		super.draw(batch, parentAlpha);
-
 		batch.end();
 		mDebugRenderer.begin(ShapeType.Line);
 		mDebugRenderer.setColor(1f, 0f, 0f, 1f);
