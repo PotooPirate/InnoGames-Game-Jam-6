@@ -39,11 +39,11 @@ public class CreditsScreen extends Group {
 		mPlayer1 = new Player();
 		mPlayer1.create();
 		mPlayer1.setPosition(Gdx.graphics.getWidth()  / 5, Gdx.graphics.getHeight() / 14);
-		mPlayer1.setState(DanceStyle.middle);
+		mPlayer1.setState(DanceStyle.level3);
 		mPlayer2 = new Player();
 		mPlayer2.create();
 		mPlayer2.setPosition(Gdx.graphics.getWidth() - Gdx.graphics.getWidth()  / 5, Gdx.graphics.getHeight() / 14);
-		mPlayer2.setState(DanceStyle.crazy);
+		mPlayer2.setState(DanceStyle.level5);
 	}
 
 	/****************************************************************************

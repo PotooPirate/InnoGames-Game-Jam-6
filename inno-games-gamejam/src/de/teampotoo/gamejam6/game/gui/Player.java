@@ -20,7 +20,7 @@ public class Player {
 	 ****************************************************************************/
 
 	public enum DanceStyle {
-		light, middle, crazy
+		level1, level2, level3, level4, level5, losing
 	}
 
 	/****************************************************************************
@@ -65,15 +65,24 @@ public class Player {
 		} else {
 			currentState = newDance;
 
-			if (currentState == DanceStyle.light) {
+			if (currentState == DanceStyle.level1) {
 
 				state.setAnimation(0, "move1", true);
-			} else if (currentState == DanceStyle.middle) {
+			} else if (currentState == DanceStyle.level2) {
 
 				state.setAnimation(0, "move2", true);
-			} else if (currentState == DanceStyle.crazy) {
+			} else if (currentState == DanceStyle.level3) {
 
 				state.setAnimation(0, "move3", true);
+			} else if (currentState == DanceStyle.level4) {
+
+				state.setAnimation(0, "move4", true);
+			} else if (currentState == DanceStyle.level5) {
+
+				state.setAnimation(0, "move5", true);
+			} else if (currentState == DanceStyle.losing) {
+
+				state.setAnimation(0, "move0", true);
 			}
 		}
 	}
@@ -117,7 +126,7 @@ public class Player {
 			public void end(int trackIndex) {
 			}
 		});
-		setState(DanceStyle.light);
+		setState(DanceStyle.level1);
 
 		skeleton.setToSetupPose();
 		skeleton = new Skeleton(skeleton);

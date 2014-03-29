@@ -89,6 +89,13 @@ public class SugarBar extends Group {
 
 	private int calcAnimationLevel() {
 		
-		return (int) (animationlevels * mValue);
+		if (mValue < 0.4f) {
+			return 0;
+		} else {
+			float val = mValue - 0.4f;
+			val = val * 1.66667f;
+			
+			return (int) (animationlevels * val);
+		} 
 	}
 }

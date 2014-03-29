@@ -56,7 +56,7 @@ public class MainScreen extends Group {
 		mPlayer.create();
 
 		mPlayer.setPosition(mMovementActor.getX(), mMovementActor.getY());
-		mPlayer.setState(DanceStyle.crazy);
+		mPlayer.setState(DanceStyle.level4);
 		 
 		mRainbowImage1 = new Image(new Texture("data/eyecandy/rainbow.png"));
 		addActor(mRainbowImage1);
