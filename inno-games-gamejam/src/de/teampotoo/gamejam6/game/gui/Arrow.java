@@ -15,11 +15,12 @@ public class Arrow extends Group {
 	
 	private Image mArrow;
 	private IStep.StepType mStepType;
-	private ShapeRenderer debugRenderer;
+	private int mId;
 	
-	public Arrow(IStep.StepType dir, float targetTime) {
+	public Arrow(IStep.StepType dir, float targetTime, int id) {
 		mArrow = new Image(ResourceLoader.sArrow);
 		mStepType = dir;
+		mId = id;
 		addActor(mArrow);
 		
 		switch(dir) {
@@ -57,31 +58,60 @@ public class Arrow extends Group {
 		addAction(seq);
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + mId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Arrow other = (Arrow) obj;
+		if (mId != other.mId)
+			return false;
+		return true;
+	}
+
 	public IStep.StepType getStepType() {
 		return mStepType;
 	}
 
 	private void deleteArrow() {
+		((DancePattern)getParent()).removeArrow(this);
 		getParent().removeActor(this);
 	}
 	
-	public void setDebugRenderer(ShapeRenderer debugRenderer) {
-		this.debugRenderer = debugRenderer;
+	public float getCenterX() {
+		return mArrow.getX()+50+ getX();
 	}
 
+	public float getCenterY() {
+		return mArrow.getY()+50+ getY();
+	}
+	
+	private ShapeRenderer sr;
+	public void setShapeRenderer(ShapeRenderer sr) {
+		this.sr = sr;
+	}
+	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
-		
-		if(debugRenderer != null) {
+		if(sr != null) {
 			batch.end();
-			debugRenderer.begin(ShapeType.Line);
-			debugRenderer.setColor(1f, 0f, 0f, 1f);
-			debugRenderer.circle(getX()+50, getY()+50, 3);
-			debugRenderer.end();
+			sr.begin(ShapeType.Line);
+			sr.setColor(1f, 0f, 0f, 1f);
+			sr.circle(getCenterX()+getParent().getX(), getCenterY()+getParent().getY(), 15);
+			sr.end();
 			batch.begin();
 		}
 	}
-	
-	
 }
