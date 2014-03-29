@@ -63,7 +63,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		addActor(mBackground);
 		
-		mSugarBar = new SugarBar();
+		mSugarBar = SugarBar.createSugarBar(5);
 		mSugarBar.setPosition(20, 130);
 		
 		mDancePattern = new DancePattern();

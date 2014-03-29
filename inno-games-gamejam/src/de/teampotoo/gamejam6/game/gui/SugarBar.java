@@ -15,7 +15,7 @@ public class SugarBar extends Group {
 	private float mValue;
 	private short animationlevels;
 	
-	public static SugarBar createSugarBar(short animationLevels){
+	public static SugarBar createSugarBar(int animationLevels){
 		animationLevels = animationLevels;
 		return new SugarBar();
 	}
@@ -32,17 +32,24 @@ public class SugarBar extends Group {
 		addAction(Actions.alpha(0.75f));
 	}
 	
+	@Override
+	public void clearActions() {
+		super.clearActions();
+		mForderground.clearActions();
+		mBackground.clearActions();
+	}
+
 	public float getValue() {
 		return this.mValue;
 	}
 	
-	public float getAnimationLevel(){
-		return calcAnimationLevel();
-	}
-	
-	private float calcAnimationLevel(){
-		
-	}
+//	public float getAnimationLevel(){
+//		return calcAnimationLevel();
+//	}
+//	
+//	private float calcAnimationLevel(){
+//		
+//	}
 	
 	public void setValue(float value) {
 		if(value >= 0 && value <= 1) {
