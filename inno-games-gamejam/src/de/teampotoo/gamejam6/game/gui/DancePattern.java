@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.song.IStep;
 
@@ -71,14 +72,17 @@ public class DancePattern extends Group {
 				float centerX = a.getCenterX() ;
 				float centerY = a.getCenterY() ;
 				if(mPerfect.contains(centerX, centerY)) {
-					System.out.println("PERFECT");
-					a.setColor(0, 1f, 0, 1f);
+					GameScreen parent = (GameScreen)getParent();
+					parent.setPlayerPoints(parent.getPlayerPoints()+20);
+					a.getArrowImage().setColor(0, 1f, 0, 1f);
 				}else if(mGood.contains(centerX, centerY)) {
-					System.out.println("GOOD");
-					a.setColor(0.5f, 1f, 0, 1f);
+					GameScreen parent = (GameScreen)getParent();
+					parent.setPlayerPoints(parent.getPlayerPoints()+10);
+					a.getArrowImage().setColor(1f, 0.5f, 0, 1f);
 				}else if(mBad.contains(centerX, centerY)) {
-					System.out.println("BAD");
-					a.setColor(1f, 0, 0, 1f);
+					GameScreen parent = (GameScreen)getParent();
+					parent.setPlayerPoints(parent.getPlayerPoints()+5);
+					a.getArrowImage().setColor(1f, 0, 0, 1f);
 				}
 			}
 		}
