@@ -94,17 +94,16 @@ public class SongFactory {
 				// Set timestamps for steps per beat
 				List<Float> offset = new ArrayList<Float>();
 				if (currentBeat.getType() == BeatType.easy) {
-					offset.add(0f * beatLength);
+					offset.add(1f * beatLength);
 				} else if (currentBeat.getType() == BeatType.medium) {
-					offset.add(0f * beatLength);
-					offset.add(2f * beatLength);
+					offset.add(1f * beatLength);
+					offset.add(3f * beatLength);
 				} else if (currentBeat.getType() == BeatType.hard) {
-					offset.add(0f * beatLength);
 					offset.add(1f * beatLength);
 					offset.add(2f * beatLength);
 					offset.add(3f * beatLength);
+					offset.add(4f * beatLength);
 				} else if (currentBeat.getType() == BeatType.ridiculus) {
-					offset.add(0f * beatLength);
 					offset.add(0.5f * beatLength);
 					offset.add(1f * beatLength);
 					offset.add(1.5f * beatLength);
@@ -112,6 +111,7 @@ public class SongFactory {
 					offset.add(2.5f * beatLength);
 					offset.add(3f * beatLength);
 					offset.add(3.5f * beatLength);
+					offset.add(4f * beatLength);
 				}
 				
 				// Set step types
@@ -125,7 +125,7 @@ public class SongFactory {
 			// Add current beat layout for this beat
 			for (Map.Entry<StepType, List<Float>> entry : stepsPerBeat.entrySet()) {
 				for (Float timestamp : entry.getValue()) {
-					steps.add(Step.newInstance(entry.getKey(), currentBeat.getTimestamp() + timestamp + 0.25f, difficulty));
+					steps.add(Step.newInstance(entry.getKey(), currentBeat.getTimestamp() + timestamp, difficulty));
 				}
 			}
 			
