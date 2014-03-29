@@ -4,22 +4,20 @@ public class Beat implements IBeat {
 
 	private final BeatType mType;
 	private final float mTimestamp;
-	private final float mRetroIntensity;
 	private final float mBlurIntensity;
-	private final float mIntervallLength;
-	private final int mIntervall;
+	private final float mRetroIntensity;
+	private final float mBrightIntensity;
 	
-	private Beat(BeatType type, float timestamp, float retroIntensity, float blurIntensity,int intervall, float intervallLength) {
+	private Beat(BeatType type, float timestamp, float blurIntensity, float brightIntensity, float retroIntensity) {
 		mType = type;
 		mTimestamp = timestamp;
-		mRetroIntensity = retroIntensity;
 		mBlurIntensity = blurIntensity;
-		mIntervall = intervall;
-		mIntervallLength = intervallLength;
+		mBrightIntensity = brightIntensity;
+		mRetroIntensity = retroIntensity;
 	}
 	
-	public static IBeat newInstance(BeatType type, float timestamp, float retroIntensity, float blurIntensity, int intervall, float intervallLength) {
-		return new Beat(type, timestamp, retroIntensity, blurIntensity,intervall,intervallLength);
+	public static IBeat newInstance(BeatType type, float timestamp, float blurIntensity, float brightIntensity, float retroIntensity) {
+		return new Beat(type, timestamp, retroIntensity, blurIntensity, brightIntensity);
 	}
 
 	@Override
@@ -31,11 +29,6 @@ public class Beat implements IBeat {
 	public float getTimestamp() {
 		return mTimestamp;
 	}
-	
-	@Override
-	public float getRetroIntensity() {
-		return mRetroIntensity;
-	}
 
 	@Override
 	public float getBlurIntensity() {
@@ -43,12 +36,12 @@ public class Beat implements IBeat {
 	}
 
 	@Override
-	public float getIntervalLength() {
-		return mIntervallLength;
+	public float getBrightIntensity() {
+		return mBrightIntensity;
 	}
-
+	
 	@Override
-	public int getInterval() {
-		return mIntervall;
+	public float getRetroIntensity() {
+		return mRetroIntensity;
 	}
 }

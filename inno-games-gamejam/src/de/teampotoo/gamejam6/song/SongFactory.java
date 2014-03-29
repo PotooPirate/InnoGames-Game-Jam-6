@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.badlogic.gdx.math.MathUtils;
-
 import de.teampotoo.gamejam6.game.IGameScreen;
 import de.teampotoo.gamejam6.game.IGameScreen.Difficulty;
 import de.teampotoo.gamejam6.song.IBeat.BeatType;
@@ -24,54 +22,54 @@ public class SongFactory {
 		int bpm = 132;
 		float beatLength = (60f / bpm);
 		int beatCount = 0;
-		beats.add(Beat.newInstance(BeatType.none, beatCount * beatLength * 4, 0f, 0f,0,0f));
+		beats.add(Beat.newInstance(BeatType.none, beatCount * beatLength * 4, 0f, 1f, 0f));
 		beatCount++;
 		for (int i = 0; i < 7; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0.1f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 7; i++) {
-			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0.1f, 1f, 0.3f));
 			beatCount++;
 		}
 		for (int i = 0; i < 1; i++) {
-			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.5f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.3f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0.2f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.5f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.3f, 1f, 0.3f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.5f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.3f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 4; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0.1f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 2; i++) {
-			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0.2f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 5; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0.1f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.5f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.3f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 6; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f,0,0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0.1f, 1f, 0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 2; i++) {
-			beats.add(Beat.newInstance(BeatType.ridiculus, beatCount * beatLength * 4, 0.3f, 0.3f,0,0f));
+			beats.add(Beat.newInstance(BeatType.ridiculus, beatCount * beatLength * 4, 0.3f, 2f, 0f));
 			beatCount++;
 		}
 		return createSong(gameScreen, beats, beatLength,

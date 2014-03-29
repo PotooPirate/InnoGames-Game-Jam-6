@@ -5,15 +5,14 @@ public interface IBeat {
 	public enum BeatType {
 		none, easy, medium, hard, ridiculus
 	}
-	public float getIntervalLength();
 	
-	public int getInterval();
-	
-	public float getRetroIntensity();
+	public float getTimestamp();
 	
 	public float getBlurIntensity();
 	
-	public float getTimestamp();
+	public float getBrightIntensity();
+	
+	public float getRetroIntensity();	
 	
 	public BeatType getType();
 }
