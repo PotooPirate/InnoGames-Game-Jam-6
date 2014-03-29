@@ -24,54 +24,54 @@ public class SongFactory {
 		int bpm = 132;
 		float beatLength = (60f / bpm);
 		int beatCount = 0;
-		beats.add(Beat.newInstance(BeatType.none, beatCount * beatLength * 4, 0f, 0f));
+		beats.add(Beat.newInstance(BeatType.none, beatCount * beatLength * 4, 0f, 0f,0,0f));
 		beatCount++;
 		for (int i = 0; i < 7; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 7; i++) {
-			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 1; i++) {
-			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.2f, 0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.2f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.2f, 0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.2f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 4; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 2; i++) {
-			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.medium, beatCount * beatLength * 4, 0f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 5; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 8; i++) {
-			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.5f, 0f));
+			beats.add(Beat.newInstance(BeatType.hard, beatCount * beatLength * 4, 0.5f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 6; i++) {
-			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f));
+			beats.add(Beat.newInstance(BeatType.easy, beatCount * beatLength * 4, 0f, 0f,0,0f));
 			beatCount++;
 		}
 		for (int i = 0; i < 2; i++) {
-			beats.add(Beat.newInstance(BeatType.ridiculus, beatCount * beatLength * 4, 0.3f, 0.3f));
+			beats.add(Beat.newInstance(BeatType.ridiculus, beatCount * beatLength * 4, 0.3f, 0.3f,0,0f));
 			beatCount++;
 		}
 		return createSong(gameScreen, beats, beatLength,
@@ -115,11 +115,7 @@ public class SongFactory {
 				}
 				
 				// Set step types
-//				if (MathUtils.randomBoolean()) {
 					stepsPerBeat.put(StepType.random, offset);
-//				} else {
-//					stepsPerBeat.put(MathUtils.randomBoolean() ? StepType.left : StepType.right, offset);
-//				}
 			}
 			
 			// Add current beat layout for this beat
@@ -132,7 +128,6 @@ public class SongFactory {
 			// Set the current beat as the last beat
 			lastBeat = currentBeat;
 		}
-		System.out.println(steps.toString());
 		return Song.newInstance(gameScreen, beats, steps, path);
 	}
 

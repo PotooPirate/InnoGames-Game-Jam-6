@@ -4,177 +4,135 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 arm/left_hand
-  rotate: false
-  xy: 660, 685
+  rotate: true
+  xy: 2, 7
   size: 39, 100
   orig: 39, 100
   offset: 0, 0
   index: -1
 arm/left_hand_1
-  rotate: false
-  xy: 912, 871
+  rotate: true
+  xy: 775, 329
   size: 100, 151
   orig: 100, 151
   offset: 0, 0
   index: -1
 arm/left_lower_arm
-  rotate: false
-  xy: 298, 640
+  rotate: true
+  xy: 425, 172
   size: 73, 180
   orig: 73, 180
   offset: 0, 0
   index: -1
 arm/left_upper_arm
   rotate: false
-  xy: 228, 418
-  size: 77, 200
+  xy: 346, 114
+  size: 77, 194
   orig: 77, 200
   offset: 0, 0
   index: -1
 arm/right_hand
   rotate: true
-  xy: 776, 744
+  xy: 416, 56
   size: 39, 100
   orig: 39, 100
   offset: 0, 0
   index: -1
 arm/right_hand_2
-  rotate: false
-  xy: 181, 13
+  rotate: true
+  xy: 626, 212
   size: 100, 151
   orig: 100, 151
   offset: 0, 0
   index: -1
 arm/right_lower_arm
-  rotate: false
-  xy: 373, 642
-  size: 73, 180
+  rotate: true
+  xy: 425, 97
+  size: 73, 173
   orig: 73, 180
-  offset: 0, 0
+  offset: 0, 2
   index: -1
 arm/right_upper_arm
   rotate: false
-  xy: 186, 166
-  size: 77, 200
+  xy: 267, 113
+  size: 77, 195
   orig: 77, 200
-  offset: 0, 0
-  index: -1
-details/augen
-  rotate: false
-  xy: 2, 2
-  size: 134, 40
-  orig: 134, 40
-  offset: 0, 0
-  index: -1
-details/jacket_left
-  rotate: false
-  xy: 2, 620
-  size: 294, 200
-  orig: 294, 200
-  offset: 0, 0
+  offset: 0, 5
   index: -1
 details/jacket_left_2
-  rotate: true
-  xy: 508, 854
-  size: 168, 200
-  orig: 168, 200
-  offset: 0, 0
-  index: -1
-details/jacket_right
   rotate: false
-  xy: 2, 822
-  size: 315, 200
-  orig: 315, 200
-  offset: 0, 0
+  xy: 407, 314
+  size: 164, 196
+  orig: 168, 200
+  offset: 1, 4
   index: -1
 details/jacket_right_2
   rotate: false
-  xy: 2, 166
-  size: 182, 200
+  xy: 228, 310
+  size: 177, 200
   orig: 182, 200
-  offset: 0, 0
-  index: -1
-details/mund
-  rotate: true
-  xy: 228, 369
-  size: 47, 55
-  orig: 47, 55
-  offset: 0, 0
-  index: -1
-details/nase
-  rotate: false
-  xy: 701, 711
-  size: 73, 72
-  orig: 73, 72
-  offset: 0, 0
+  offset: 4, 0
   index: -1
 head
   rotate: false
-  xy: 2, 368
+  xy: 2, 260
   size: 224, 250
   orig: 224, 250
   offset: 0, 0
   index: -1
-leg/left_foot
+hemd
   rotate: false
-  xy: 448, 665
-  size: 106, 120
-  orig: 106, 120
-  offset: 0, 0
+  xy: 267, 2
+  size: 147, 109
+  orig: 152, 115
+  offset: 3, 2
   index: -1
 leg/left_foot_2
-  rotate: false
-  xy: 776, 692
+  rotate: true
+  xy: 954, 432
   size: 78, 50
   orig: 78, 50
   offset: 0, 0
   index: -1
 leg/left_lower_leg
-  rotate: true
-  xy: 710, 785
-  size: 75, 199
+  rotate: false
+  xy: 191, 59
+  size: 74, 199
   orig: 75, 200
-  offset: 0, 1
+  offset: 1, 1
   index: -1
 leg/left_upper_leg
   rotate: true
-  xy: 710, 943
+  xy: 752, 431
   size: 79, 200
   orig: 79, 200
   offset: 0, 0
   index: -1
-leg/right_foot
-  rotate: false
-  xy: 556, 665
-  size: 102, 120
-  orig: 102, 120
-  offset: 0, 0
-  index: -1
 leg/right_foot_2
   rotate: false
-  xy: 2, 44
-  size: 177, 120
+  xy: 573, 395
+  size: 177, 115
   orig: 177, 120
-  offset: 0, 0
+  offset: 0, 5
   index: -1
 leg/right_lower_leg
   rotate: true
-  xy: 508, 787
-  size: 65, 200
+  xy: 425, 247
+  size: 65, 199
   orig: 65, 200
-  offset: 0, 0
+  offset: 0, 1
   index: -1
 leg/right_upper_leg
   rotate: true
-  xy: 710, 862
+  xy: 573, 314
   size: 79, 200
   orig: 79, 200
   offset: 0, 0
   index: -1
 torso
   rotate: false
-  xy: 319, 824
-  size: 187, 198
-  orig: 191, 200
-  offset: 0, 2
+  xy: 2, 48
+  size: 187, 210
+  orig: 191, 210
+  offset: 0, 0
   index: -1

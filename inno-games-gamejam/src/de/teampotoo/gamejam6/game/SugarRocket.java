@@ -2,6 +2,7 @@ package de.teampotoo.gamejam6.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -16,9 +17,9 @@ public class SugarRocket extends Group {
 	private int mCurrentFire;
 	private float changeCounter = CHANGE_TIME;
 	private float mSpeed;
-	
+	   
 	public SugarRocket(float x, float speed) {
-		mRocket = new Image(ResourceLoader.sRocket);
+	mRocket = new Image(ResourceLoader.sRockets[MathUtils.random(0, ResourceLoader.sRockets.length-1)]);
 		addActor(mRocket);
 		mSpeed = speed;
 		
