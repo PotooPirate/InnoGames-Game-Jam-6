@@ -1,15 +1,15 @@
 package de.teampotoo.gamejam6.song;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 
-import de.teampotoo.gamejam6.game.GameScreen;
-import de.teampotoo.gamejam6.game.IGameScreen;
 import de.teampotoo.gamejam6.game.IGameScreen.Difficulty;
-import de.teampotoo.gamejam6.song.IStep.StepType;
 
 public class Step implements IStep {
 
+	/****************************************************************************
+	 * variables
+	 ****************************************************************************/
+	
 	private final StepType mType;
 	private final float mFireTime;
 	private final float mTargetTime;
@@ -18,6 +18,10 @@ public class Step implements IStep {
 	private static final float MEDIUM_SUBSTRACT = 1.0f;
 	private static final float HARD_SUBSTRACT = 0.5f;
 	private static final float REDIC_SUBSTRACT = 0.3f;
+	
+	/****************************************************************************
+	 * constructor
+	 ****************************************************************************/
 	
 	private Step(StepType type, float fireTime, float targetTime) {
 		mType = type;
@@ -66,6 +70,10 @@ public class Step implements IStep {
 		float targetTime = step.getTargetTime() - difference;
 		return newInstance(step.getType(), fireTime, targetTime);
 	}
+	
+	/****************************************************************************
+	 * getter and setter
+	 ****************************************************************************/
 	
 	@Override
 	public StepType getType() {

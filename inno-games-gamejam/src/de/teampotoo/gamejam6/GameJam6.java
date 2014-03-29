@@ -17,6 +17,10 @@ import de.teampotoo.musikeditor.musikMappingEditor;
 
 public class GameJam6 implements ApplicationListener {
 
+	/****************************************************************************
+	 * 				variables
+	 ****************************************************************************/
+	
 	public final static int STATE_MAINMENU 	= 1;
 	public final static int STATE_GAME 		= 2;
 	public final static int STATE_CREDITS 	= 3;
@@ -32,6 +36,10 @@ public class GameJam6 implements ApplicationListener {
 	private GameScreen mGameGroup;
 	private HighscoreScreen mHighscoreScreen;
 	private musikMappingEditor editor;
+	
+	/****************************************************************************
+	 * 				methods
+	 ****************************************************************************/	
 	
 	@Override
 	public void create() {
@@ -113,6 +121,11 @@ public class GameJam6 implements ApplicationListener {
 	@Override
 	public void dispose() {
 	}
+	
+	/****************************************************************************
+	 * 				statemashine state changer
+	 ****************************************************************************/
+	
 	
 	public void startGame() {
 		state = STATE_GAME;

@@ -5,12 +5,28 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class ParticleEffectActor extends Actor {
+	/****************************************************************************
+	 * variables
+	 ****************************************************************************/
 	ParticleEffect effect;
 
+	/****************************************************************************
+	 * constructor
+	 ****************************************************************************/
 	public ParticleEffectActor(ParticleEffect effect) {
 		this.effect = effect;
 	}
 
+	/****************************************************************************
+	 * getter and setter
+	 ****************************************************************************/
+	public ParticleEffect getEffect() {
+		return effect;
+	}
+
+	/****************************************************************************
+	 * methods
+	 ****************************************************************************/
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		effect.draw(batch); // define behavior when stage calls Actor.draw()
 	}
@@ -22,7 +38,4 @@ public class ParticleEffectActor extends Actor {
 		effect.start(); // need to start the particle spawning
 	}
 
-	public ParticleEffect getEffect() {
-		return effect;
-	}
 }

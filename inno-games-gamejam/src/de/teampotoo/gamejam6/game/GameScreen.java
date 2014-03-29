@@ -27,90 +27,121 @@ import de.teampotoo.gamejam6.song.SongFactory;
 
 public class GameScreen extends Group implements IGameScreen {
 
+	/****************************************************************************
+	 * variables
+	 ****************************************************************************/
+
 	private GameJam6 mGameJam6;
 	private HighscoreScreen mHighscore;
 	private Image mBackground;
 
-	private int mPlayerPoints;			//current points while the game runs
-	private int mHighscorePoints;		//Frozen points after the game finished
-	
+	private int mPlayerPoints; // current points while the game runs
+	private int mHighscorePoints; // Frozen points after the game finished
+
 	// player stuff
 	private Player player;
-	
-	//HUD
+
+	// HUD
 	private SugarBar mSugarBar;
 	private DancePattern mDancePattern;
 	private Label mPointsLabel;
-	
-	//Music
+
+	// Music
 	private ISong mCurrentSong;
-	
+
 	// Blur shader
 	private IBlurShader mBlurShader = ShaderFactory.createBlurShader();
 	private IBlurShader mPlayerBlurShader = ShaderFactory.createBlurShader();
 	private SpriteBatch mPlayerBatch = new SpriteBatch();
-	
+
+	/****************************************************************************
+	 * constructor
+	 ****************************************************************************/
+
 	public GameScreen(GameJam6 gameJam6, HighscoreScreen highscore) {
 		this.mGameJam6 = gameJam6;
 		this.mHighscore = highscore;
 		this.mPlayerPoints = 0;
-		
+
 		mBackground = new Image(ResourceLoader.BACKGROUND);
-		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(),
+				Gdx.graphics.getHeight());
 		addActor(mBackground);
-		
+
 		mSugarBar = SugarBar.createSugarBar(5);
 		mSugarBar.setPosition(20, 130);
-		
+
 		mDancePattern = new DancePattern();
-		mDancePattern.setPosition(Gdx.graphics.getWidth() - 400, 0); 
-		
+		mDancePattern.setPosition(Gdx.graphics.getWidth() - 400, 0);
+
 		player = new Player();
 		player.create();
-		player.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 20);
-		
-		//HUD
+		player.setPosition(Gdx.graphics.getWidth() / 2,
+				Gdx.graphics.getHeight() / 20);
+
+		// HUD
 		addActor(mSugarBar);
 		addActor(mDancePattern);
 		addBackButton();
 		this.mPointsLabel = new Label("Punkte: 0", ResourceLoader.SKIN);
-		this.mPointsLabel.setPosition(Gdx.graphics.getWidth()/2 - mPointsLabel.getWidth()/2, Gdx.graphics.getHeight() - mPointsLabel.getHeight()-20);
+		this.mPointsLabel.setPosition(Gdx.graphics.getWidth() / 2
+				- mPointsLabel.getWidth() / 2, Gdx.graphics.getHeight()
+				- mPointsLabel.getHeight() - 20);
 		addActor(mPointsLabel);
-		
-		//Let the music
+
+		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
-		
-		//Particle
+
+		// Particle
 		ParticleEffect effect = new ParticleEffect();
-		effect.load(Gdx.files.internal("data/particle/particletest.p"), Gdx.files.internal("data/particle"));
+		effect.load(Gdx.files.internal("data/particle/particletest.p"),
+				Gdx.files.internal("data/particle"));
 		addActor(new ParticleEffectActor(effect));
-		
+
 		mBlurShader = ShaderFactory.createBlurShader();
 	}
-	
-	public void checkArrows(int keycode) {
-		switch(keycode) {
-			case Input.Keys.LEFT:
-				mDancePattern.checkArrow(StepType.left);
-				break;
-			case Input.Keys.UP:
-				mDancePattern.checkArrow(StepType.up);
-				break;
-			case Input.Keys.DOWN:
-				mDancePattern.checkArrow(StepType.down);
-				break;
-			case Input.Keys.RIGHT:
-				mDancePattern.checkArrow(StepType.right);
-				break;
-		}
-	}
-	
+
+	/****************************************************************************
+	 * getter and setter
+	 ****************************************************************************/
 	public float getSugarBarValue() {
 		return mSugarBar.getValue();
 	}
-	
+
+	public void setSugarBar(float value) {
+		if (value < 0) {
+			mHighscorePoints = mPlayerPoints;
+		}
+		mSugarBar.setValue(value);
+	}
+
+	public int getPlayerPoints() {
+		return this.mPlayerPoints;
+	}
+
+	/****************************************************************************
+	 * methods
+	 ****************************************************************************/
+
+	public void checkArrows(int keycode) {
+		switch (keycode) {
+		case Input.Keys.LEFT:
+			mDancePattern.checkArrow(StepType.left);
+			break;
+		case Input.Keys.UP:
+			mDancePattern.checkArrow(StepType.up);
+			break;
+		case Input.Keys.DOWN:
+			mDancePattern.checkArrow(StepType.down);
+			break;
+		case Input.Keys.RIGHT:
+			mDancePattern.checkArrow(StepType.right);
+			break;
+		}
+	}
+
 	public void gameOver() {
-		mHighscore.insertScore(mPlayerPoints);
+		mHighscore.insertScore(mHighscorePoints);
 		mHighscore.saveHighscoreToPreferences();
 		mHighscore.refreshLabels();
 		mPlayerPoints = mHighscorePoints = 0;
@@ -118,24 +149,18 @@ public class GameScreen extends Group implements IGameScreen {
 		mSugarBar.setValue(0.5f);
 		mGameJam6.startHighscore();
 	}
-	
-	public void setSugarBar(float value) {
-		if(value < 0) {
-			mHighscorePoints = mPlayerPoints;
-		}
-		mSugarBar.setValue(value);
-	}
-	
+
 	@Override
 	public void fireStep(IStep step) {
 		mDancePattern.fireArrow(step.getType(), step.getTargetTime());
 	}
-	
+
 	private void addBackButton() {
 		Image backButton = new Image(ResourceLoader.BUTTON);
 		backButton.setWidth(100);
 		backButton.setHeight(50);
-		backButton.setPosition(20, Gdx.graphics.getHeight() - backButton.getHeight() - 20);
+		backButton.setPosition(20,
+				Gdx.graphics.getHeight() - backButton.getHeight() - 20);
 		backButton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
@@ -144,44 +169,39 @@ public class GameScreen extends Group implements IGameScreen {
 				return super.touchDown(event, x, y, pointer, button);
 			}
 
-			
 		});
-		
+
 		addActor(backButton);
 	}
 
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		
+
 		mCurrentSong.update(delta);
 	}
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		mBlurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0f, 1f);
-		super.draw(batch, parentAlpha); 
+		super.draw(batch, parentAlpha);
 		mBlurShader.end();
-		
+
 		player.render();
 	}
-	
+
 	public void setPlayerPoints(int points) {
 		this.mPlayerPoints = points;
 		mPointsLabel.setText("Punkte: " + this.mPlayerPoints);
 	}
-	
-	public int getPlayerPoints() {
-		return this.mPlayerPoints;
-	}
-	
+
 	public void startGame() {
 		mCurrentSong.start();
 		mPlayerPoints = 0;
 		mSugarBar.setValue(0.5f);
 		mPointsLabel.setText("Punkte: 0");
 	}
-	
+
 	@Override
 	public void songEnd() {
 		mCurrentSong.start();
