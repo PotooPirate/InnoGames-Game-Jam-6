@@ -36,7 +36,7 @@ public class GameScreen extends Group implements IGameScreen {
 
 	private int mPlayerPoints; // current points while the game runs
 	private int mHighscorePoints; // Frozen points after the game finished
-
+	
 	// player stuff
 	private Player player;
 
@@ -44,6 +44,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private SugarBar mSugarBar;
 	private DancePattern mDancePattern;
 	private Label mPointsLabel;
+	private Label mComboLabel;
 
 	// Music
 	private ISong mCurrentSong;
@@ -87,6 +88,11 @@ public class GameScreen extends Group implements IGameScreen {
 				- mPointsLabel.getWidth() / 2, Gdx.graphics.getHeight()
 				- mPointsLabel.getHeight() - 20);
 		addActor(mPointsLabel);
+		this.mComboLabel = new Label("COMBO 0", ResourceLoader.SKIN);
+		this.mComboLabel.setPosition(Gdx.graphics.getWidth() / 2
+				- mComboLabel.getWidth() / 2, Gdx.graphics.getHeight()
+				- mComboLabel.getHeight()*3 - 20);
+		addActor(mComboLabel);
 
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
@@ -161,7 +167,6 @@ public class GameScreen extends Group implements IGameScreen {
 				mGameJam6.startMainMenu();
 				return super.touchDown(event, x, y, pointer, button);
 			}
-
 		});
 
 		addActor(backButton);
@@ -172,6 +177,12 @@ public class GameScreen extends Group implements IGameScreen {
 		super.act(delta);
 
 		mCurrentSong.update(delta);
+
+		if(mDancePattern.getComboCounter() > 0) {
+			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter());
+		}else{
+			mComboLabel.setText("");
+		}
 	}
 
 	@Override

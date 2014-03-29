@@ -27,6 +27,7 @@ public class DancePattern extends Group {
 	private List<Arrow> mArrows;
 	private ShapeRenderer mDebugRenderer;
 	private int mStepCounter;
+	private int mComboCounter;
 
 	/****************************************************************************
 	 * constructor
@@ -35,6 +36,7 @@ public class DancePattern extends Group {
 	public DancePattern() {
 		mArrows = new ArrayList<Arrow>();
 		mStepCounter = 0;
+		mComboCounter = 0;
 		mBackground = new Image(ResourceLoader.sDancePatternBackground);
 		addActor(mBackground);
 
@@ -47,6 +49,14 @@ public class DancePattern extends Group {
 		mDebugRenderer = new ShapeRenderer();
 	}
 
+	/****************************************************************************
+	 * getter and setter
+	 ****************************************************************************/
+
+	public int getComboCounter() {
+		return mComboCounter;
+	}
+	
 	/****************************************************************************
 	 * methods
 	 ****************************************************************************/
@@ -78,6 +88,14 @@ public class DancePattern extends Group {
 		mArrows.add(arrow);
 	}
 
+	public void addComboCounter() {
+		this.mComboCounter++;
+	}
+	
+	public void resetComboCounter() {
+		this.mComboCounter = 0;
+	}
+	
 	public void removeArrow(Arrow arrow) {
 		mArrows.remove(arrow);
 	}
@@ -95,6 +113,7 @@ public class DancePattern extends Group {
 					a.getArrowImage().setColor(0, 1f, 0, 1f);
 					a.setActive(false);
 					hit = true;
+					addComboCounter();
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
@@ -102,6 +121,7 @@ public class DancePattern extends Group {
 					a.getArrowImage().setColor(1f, 0.5f, 0, 1f);
 					a.setActive(false);
 					hit = true;
+					addComboCounter();
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
@@ -109,6 +129,7 @@ public class DancePattern extends Group {
 					a.getArrowImage().setColor(1f, 0, 0, 1f);
 					a.setActive(false);
 					hit = true;
+					addComboCounter();
 				}
 			}
 		}
