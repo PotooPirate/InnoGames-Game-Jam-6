@@ -33,32 +33,34 @@ public class Arrow extends Group {
 
 	public Arrow(IStep.StepType dir, float targetTime, int id) {
 		mActive = true;
-		mArrow = new Image(ResourceLoader.sArrow);
 		mStepType = dir;
 		mId = id;
-		addActor(mArrow);
 
 		switch (dir) {
 		case left:
+			mArrow = new Image(ResourceLoader.sArrowLeft);
 			mArrow.setPosition(0, -mArrow.getHeight());
 			mArrow.setOrigin(50, 50);
-			mArrow.setRotation(180);
 			break;
 		case up:
+			mArrow = new Image(ResourceLoader.sArrowUp);
 			mArrow.setPosition(100, -mArrow.getHeight());
 			mArrow.setOrigin(50, 50);
-			mArrow.setRotation(90);
 			break;
 		case down:
+			mArrow = new Image(ResourceLoader.sArrowDown);
 			mArrow.setPosition(200, -mArrow.getHeight());
 			mArrow.setOrigin(50, 50);
-			mArrow.setRotation(-90);
 			break;
 		case right:
 		default:
+			mArrow = new Image(ResourceLoader.sArrowRight);
 			mArrow.setPosition(300, -mArrow.getHeight());
 			break;
 		}
+
+		addActor(mArrow);
+		
 		SequenceAction seq = new SequenceAction(Actions.moveBy(0, 650,
 				targetTime), Actions.run(new Runnable() {
 			@Override
