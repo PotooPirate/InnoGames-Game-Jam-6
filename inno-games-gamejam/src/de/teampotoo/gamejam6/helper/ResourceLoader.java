@@ -29,6 +29,7 @@ public class ResourceLoader {
 	public static TextureRegion sGameLowerBackground;
 	public static TextureRegion sGameUpperBackground;
 	public static TextureRegion sRocket;
+	public static TextureRegion[] sFire;
 
 	public static Skin SKIN;
 	public static Skin SKIN_BIG;
@@ -72,15 +73,21 @@ public class ResourceLoader {
 				Gdx.files.internal("data/gfx/rot_oben.png")));
 
 		sGameLowerBackground = new TextureRegion(new Texture(
-				Gdx.files.internal("data/gfx/game_lowerbackground.png")));
+				Gdx.files.internal("data/gfx/Himmel.png")));
 		sGameUpperBackground = new TextureRegion(new Texture(
-				Gdx.files.internal("data/gfx/game_upperbackground.png")));
+				Gdx.files.internal("data/gfx/Landschaft.png")));
 
 		BUTTON = new TextureRegion(new Texture(
 				Gdx.files.internal("data/buttons/Button.png")));
 		BUTTON_PRESSED = new TextureRegion(new Texture(
 				Gdx.files.internal("data/buttons/ButtonPressed.png")));
 
+		sFire = new TextureRegion[] {
+				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/Feuer_1_3.png"))),
+				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/Feuer_2_3.png"))),
+				new TextureRegion(new Texture(Gdx.files.internal("data/gfx/Feuer_3_3.png")))
+		};
+		
 		//Creating the combo skin
 		sComboSkin = new Skin();
 		sComboSkinBig = new Skin();
