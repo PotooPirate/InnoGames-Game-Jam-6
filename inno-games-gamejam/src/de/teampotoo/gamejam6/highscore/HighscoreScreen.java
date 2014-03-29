@@ -32,9 +32,9 @@ public class HighscoreScreen extends Group {
 		loadHighscoreFromPreferences();
 		addLabels();
 		// RESET THE SCORES
-		// Preferences prefs = Gdx.app.getPreferences("Highscores");
-		// prefs.clear();
-		// prefs.flush();
+//		 Preferences prefs = Gdx.app.getPreferences("Highscores");
+//		 prefs.clear();
+//		 prefs.flush();
 	}
 
 	/****************************************************************************

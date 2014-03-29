@@ -90,21 +90,21 @@ public class DancePattern extends Group {
 				float centerY = a.getCenterY();
 				if (mPerfect.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
-					parent.setSugarBar(parent.getSugarBarValue() + 0.05f);
+					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
 					parent.setPlayerPoints(parent.getPlayerPoints() + 20);
 					a.getArrowImage().setColor(0, 1f, 0, 1f);
 					a.setActive(false);
 					hit = true;
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
-					parent.setSugarBar(parent.getSugarBarValue() + 0.05f);
+					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
 					parent.setPlayerPoints(parent.getPlayerPoints() + 10);
 					a.getArrowImage().setColor(1f, 0.5f, 0, 1f);
 					a.setActive(false);
 					hit = true;
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
-					parent.setSugarBar(parent.getSugarBarValue() + 0.05f);
+					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
 					parent.setPlayerPoints(parent.getPlayerPoints() + 5);
 					a.getArrowImage().setColor(1f, 0, 0, 1f);
 					a.setActive(false);
@@ -114,7 +114,7 @@ public class DancePattern extends Group {
 		}
 		if (!hit) {
 			GameScreen parent = (GameScreen) getParent();
-			parent.setSugarBar(parent.getSugarBarValue() - 0.05f);
+			parent.setSugarBar(parent.getSugarBarValue() - 0.10f);
 			if (parent.getPlayerPoints() - 5 >= 0) {
 				parent.setPlayerPoints(parent.getPlayerPoints() - 5);
 			}

@@ -15,7 +15,6 @@ import de.teampotoo.gamejam6.GameJam6;
 import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
-import de.teampotoo.gamejam6.game.gui.particle.ParticleEffectActor;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.shader.IBlurShader;
@@ -91,12 +90,6 @@ public class GameScreen extends Group implements IGameScreen {
 
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
-
-		// Particle
-		ParticleEffect effect = new ParticleEffect();
-		effect.load(Gdx.files.internal("data/particle/particletest.p"),
-				Gdx.files.internal("data/particle"));
-		addActor(new ParticleEffectActor(effect));
 
 		mBlurShader = ShaderFactory.createBlurShader();
 	}
