@@ -61,10 +61,10 @@ public class Song implements ISong {
 			}
 		}
 		//DEBUG
-		IStep lastStap = mSteps.get(mSteps.size()-1);
-		if (time > (lastStap.getFireTime() + lastStap.getTargetTime() + 0.5f)){
-				stop();
-				mGameScreen.songEnd();}
+//		IStep lastStap = mSteps.get(mSteps.size()-1);
+//		if (time > (lastStap.getFireTime() + lastStap.getTargetTime() + 0.5f)){
+//				stop();
+//				mGameScreen.songEnd();}
 		
 		if (!(mSongMusic.isPlaying()))
 			mGameScreen.songEnd();

@@ -67,8 +67,7 @@ public class GameScreen extends Group implements IGameScreen {
 		addBackButton();
 		
 		//Let the music
-		mCurrentSong = SongFactory.createTestSong(this);
-		mCurrentSong.start();
+		mCurrentSong = SongFactory.createSong1(this);
 		
 		mBlurShader = ShaderFactory.createBlurShader();
 	}
@@ -107,6 +106,8 @@ public class GameScreen extends Group implements IGameScreen {
 				mGameJam6.startMainMenu();
 				return super.touchDown(event, x, y, pointer, button);
 			}
+
+			
 		});
 		
 		addActor(backButton);
@@ -125,6 +126,11 @@ public class GameScreen extends Group implements IGameScreen {
 		super.draw(batch, parentAlpha); 
 		player.render(batch);
 		mBlurShader.end();
+	}
+	
+	public void startMusic()
+	{
+		mCurrentSong.start();
 	}
 
 	@Override
