@@ -82,7 +82,7 @@ public class GameScreen extends Group implements IGameScreen {
 		
 		//Particle
 		ParticleEffect effect = new ParticleEffect();
-		effect.load(Gdx.files.internal("data/particle/particletest.p"), Gdx.files.internal("data"));
+		effect.load(Gdx.files.internal("data/particle/particletest.p"), Gdx.files.internal("data/particle"));
 		addActor(new ParticleEffectActor(effect));
 		
 		mBlurShader = ShaderFactory.createBlurShader();
