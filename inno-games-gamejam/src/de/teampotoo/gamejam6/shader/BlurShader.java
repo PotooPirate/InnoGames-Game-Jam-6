@@ -10,11 +10,20 @@ public class BlurShader extends AbstractShader implements IBlurShader {
 	private float mBright;
 	
 	private BlurShader() {
-		super(Gdx.files.internal("data/shader/blur.vsh"), Gdx.files.internal("data/shader/blur.fsh"));
+		super(Gdx.files.internal("data/shader/post.vsh"), Gdx.files.internal("data/shader/blur.fsh"));
 	}
 	
 	public static IBlurShader newInstance() {
 		return new BlurShader();
+	}
+	
+	@Override
+	public void begin(float deltaTime) {
+		super.begin(deltaTime);
+		mOriginX = 0.5f;
+		mOriginY = 0.5f;
+		mBlur = 0f;
+		mBright = 1f;
 	}
 	
 	@Override

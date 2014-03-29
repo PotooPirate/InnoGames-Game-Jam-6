@@ -17,7 +17,7 @@ abstract class AbstractShader implements IShader {
 	private FrameBuffer mFBO;
 	private TextureRegion mTextureRegion;
 	
-	private float mTime;
+	protected float mTime;
 	
 	protected int mWidth;
 	protected int mHeight;
@@ -37,7 +37,7 @@ abstract class AbstractShader implements IShader {
 	@Override
 	public void begin(float deltaTime) {
 		mFBO.begin();
-		Gdx.gl.glClearColor(1f, 1f, 1f, 0f);
+		Gdx.gl.glClearColor(0.3f, 0.5f, 0.7f, 0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		mTime += deltaTime;
 	}
@@ -59,7 +59,7 @@ abstract class AbstractShader implements IShader {
 	public void resize(int width, int height) {
 		mWidth = width;
 		mHeight = height;
-		mFBO = new FrameBuffer(Format.RGB565, mWidth, mHeight, true);
+		mFBO = new FrameBuffer(Format.RGBA8888, mWidth, mHeight, true);
 		mTextureRegion = new TextureRegion(mFBO.getColorBufferTexture());
 		mTextureRegion.flip(false, true);
 	}
