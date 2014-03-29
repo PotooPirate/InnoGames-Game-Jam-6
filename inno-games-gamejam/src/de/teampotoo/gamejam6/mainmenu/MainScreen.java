@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -26,8 +27,10 @@ public class MainScreen extends Group {
 	private GameJam6 mGameJam6;
 	
 	private Player mPlayer;
+	private Label mTitleLabel; 
+	private Label mRevolutionLabel; 
 	
-	private static final float ANIMATION_TIME = 3.0f;
+	private static final float ANIMATION_TIME = 2.0f;
 	private float mTimerCounter = 0;
 	private Random mRandom = new Random();
 	
@@ -56,6 +59,19 @@ public class MainScreen extends Group {
 		mInitTargetPosition = mPlayer.getHeight() / 2.5f;
 		mMovementActor.setPosition(Gdx.graphics.getWidth() / 2, mInitOffScreenPosition + mInitTargetPosition);
 		triggerAnimation();
+		
+		mTitleLabel = new Label("Kim Jong Dance", ResourceLoader.SKIN);
+		mTitleLabel.setPosition(Gdx.graphics.getWidth() / 2 - mTitleLabel.getWidth() / 2,
+				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6);
+		mTitleLabel.setFontScale(1.5f);
+		
+		addActor(mTitleLabel);
+
+		mRevolutionLabel = new Label("Revolution!!!", ResourceLoader.SKIN);
+		mRevolutionLabel.setPosition(Gdx.graphics.getWidth() / 2,
+				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 20);
+		mRevolutionLabel.setFontScale(1.5f);
+		addActor(mRevolutionLabel);
 	}
 	
 	/****************************************************************************
@@ -64,10 +80,11 @@ public class MainScreen extends Group {
 
 	private void triggerAnimation() {
 		int randomX = mRandom.nextInt(Gdx.graphics.getWidth());
+		int randomYOffset = mRandom.nextInt(mPlayer.getHeight() / 2);
 		 
 		mMovementActor.setPosition(randomX, mInitOffScreenPosition);
-		mMovementActor.addAction(Actions.sequence(Actions.moveBy(0, mInitTargetPosition, ANIMATION_TIME / 2.0f), 
-				Actions.sequence(Actions.moveBy(0, -mInitTargetPosition, ANIMATION_TIME / 2.0f))));
+		mMovementActor.addAction(Actions.sequence(Actions.moveBy(0, mInitTargetPosition + randomYOffset, ANIMATION_TIME / 2.0f), 
+				Actions.sequence(Actions.moveBy(0, -(mInitTargetPosition + randomYOffset), ANIMATION_TIME / 2.0f))));
 	}
 	
 	@Override
@@ -118,10 +135,10 @@ public class MainScreen extends Group {
 		});
 
 		table.add(startButton).row().pad(15f);
-		table.add(creditsButton).row();
-		table.add(endButton);
+		table.add(endButton).row();
+		table.add(creditsButton);
 
-		table.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/1.5f);
+		table.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2.f);
 		this.addActor(table);
 	}
 
