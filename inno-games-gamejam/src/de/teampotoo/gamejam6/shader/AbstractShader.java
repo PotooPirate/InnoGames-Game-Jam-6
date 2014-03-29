@@ -34,20 +34,23 @@ abstract class AbstractShader implements IShader {
 	}
 	
 	@Override
-	public void begin(float deltaTime, float intensity) {
+	public void begin(float deltaTime) {
 		mFBO.begin();
 		mTime += deltaTime;
-	    //mProgram.setUniformf("u_time", mTime);
-		//mProgram.setUniformf("u_intensity", intensity);
 	}
 	
 	@Override
 	public void end() {
 		mFBO.end();
+		mProgram.begin();
+		mBatch.setShader(mProgram);
+		setUniforms();
 	    mBatch.begin();
-	    mBatch.draw(mTextureRegion, 0, 0, mWidth, mHeight);               
+	    mBatch.draw(mTextureRegion, 0, 0, mWidth, mHeight);
 	    mBatch.end();
 	}
+	
+	abstract void setUniforms();
 	
 	@Override
 	public void resize(int width, int height) {

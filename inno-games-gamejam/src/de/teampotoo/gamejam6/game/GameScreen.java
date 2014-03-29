@@ -18,6 +18,8 @@ import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
+import de.teampotoo.gamejam6.shader.IBlurShader;
+import de.teampotoo.gamejam6.shader.ShaderFactory;
 import de.teampotoo.gamejam6.song.ISong;
 import de.teampotoo.gamejam6.song.IStep;
 import de.teampotoo.gamejam6.song.Song;
@@ -39,6 +41,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private ISong mCurrentSong;
 	
 	// Blur shader
+	private IBlurShader blurShader;
 	private boolean blurShaderEnabled;
 	private FrameBuffer blurShaderFBO;
 	private TextureRegion blurShaderTextureRegion;
@@ -75,6 +78,7 @@ public class GameScreen extends Group implements IGameScreen {
 	}
 	
 	private void initBlurShader() {
+		blurShader = ShaderFactory.createBlurShader();
 		blurShaderEnabled = false;
  		blurShaderFBOBatch = new SpriteBatch();
  		blurShaderProgram = new ShaderProgram(Gdx.files.internal("data/shader/blur.vsh"), Gdx.files.internal("data/shader/blur.fsh"));
@@ -121,8 +125,10 @@ public class GameScreen extends Group implements IGameScreen {
 		int width = Gdx.graphics.getWidth();
  	    int height = Gdx.graphics.getHeight();
  	    */
+		blurShader.begin(Gdx.graphics.getDeltaTime(), 0.5f, 0.5f, 0f, 1f);
 		super.draw(batch, parentAlpha); 
 		player.render(batch);
+		blurShader.end();
 		/*
 		blurShaderFBO.end();
 		blurShaderProgram.begin();
