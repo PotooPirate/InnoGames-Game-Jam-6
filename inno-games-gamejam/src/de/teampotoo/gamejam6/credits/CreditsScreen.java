@@ -56,8 +56,8 @@ public class CreditsScreen extends Group {
 		Label topicLabel1 = new Label("Programmierung:\n", ResourceLoader.SKIN);
 		Label nameLabel1 = new Label("Joschka Schulz\n", ResourceLoader.SKIN);
 		Label nameLabel2 = new Label("Raimund Wege\n", ResourceLoader.SKIN);
-		Label nameLabel3 = new Label("Frederik Klauß\n", ResourceLoader.SKIN);
-		Label nameLabel4 = new Label("Tobias Hassenklöve\n",
+		Label nameLabel3 = new Label("Frederik Klauss\n", ResourceLoader.SKIN);
+		Label nameLabel4 = new Label("Tobias Hassenkloeve\n",
 				ResourceLoader.SKIN);
 		Label nameLabel5 = new Label("r\n", ResourceLoader.SKIN);
 		Label filler2 = new Label("\n", ResourceLoader.SKIN);

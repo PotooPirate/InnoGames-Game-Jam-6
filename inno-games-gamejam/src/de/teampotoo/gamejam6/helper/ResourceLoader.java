@@ -47,7 +47,7 @@ public class ResourceLoader {
 				Gdx.files.internal("data/gfx/arrow.png")));
 
 		BACKGROUND = new TextureRegion(new Texture(
-				Gdx.files.internal("data/gfx/background.png")));
+				Gdx.files.internal("data/gfx/background.jpg")));
 
 		BUTTON = new TextureRegion(new Texture(
 				Gdx.files.internal("data/buttons/Button.png")));
