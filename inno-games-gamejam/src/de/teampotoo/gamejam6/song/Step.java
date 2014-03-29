@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 
 import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.game.IGameScreen;
-import de.teampotoo.gamejam6.game.IGameScreen.difficulty;
+import de.teampotoo.gamejam6.game.IGameScreen.Difficulty;
 import de.teampotoo.gamejam6.song.IStep.StepType;
 
 public class Step implements IStep {
@@ -19,46 +19,24 @@ public class Step implements IStep {
 	private static final float HARD_SUBSTRACT = 0.5f;
 	private static final float REDIC_SUBSTRACT = 0.3f;
 	
-
 	private Step(StepType type, float fireTime, float targetTime) {
 		mType = type;
 		mFireTime = fireTime;
 		mTargetTime = targetTime;
 	}
 	
-	public static IStep newInstance(StepType type, float targetTime, IGameScreen.difficulty difficulty)
-	{
-		float fireTime;
-		switch(difficulty)
-		{
-		case easy:
-			fireTime = targetTime - EASY_SUBSTRACT;
-			if (fireTime < 0f)
-				fireTime = 0f;
-			break;
-		case medium:
-			fireTime = targetTime - MEDIUM_SUBSTRACT;
-			if (fireTime < 0f)
-				fireTime = 0f;
-			break;
-		case hard:
-			fireTime = targetTime - HARD_SUBSTRACT;
-			if (fireTime < 0f)
-				fireTime = 0f;
-			break;
-		case ridiculus:
-			fireTime = targetTime - REDIC_SUBSTRACT;
-			if (fireTime < 0f)
-				fireTime = 0f;
-			break;
-		default:
-			fireTime = targetTime - MEDIUM_SUBSTRACT;
-			if (fireTime < 0f)
-				fireTime = 0f;
-			break;			
+	public static IStep newInstance(StepType type, float timestamp, Difficulty difficulty) {
+		float targetTime;
+		if (difficulty == Difficulty.easy) {
+			targetTime = EASY_SUBSTRACT;
+		} else if (difficulty == Difficulty.medium) {
+			targetTime = MEDIUM_SUBSTRACT;
+		} else if (difficulty == Difficulty.hard) {
+			targetTime = HARD_SUBSTRACT;
+		} else {
+			targetTime = REDIC_SUBSTRACT;
 		}
-			
-	   return newInstance(type, fireTime, targetTime);
+		return newInstance(type, timestamp - targetTime, targetTime);
 	}
 	
 	public static IStep newInstance(StepType type, float fireTime, float targetTime) {
