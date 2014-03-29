@@ -110,7 +110,7 @@ public class SongFactory {
 			lastBeat = currentBeat;
 		}
 		System.out.println(steps.toString());
-		return Song.newInstance(gameScreen, steps, path);
+		return Song.newInstance(gameScreen, beats, steps, path);
 	}
 
 	public static ISong createSong2(IGameScreen gameScreen) {
@@ -121,7 +121,7 @@ public class SongFactory {
 		return null;
 	}
 
-	public static ISong createTestSong(IGameScreen gameScreen) {
+	/*public static ISong createTestSong(IGameScreen gameScreen) {
 		List<IStep> steps = new ArrayList<IStep>();
 		steps.add(Step.newInstance(StepType.up, 1f, 1f));
 		steps.add(Step.newInstance(StepType.left, 2f, 1f));
@@ -129,7 +129,6 @@ public class SongFactory {
 		steps.add(Step.newInstance(StepType.left, 4f, 1f));
 		steps.add(Step.newInstance(StepType.right, 5f, 1f));
 		steps.add(Step.newInstance(StepType.special, 6f, 2.5f));
-
 		return Song.newInstance(gameScreen, steps, "data/music/TestSong.mp3");
-	}
+	}*/
 }

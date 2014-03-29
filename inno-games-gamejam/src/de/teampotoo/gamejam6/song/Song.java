@@ -13,29 +13,29 @@ public class Song implements ISong {
 	 * variables
 	 ****************************************************************************/
 
+	private final List<IBeat> mBeats;
 	private final List<IStep> mSteps;
 	private final IGameScreen mGameScreen;
 
 	private Music mSongMusic;
 
-	private float time = 0f;
-	private int index = 0;
-	private String musicPath;
+	private float mTime = 0f;
+	private int mStepIndex = 0;
+	private int mBeatIndex = 0;
 
 	/****************************************************************************
 	 * constructor
 	 ****************************************************************************/
 
-	private Song(IGameScreen gameScreen, List<IStep> steps, String musicPath) {
+	private Song(IGameScreen gameScreen, List<IBeat> beats, List<IStep> steps, String musicPath) {
 		mGameScreen = gameScreen;
-		this.musicPath = musicPath;
+		mBeats = beats;
 		mSteps = steps;
 		mSongMusic = Gdx.audio.newMusic(Gdx.files.internal(musicPath));
 	}
 
-	public static ISong newInstance(IGameScreen gameScreen, List<IStep> steps,
-			String musicPath) {
-		return new Song(gameScreen, steps, musicPath);
+	public static ISong newInstance(IGameScreen gameScreen, List<IBeat> beats, List<IStep> steps, String musicPath) {
+		return new Song(gameScreen, beats, steps, musicPath);
 	}
 
 	/****************************************************************************
@@ -44,11 +44,12 @@ public class Song implements ISong {
 
 	@Override
 	public boolean start() {
-		if (mSteps.size() < 1)
+		if (mSteps.size() < 1 || mBeats.size() < 1)
 			return false;
 
-		time = 0f;
-		index = 0;
+		mTime = 0f;
+		mBeatIndex = 0;
+		mStepIndex = 0;
 
 		mSongMusic.play();
 		return true;
@@ -61,19 +62,30 @@ public class Song implements ISong {
 
 	@Override
 	public void update(float deltaTime) {
-		time += deltaTime;
+		mTime += deltaTime;
 
 		boolean loop = true;
-		while (index < mSteps.size() && loop) {
-			IStep step = mSteps.get(index);
-			if (step.getFireTime() <= time) {
-				mGameScreen.fireStep(Step.newInstance(step, time));
-				index++;
+		while (mBeatIndex < mSteps.size() && loop) {
+			IBeat beat = mBeats.get(mBeatIndex);
+			if (beat.getTimestamp() <= mTime) {
+				mGameScreen.fireBeat(beat);
+				mBeatIndex++;
 			} else {
 				loop = false;
 			}
 		}
-
+		
+		loop = true;
+		while (mStepIndex < mSteps.size() && loop) {
+			IStep step = mSteps.get(mStepIndex);
+			if (step.getFireTime() <= mTime) {
+				mGameScreen.fireStep(Step.newInstance(step, mTime));
+				mStepIndex++;
+			} else {
+				loop = false;
+			}
+		}
+		
 		// DEBUG
 		// IStep lastStap = mSteps.get(mSteps.size()-1);
 		// if (time > (lastStap.getFireTime() + lastStap.getTargetTime() +
@@ -81,7 +93,8 @@ public class Song implements ISong {
 		// stop();
 		// mGameScreen.songEnd();}
 
-		if (!(mSongMusic.isPlaying()))
+		if (!mSongMusic.isPlaying()) {
 			mGameScreen.songEnd();
+		}
 	}
 }
