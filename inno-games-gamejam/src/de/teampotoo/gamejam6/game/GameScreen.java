@@ -32,6 +32,8 @@ public class GameScreen extends Group implements IGameScreen {
 	private GameJam6 mGameJam6;
 	private Image mBackground;
 
+	private int mPlayerPoints;
+	
 	// player stuff
 	private Player player;
 	
@@ -48,7 +50,8 @@ public class GameScreen extends Group implements IGameScreen {
 	private SpriteBatch mPlayerBatch = new SpriteBatch();
 	
 	public GameScreen(GameJam6 gameJam6) {
-		this.mGameJam6 = gameJam6;		
+		this.mGameJam6 = gameJam6;	
+		this.mPlayerPoints = 0;
 		mBackground = new Image(ResourceLoader.BACKGROUND);
 		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		addActor(mBackground);
@@ -131,9 +134,17 @@ public class GameScreen extends Group implements IGameScreen {
 		player.render();
 	}
 	
-	public void startMusic()
-	{
+	public void setPlayerPoints(int points) {
+		this.mPlayerPoints = points;
+	}
+	
+	public int getPlayerPoints() {
+		return this.mPlayerPoints;
+	}
+	
+	public void startGame() {
 		mCurrentSong.start();
+		mPlayerPoints = 0;
 	}
 
 	@Override

@@ -80,6 +80,10 @@ public class Arrow extends Group {
 		return true;
 	}
 
+	public Image getArrowImage() {
+		return mArrow;
+	}
+	
 	public IStep.StepType getStepType() {
 		return mStepType;
 	}

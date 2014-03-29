@@ -116,9 +116,11 @@ public class GameJam6 implements ApplicationListener {
 				return super.keyDown(event, keycode);
 			}
 		});
-		mGameGroup.startMusic();
-		editor.start();
+		mGameGroup.startGame();
 		Gdx.input.setInputProcessor(mGame);
+		
+		//RIKI EDITOR FOR MAKING AWESOMEMUSIC
+		editor.start();
 	}
 	
 	public void startHighscore() {
