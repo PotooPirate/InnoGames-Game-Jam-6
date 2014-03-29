@@ -56,8 +56,8 @@ public class ResourceLoader {
 
 		// Creating the Skin
 		SKIN = new Skin();
-
-		FONT = new BitmapFont(Gdx.files.internal("data/font/ButtonFont.fnt"));
+ 
+		FONT = new BitmapFont(Gdx.files.internal("data/font/UnFont.fnt"));
 		SKIN.add("button_font", FONT);
 
 		TextButtonStyle textButtonStyle = new TextButtonStyle();

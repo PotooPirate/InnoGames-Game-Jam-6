@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.teampotoo.gamejam6.GameJam6;
@@ -16,6 +17,7 @@ public class CreditsScreen extends Group {
 	/****************************************************************************
 	 * variables
 	 ****************************************************************************/
+	private static final float FONT_SCALE = 0.5f;
 
 	private GameJam6 mGameJam6;
 
@@ -51,34 +53,47 @@ public class CreditsScreen extends Group {
 		addActor(backButton);
 	}
 
+	private Label createCreditLabel(String text, Skin skin) {
+		Label result = new Label(text, skin);
+		result.setFontScale(FONT_SCALE);
+		
+		return result;
+	}
+
 	private void addCredits() {
 		Table tabelle = new Table();
-		Label topicLabel1 = new Label("Programmierung:\n", ResourceLoader.SKIN);
-		Label nameLabel1 = new Label("Joschka Schulz\n", ResourceLoader.SKIN);
-		Label nameLabel2 = new Label("Raimund Wege\n", ResourceLoader.SKIN);
-		Label nameLabel3 = new Label("Frederik Klauss\n", ResourceLoader.SKIN);
-		Label nameLabel4 = new Label("Tobias Hassenkloeve\n",
-				ResourceLoader.SKIN);
-		Label nameLabel5 = new Label("r\n", ResourceLoader.SKIN);
-		Label filler2 = new Label("\n", ResourceLoader.SKIN);
-		Label filler4 = new Label("\n", ResourceLoader.SKIN);
-		Label topicLabel2 = new Label("Design:\n", ResourceLoader.SKIN);
-		Label nameLabel6 = new Label("Annika Baas\n", ResourceLoader.SKIN);
-		Label nameLabel7 = new Label("Florine Vollbrecht\n",
-				ResourceLoader.SKIN);
-		Label topicLabel3 = new Label("Sound:\n", ResourceLoader.SKIN);
-		Label nameLabel8 = new Label("Jason\n", ResourceLoader.SKIN);
+		
+		Label headline = createCreditLabel("Title!!", ResourceLoader.SKIN);
+		Label copyright = createCreditLabel("Copyright 2014. All rights reserved.", ResourceLoader.SKIN);
+		Label filler1 = createCreditLabel("\n", ResourceLoader.SKIN); 
 
+		Label topicLabel2 = createCreditLabel("Design:\n", ResourceLoader.SKIN);
+		Label nameLabel6 = createCreditLabel("Annika Baas\n", ResourceLoader.SKIN);
+		Label nameLabel7 = createCreditLabel("Florine Vollbrecht\n",
+				ResourceLoader.SKIN);
+		Label filler2 = createCreditLabel("\n", ResourceLoader.SKIN); 
+		Label topicLabel1 = createCreditLabel("Programmierung:\n", ResourceLoader.SKIN);
+		Label nameLabel1 = createCreditLabel("Joschka Schulz\n", ResourceLoader.SKIN);
+		Label nameLabel2 = createCreditLabel("Raimund Wege\n", ResourceLoader.SKIN);
+		Label nameLabel3 = createCreditLabel("Frederik Klauss\n", ResourceLoader.SKIN);
+		Label nameLabel4 = createCreditLabel("Tobias Hassenkloever\n",
+				ResourceLoader.SKIN);
+		Label filler4 = createCreditLabel("\n", ResourceLoader.SKIN);
+		Label topicLabel3 = createCreditLabel("Sound:\n", ResourceLoader.SKIN);
+		Label nameLabel8 = createCreditLabel("Jason\n", ResourceLoader.SKIN);
+
+		tabelle.add(headline).row();
+		tabelle.add(copyright).row();
+		tabelle.add(filler1).row();
+		tabelle.add(topicLabel2).row();
+		tabelle.add(nameLabel6).row();
+		tabelle.add(nameLabel7).row();
+		tabelle.add(filler2).row();
 		tabelle.add(topicLabel1).row();
 		tabelle.add(nameLabel1).row();
 		tabelle.add(nameLabel2).row();
 		tabelle.add(nameLabel3).row();
-		tabelle.add(nameLabel4).row();
-		tabelle.add(nameLabel5).row();
-		tabelle.add(filler2).row();
-		tabelle.add(topicLabel2).row();
-		tabelle.add(nameLabel6).row();
-		tabelle.add(nameLabel7).row();
+		tabelle.add(nameLabel4).row(); 
 		tabelle.add(filler4).row();
 		tabelle.add(topicLabel3).row();
 		tabelle.add(nameLabel8).row();
