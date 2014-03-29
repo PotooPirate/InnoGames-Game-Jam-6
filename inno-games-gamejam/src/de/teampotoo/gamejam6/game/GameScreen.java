@@ -76,19 +76,22 @@ public class GameScreen extends Group implements IGameScreen {
 	public void checkArrows(int keycode) {
 		switch(keycode) {
 			case Input.Keys.LEFT:
+				mDancePattern.checkArrow(StepType.left);
 				break;
 			case Input.Keys.UP:
+				mDancePattern.checkArrow(StepType.up);
 				break;
 			case Input.Keys.DOWN:
+				mDancePattern.checkArrow(StepType.down);
 				break;
 			case Input.Keys.RIGHT:
+				mDancePattern.checkArrow(StepType.right);
 				break;
 		}
 	}
 	
 	@Override
 	public void fireStep(IStep step) {
-		System.out.println("FIRE");
 		mDancePattern.fireArrow(step.getType(), step.getTargetTime());
 	}
 	
@@ -122,5 +125,10 @@ public class GameScreen extends Group implements IGameScreen {
 		super.draw(batch, parentAlpha); 
 		player.render(batch);
 		mBlurShader.end();
+	}
+
+	@Override
+	public void songEnd() {
+		
 	}
 }

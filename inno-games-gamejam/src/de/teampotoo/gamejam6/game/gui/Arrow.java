@@ -23,7 +23,6 @@ public class Arrow extends Group {
 				mArrow.setPosition(0, -mArrow.getHeight());
 				mArrow.setOrigin(50, 50);
 				mArrow.setRotation(180);
-				mArrow.setColor(0, 1f, 0f, 1f);
 				break;
 			case up:
 				mArrow.setPosition(100, -mArrow.getHeight());
