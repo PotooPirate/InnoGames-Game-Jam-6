@@ -68,7 +68,7 @@ public class HighscoreScreen extends Group {
 		
 		for(int x = 0; x < mHighscores.length ; x++)
 		{
-			if (score < mHighscores[x])
+			if (score <= mHighscores[x])
 				exchHighscore[x] = mHighscores[x];
 			else if (score > mHighscores[x] && !inserted ){
 				exchHighscore[x] = score;

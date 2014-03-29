@@ -35,7 +35,8 @@ public class GameScreen extends Group implements IGameScreen {
 	private HighscoreScreen mHighscore;
 	private Image mBackground;
 
-	private int mPlayerPoints;
+	private int mPlayerPoints;			//current points while the game runs
+	private int mHighscorePoints;		//Frozen points after the game finished
 	
 	// player stuff
 	private Player player;
@@ -62,7 +63,7 @@ public class GameScreen extends Group implements IGameScreen {
 		mBackground.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		addActor(mBackground);
 		
-		mSugarBar = new SugarBar();
+		mSugarBar = SugarBar.createSugarBar(5);
 		mSugarBar.setPosition(20, 130);
 		
 		mDancePattern = new DancePattern();
@@ -107,13 +108,19 @@ public class GameScreen extends Group implements IGameScreen {
 		return mSugarBar.getValue();
 	}
 	
+	public void gameOver() {
+		mHighscore.insertScore(mPlayerPoints);
+		mHighscore.saveHighscoreToPreferences();
+		mHighscore.refreshLabels();
+		mPlayerPoints = mHighscorePoints = 0;
+		mSugarBar.clearActions();
+		mSugarBar.setValue(0.5f);
+		mGameJam6.startHighscore();
+	}
+	
 	public void setSugarBar(float value) {
 		if(value < 0) {
-			mHighscore.insertScore(mPlayerPoints);
-			mHighscore.saveHighscoreToPreferences();
-			mHighscore.refreshLabels();
-			mPlayerPoints = 0;
-			mGameJam6.startHighscore();
+			mHighscorePoints = mPlayerPoints;
 		}
 		mSugarBar.setValue(value);
 	}
@@ -169,7 +176,7 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	public void startGame() {
 		mCurrentSong.start();
-		mPlayerPoints = 999990;
+		mPlayerPoints = 0;
 		mSugarBar.setValue(0.5f);
 		mPointsLabel.setText("Punkte: 0");
 	}
