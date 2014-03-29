@@ -283,7 +283,7 @@ public class GameScreen extends Group implements IGameScreen {
 	public void fireBeat(IBeat beat) {
 		shaderBlurIntensity = beat.getBlurIntensity();
 		shaderBrightIntensity = beat.getBrightIntensity();
-		shaderRetroIntensity = beat.getBlurIntensity();
+		shaderRetroIntensity = beat.getRetroIntensity();
 	}
 	
 	public void resize(int width, int height) {

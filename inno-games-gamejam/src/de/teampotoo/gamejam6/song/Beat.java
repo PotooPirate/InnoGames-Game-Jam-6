@@ -17,7 +17,7 @@ public class Beat implements IBeat {
 	}
 	
 	public static IBeat newInstance(BeatType type, float timestamp, float blurIntensity, float brightIntensity, float retroIntensity) {
-		return new Beat(type, timestamp, retroIntensity, blurIntensity, brightIntensity);
+		return new Beat(type, timestamp, blurIntensity, brightIntensity, retroIntensity);
 	}
 
 	@Override
