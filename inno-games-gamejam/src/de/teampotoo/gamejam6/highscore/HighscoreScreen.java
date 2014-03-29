@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.teampotoo.gamejam6.GameJam6;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
@@ -16,11 +18,14 @@ public class HighscoreScreen extends Group {
 
 	private GameJam6 mGameJam6;
 	private int[] mHighscores = new int[]{0,0,0,0,0,0,0,0,0,0};
+	private Table mHighscoreTable;
 	
 	public HighscoreScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
 		addBackButton();
 		loadHighscoreFromPreferences();
+		addLabels();
+		
 	}
 	
 	private void loadHighscoreFromPreferences(){
@@ -91,5 +96,33 @@ public class HighscoreScreen extends Group {
 		});
 		
 		addActor(backButton);
+	}
+	
+	private void addLabels(){
+		mHighscoreTable = new Table();
+		Label place1Label = new Label("1. " + mHighscores[0],ResourceLoader.SKIN);
+		Label place2Label = new Label("2. " + mHighscores[1],ResourceLoader.SKIN);
+		Label place3Label = new Label("3. " + mHighscores[2],ResourceLoader.SKIN);
+		Label place4Label = new Label("4. " + mHighscores[3],ResourceLoader.SKIN);
+		Label place5Label = new Label("5. " + mHighscores[4],ResourceLoader.SKIN);
+		Label place6Label = new Label("6. " + mHighscores[5],ResourceLoader.SKIN);
+		Label place7Label = new Label("7. " + mHighscores[6],ResourceLoader.SKIN);
+		Label place8Label = new Label("8. " + mHighscores[7],ResourceLoader.SKIN);
+		Label place9Label = new Label("9. " + mHighscores[8],ResourceLoader.SKIN);
+		Label place10Label = new Label("10. " + mHighscores[9],ResourceLoader.SKIN);
+
+		mHighscoreTable.add(place1Label).row();
+		mHighscoreTable.add(place2Label).row();
+		mHighscoreTable.add(place3Label).row();
+		mHighscoreTable.add(place4Label).row();
+		mHighscoreTable.add(place5Label).row();
+		mHighscoreTable.add(place6Label).row();
+		mHighscoreTable.add(place7Label).row();
+		mHighscoreTable.add(place8Label).row();
+		mHighscoreTable.add(place9Label).row();
+		mHighscoreTable.add(place10Label).row();
+		
+		mHighscoreTable.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		addActor(mHighscoreTable);
 	}
 }

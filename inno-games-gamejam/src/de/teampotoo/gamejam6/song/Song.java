@@ -56,7 +56,8 @@ public class Song implements ISong {
 			if (step.getFireTime() <= time) {
 				mGameScreen.fireStep(Step.newInstance(step, time));
 				index++;
-				step = mSteps.get(index);
+				if (!(index == mSteps.size()))
+					step = mSteps.get(index);
 			} else {
 				loop = false;
 			}
