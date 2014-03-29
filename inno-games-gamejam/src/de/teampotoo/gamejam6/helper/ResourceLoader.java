@@ -21,7 +21,10 @@ public class ResourceLoader {
 
 	// DancePattern
 	public static TextureRegion sDancePatternBackground;
-	public static TextureRegion sArrow;
+	public static TextureRegion sArrowLeft;
+	public static TextureRegion sArrowRight;
+	public static TextureRegion sArrowUp;
+	public static TextureRegion sArrowDown;
 
 	public static TextureRegion sGameLowerBackground;
 	public static TextureRegion sGameUpperBackground;
@@ -55,8 +58,18 @@ public class ResourceLoader {
 		
 		sDancePatternBackground = new TextureRegion(new Texture(
 				Gdx.files.internal("data/gfx/dancepattern_background.png")));
-		sArrow = new TextureRegion(new Texture(
-				Gdx.files.internal("data/gfx/arrow.png")));
+		
+		sArrowLeft = new TextureRegion(new Texture(
+				Gdx.files.internal("data/gfx/orange_links.png")));
+		
+		sArrowRight = new TextureRegion(new Texture(
+				Gdx.files.internal("data/gfx/blau_rechts.png")));
+		
+		sArrowDown = new TextureRegion(new Texture(
+				Gdx.files.internal("data/gfx/gruen_unten.png")));
+		
+		sArrowUp = new TextureRegion(new Texture(
+				Gdx.files.internal("data/gfx/rot_oben.png")));
 
 		sGameLowerBackground = new TextureRegion(new Texture(
 				Gdx.files.internal("data/gfx/game_lowerbackground.png")));

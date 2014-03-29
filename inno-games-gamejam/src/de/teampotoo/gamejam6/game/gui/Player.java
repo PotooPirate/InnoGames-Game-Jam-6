@@ -111,6 +111,17 @@ public class Player {
 		skeleton = new Skeleton(skeletonData);
 		stateData = new AnimationStateData(skeletonData);
 
+		stateData.setMix("move0", "move1", 0.2f);
+		stateData.setMix("move1", "move2", 0.2f);
+		stateData.setMix("move2", "move3", 0.2f);
+		stateData.setMix("move3", "move4", 0.2f);
+		stateData.setMix("move4", "move5", 0.2f);
+		stateData.setMix("move5", "move4", 0.2f);
+		stateData.setMix("move4", "move3", 0.2f);
+		stateData.setMix("move3", "move2", 0.2f);
+		stateData.setMix("move2", "move1", 0.2f);
+		stateData.setMix("move1", "move0", 0.2f);
+
 		state = new AnimationState(stateData);
 		state.addListener(new AnimationStateListener() {
 			public void event(int trackIndex, Event event) {
