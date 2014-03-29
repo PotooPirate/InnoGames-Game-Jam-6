@@ -19,7 +19,7 @@ public class Player {
 	 * enums
 	 ****************************************************************************/
 
-	enum DanceStyle {
+	public enum DanceStyle {
 		light, middle, crazy
 	}
 

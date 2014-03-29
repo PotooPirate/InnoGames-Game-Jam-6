@@ -24,11 +24,12 @@ public class SugarBar extends Group {
 	 ****************************************************************************/
 
 	public static SugarBar createSugarBar(int animationLevels) {
-		animationLevels = animationLevels;
-		return new SugarBar();
+		SugarBar result = new SugarBar(animationLevels);
+		return result;
 	}
 
-	private SugarBar() {
+	private SugarBar(int animationLevels) {
+		this.animationlevels = animationLevels;
 		mBackground = new Image(ResourceLoader.sSugarbarBackground);
 		mForderground = new Image(ResourceLoader.sSugarbarForderground);
 		mForderground.setScaleY(0f);
@@ -87,9 +88,7 @@ public class SugarBar extends Group {
 	}
 
 	private int calcAnimationLevel() {
-		float divident = 1 / (float) animationlevels;
-		divident = divident * 100;
-		int tempwert = (int) (mValue * 100);
-		return (int) (tempwert / divident);
+		
+		return (int) (animationlevels * mValue);
 	}
 }
