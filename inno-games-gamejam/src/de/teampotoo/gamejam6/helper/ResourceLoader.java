@@ -28,7 +28,9 @@ public class ResourceLoader {
 
 	public static Skin SKIN;
 	public static Skin sComboSkin;
+	public static Skin sComboSkinBig;
 	public static BitmapFont sComboFont;
+	public static BitmapFont sComboFontBig;
 	public static BitmapFont FONT;
 	public static BitmapFont BUTTON_FONT;
 	public static TextureRegion BUTTON;
@@ -61,6 +63,7 @@ public class ResourceLoader {
 
 		//Creating the combo skin
 		sComboSkin = new Skin();
+		sComboSkinBig = new Skin();
 		
 		sComboFont = new BitmapFont(Gdx.files.internal("data/font/ComboFont.fnt"));
 		sComboSkin.add("combo_font", sComboFont);
@@ -68,6 +71,13 @@ public class ResourceLoader {
 		LabelStyle comboLabelStyle = new LabelStyle();
 		comboLabelStyle.font = sComboSkin.get("combo_font", BitmapFont.class);
 		sComboSkin.add("default", comboLabelStyle);
+		 
+		sComboFontBig = new BitmapFont(Gdx.files.internal("data/font/ComboFontBog.fnt"));
+		sComboSkinBig.add("combo_font_big", sComboFontBig);
+		
+		LabelStyle comboBigLabelStyle = new LabelStyle();
+		comboBigLabelStyle.font = sComboSkinBig.get("combo_font_big", BitmapFont.class);
+		sComboSkinBig.add("default", comboBigLabelStyle);
 		
 		// Creating the Skin
 		SKIN = new Skin();

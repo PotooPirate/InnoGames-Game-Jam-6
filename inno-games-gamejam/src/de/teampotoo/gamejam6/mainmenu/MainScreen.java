@@ -80,17 +80,17 @@ public class MainScreen extends Group {
 		mMovementActor.setPosition(Gdx.graphics.getWidth() / 2, mInitOffScreenPosition + mInitTargetPosition);
 		triggerAnimation();
 		
-		mTitleLabel = new Label("Kim Jong Dance", ResourceLoader.SKIN);
+		mTitleLabel = new Label("Kim Jong Dance:", ResourceLoader.SKIN);
 		mTitleLabel.setPosition(Gdx.graphics.getWidth() / 2 - (mTitleLabel.getWidth() / 2) * 2,
 				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6);
 		mTitleLabel.setFontScale(1.5f);
 		
 		addActor(mTitleLabel);
 
-		mRevolutionLabel = new Label("Revolution!!!", ResourceLoader.sComboSkin);
+		mRevolutionLabel = new Label("Revolution!!!", ResourceLoader.sComboSkinBig);
 		mRevolutionLabel.setPosition(Gdx.graphics.getWidth() / 2,
-				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 10);
-		mRevolutionLabel.setFontScale(1.5f);
+				Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 6 - Gdx.graphics.getHeight() / 8);
+		mRevolutionLabel.setFontScale(1.2f);
 		addActor(mRevolutionLabel);
 	}
 	
