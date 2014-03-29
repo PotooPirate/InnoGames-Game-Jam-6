@@ -59,7 +59,7 @@ public class ResourceLoader {
 		//Creating the combo skin
 		sComboSkin = new Skin();
 		
-		sComboFont = new BitmapFont(Gdx.files.internal("data/font/ComboFont.fnt"),true);
+		sComboFont = new BitmapFont(Gdx.files.internal("data/font/ComboFont.fnt"));
 		sComboSkin.add("combo_font", sComboFont);
 		
 		LabelStyle comboLabelStyle = new LabelStyle();
