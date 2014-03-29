@@ -60,6 +60,7 @@ public class Song implements ISong {
 				loop = false;
 			}
 		}
+		
 		//DEBUG
 //		IStep lastStap = mSteps.get(mSteps.size()-1);
 //		if (time > (lastStap.getFireTime() + lastStap.getTargetTime() + 0.5f)){
@@ -67,8 +68,6 @@ public class Song implements ISong {
 //				mGameScreen.songEnd();}
 		
 		if (!(mSongMusic.isPlaying()))
-			mGameScreen.songEnd();
-				
-			
+			mGameScreen.songEnd();		
 	}
 }

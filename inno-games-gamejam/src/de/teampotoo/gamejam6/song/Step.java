@@ -1,5 +1,8 @@
 package de.teampotoo.gamejam6.song;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
+
 import de.teampotoo.gamejam6.song.IStep.StepType;
 
 public class Step implements IStep {
@@ -15,6 +18,23 @@ public class Step implements IStep {
 	}
 	
 	public static IStep newInstance(StepType type, float fireTime, float targetTime) {
+		if (type == StepType.random)
+		{
+			int rand = MathUtils.random(4);
+			switch (rand)
+			{
+			case 0: 
+				return new Step(StepType.left, fireTime, targetTime);
+	        case 1: 
+	        	return new Step(StepType.up, fireTime, targetTime);
+	        case 2: 
+	        	return new Step(StepType.right, fireTime, targetTime);
+	        case 3: 
+	        	return new Step(StepType.down, fireTime, targetTime);
+	        case 4:
+	        	return new Step(StepType.special,fireTime, targetTime);
+			}
+		}
 		return new Step(type, fireTime, targetTime);
 	}
 	
