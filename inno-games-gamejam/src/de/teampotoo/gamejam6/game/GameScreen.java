@@ -2,12 +2,9 @@ package de.teampotoo.gamejam6.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -15,10 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import de.teampotoo.gamejam6.GameJam6;
-import de.teampotoo.gamejam6.game.gui.Arrow;
 import de.teampotoo.gamejam6.game.gui.DancePattern;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
+import de.teampotoo.gamejam6.game.gui.particle.ParticleEffectActor;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.shader.IBlurShader;
@@ -26,7 +23,6 @@ import de.teampotoo.gamejam6.shader.ShaderFactory;
 import de.teampotoo.gamejam6.song.ISong;
 import de.teampotoo.gamejam6.song.IStep;
 import de.teampotoo.gamejam6.song.IStep.StepType;
-import de.teampotoo.gamejam6.song.Song;
 import de.teampotoo.gamejam6.song.SongFactory;
 
 public class GameScreen extends Group implements IGameScreen {
@@ -84,9 +80,14 @@ public class GameScreen extends Group implements IGameScreen {
 		//Let the music
 		mCurrentSong = SongFactory.createSong1(this);
 		
+		//Particle
+		ParticleEffect effect = new ParticleEffect();
+		effect.load(Gdx.files.internal("data/particle/particletest.p"), Gdx.files.internal("data"));
+		addActor(new ParticleEffectActor(effect));
+		
 		mBlurShader = ShaderFactory.createBlurShader();
 	}
-
+	
 	public void checkArrows(int keycode) {
 		switch(keycode) {
 			case Input.Keys.LEFT:
