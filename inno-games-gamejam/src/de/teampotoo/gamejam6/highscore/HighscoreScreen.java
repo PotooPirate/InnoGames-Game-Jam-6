@@ -2,6 +2,7 @@ package de.teampotoo.gamejam6.highscore;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.teampotoo.gamejam6.GameJam6;
+import de.teampotoo.gamejam6.game.gui.Player;
+import de.teampotoo.gamejam6.game.gui.Player.DanceStyle;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 
 public class HighscoreScreen extends Group {
@@ -21,6 +24,8 @@ public class HighscoreScreen extends Group {
 	private GameJam6 mGameJam6;
 	private int[] mHighscores = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private Table mHighscoreTable;
+	
+	private Player mPlayer;
 
 	/****************************************************************************
 	 * constructor
@@ -35,12 +40,24 @@ public class HighscoreScreen extends Group {
 //		 Preferences prefs = Gdx.app.getPreferences("Highscores");
 //		 prefs.clear();
 //		 prefs.flush();
+		
+		mPlayer = new Player();
+		mPlayer.create();
+		
+		mPlayer.setPosition(Gdx.graphics.getWidth()  / 5, Gdx.graphics.getHeight() / 14);
+		mPlayer.setState(DanceStyle.crazy);
 	}
 
 	/****************************************************************************
 	 * methods
 	 ****************************************************************************/
 
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
+		mPlayer.render();
+	}
+	
 	private void loadHighscoreFromPreferences() {
 		Preferences prefs = Gdx.app.getPreferences("Highscores");
 		int place1 = prefs.getInteger("placeone", 0);
