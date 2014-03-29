@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
@@ -25,6 +26,8 @@ public class DancePattern extends Group {
 	private ShapeRenderer mDebugRenderer;
 	private int mStepCounter;
 	private int mComboCounter;
+	
+	private Label mPerfectLabel;
 
 	/****************************************************************************
 	 * constructor
@@ -42,6 +45,11 @@ public class DancePattern extends Group {
 		addAction(Actions.alpha(0.75f));
 
 		mDebugRenderer = new ShapeRenderer();
+		
+		mPerfectLabel = new Label("Perfect!", ResourceLoader.sComboSkin);
+		addActor(mPerfectLabel);
+		mPerfectLabel.setPosition(40, 605);
+		mPerfectLabel.addAction(Actions.sequence(Actions.fadeOut(0.0f)));
 	}
 
 	/****************************************************************************
@@ -56,6 +64,12 @@ public class DancePattern extends Group {
 	 * methods
 	 ****************************************************************************/
 
+	private void labelAction(String labelText) {
+		mPerfectLabel.setText(labelText);
+		
+		mPerfectLabel.addAction(Actions.sequence(Actions.fadeIn(0.0f), Actions.fadeOut(0.6f)));
+	}
+	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		batch.draw(ResourceLoader.sDancePatternBackground, getX(), getY());
@@ -109,6 +123,8 @@ public class DancePattern extends Group {
 					a.setActive(false);
 					hit = true;
 					addComboCounter();
+					
+					labelAction("Perfect!");
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
@@ -117,6 +133,7 @@ public class DancePattern extends Group {
 					a.setActive(false);
 					hit = true;
 					addComboCounter();
+					labelAction("Good!");
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + 0.025f);
@@ -125,6 +142,7 @@ public class DancePattern extends Group {
 					a.setActive(false);
 					hit = true;
 					addComboCounter();
+					labelAction("Bad!");
 				}
 			}
 		}
@@ -134,6 +152,8 @@ public class DancePattern extends Group {
 			if (parent.getPlayerPoints() - 5 >= 0) {
 				parent.setPlayerPoints(parent.getPlayerPoints() - 5);
 			}
+
+			labelAction("Miss!");
 		}
 	}
 }
