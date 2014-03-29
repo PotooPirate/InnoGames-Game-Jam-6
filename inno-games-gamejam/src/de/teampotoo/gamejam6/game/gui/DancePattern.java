@@ -3,12 +3,14 @@ package de.teampotoo.gamejam6.game.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import de.teampotoo.gamejam6.game.GameScreen;
@@ -33,6 +35,8 @@ public class DancePattern extends Group {
 	private int mComboCounter;
 	
 	private Label mPerfectLabel;
+	
+	private Image mDebugCenter;
 
 	/****************************************************************************
 	 * constructor
@@ -43,9 +47,9 @@ public class DancePattern extends Group {
 		mStepCounter = 0;
 		mComboCounter = 0;
 
-		mPerfect = new Rectangle(0, 540, 400, 20);
-		mGood = new Rectangle(0, 520, 400, 60);
-		mBad = new Rectangle(0, 500, 400, 100);
+		mPerfect = new Rectangle(0, 540, 800, 20);
+		mGood = new Rectangle(0, 520, 800, 60);
+		mBad = new Rectangle(0, 500, 800, 100);
 
 		addAction(Actions.alpha(0.75f));
 
@@ -59,6 +63,9 @@ public class DancePattern extends Group {
 		addActor(mPerfectLabel);
 		mPerfectLabel.setPosition(40, 605);
 		mPerfectLabel.addAction(Actions.sequence(Actions.fadeOut(0.0f)));
+		
+		mDebugCenter = new Image(new Texture("data/eyecandy/HitTest.png"));
+		addActor(mDebugCenter);
 	}
 
 	/****************************************************************************
@@ -98,7 +105,12 @@ public class DancePattern extends Group {
 		batch.begin();
 	}
 
-	public void fireArrow(IStep.StepType direction, float targetTime) {
+	public void fireArrow(IStep.StepType direction, float targetTime) { 
+		
+		if (direction == IStep.StepType.none || direction == IStep.StepType.random || direction == IStep.StepType.special) {
+			return;
+		}
+		
 		mStepCounter++;
 		Arrow arrow = new Arrow(direction, targetTime, mStepCounter);
 		arrow.setShapeRenderer(mDebugRenderer);
@@ -124,6 +136,7 @@ public class DancePattern extends Group {
 			if (a.getStepType().equals(direction)) {
 				float centerX = a.getCenterX();
 				float centerY = a.getCenterY();
+				
 				if (mPerfect.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + PERFECT_SCORE);
@@ -132,7 +145,8 @@ public class DancePattern extends Group {
 					a.setActive(false);
 					hit = true;
 					addComboCounter();
-					
+
+					mDebugCenter.setPosition(centerX, centerY);
 					labelAction("Perfect!");
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
@@ -143,6 +157,7 @@ public class DancePattern extends Group {
 					hit = true;
 					addComboCounter();
 					labelAction("Good!");
+					mDebugCenter.setPosition(centerX, centerY);
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + BAD_SCORE);
@@ -152,6 +167,7 @@ public class DancePattern extends Group {
 					hit = true;
 					addComboCounter();
 					labelAction("Bad!");
+					mDebugCenter.setPosition(centerX, centerY);
 				}
 			}
 		}

@@ -1,8 +1,6 @@
 package de.teampotoo.gamejam6.game.gui;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -35,29 +33,29 @@ public class Arrow extends Group {
 		switch (dir) {
 		case left:
 			mArrow = new Image(ResourceLoader.sArrowLeft);
-			mArrow.setPosition(0, -mArrow.getHeight());
-			mArrow.setOrigin(50, 50);
+			setPosition(0, -mArrow.getHeight()); 
 			break;
 		case up:
 			mArrow = new Image(ResourceLoader.sArrowUp);
-			mArrow.setPosition(100, -mArrow.getHeight());
-			mArrow.setOrigin(50, 50);
+			setPosition(100, -mArrow.getHeight()); 
 			break;
 		case down:
 			mArrow = new Image(ResourceLoader.sArrowDown);
-			mArrow.setPosition(200, -mArrow.getHeight());
-			mArrow.setOrigin(50, 50);
+			setPosition(200, -mArrow.getHeight()); 
 			break;
 		case right:
-		default:
 			mArrow = new Image(ResourceLoader.sArrowRight);
-			mArrow.setPosition(300, -mArrow.getHeight());
+			setPosition(300, -mArrow.getHeight()); 
+			break;
+
+		default:
+			System.out.println("This should not happen, when building arrows");
 			break;
 		}
 
 		addActor(mArrow);
 		
-		SequenceAction seq = new SequenceAction(Actions.moveBy(0, 650,
+		SequenceAction seq = new SequenceAction(Actions.moveBy(0, 700,
 				targetTime), Actions.run(new Runnable() {
 			@Override
 			public void run() {
@@ -72,7 +70,7 @@ public class Arrow extends Group {
 				Actions.run(new Runnable() {
 					@Override
 					public void run() {
-						deleteArrow();
+					deleteArrow();
 					}
 				}));
 		addAction(seq);
@@ -99,11 +97,11 @@ public class Arrow extends Group {
 	}
 
 	public float getCenterX() {
-		return mArrow.getX() + 50 + getX();
+		return getX() + 50;
 	}
 
 	public float getCenterY() {
-		return mArrow.getY() + 50 + getY();
+		return getY() + 50;
 	}
 
 	/****************************************************************************
@@ -143,6 +141,7 @@ public class Arrow extends Group {
 		this.sr = sr;
 	}
 
+	/*
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
@@ -156,4 +155,5 @@ public class Arrow extends Group {
 			batch.begin();
 		}
 	}
+	*/
 }

@@ -3,7 +3,9 @@ package de.teampotoo.gamejam6.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
@@ -33,7 +35,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private GameJam6 mGameJam6;
 	private HighscoreScreen mHighscore;
 	private Image mUpperBackground;
-	private Image mRocket1, mRocket2;
+	private SugarRocket mRocket1, mRocket2;
 	private Image mLowerBackground;
 
 	private int mPlayerPoints; // current points while the game runs
@@ -68,14 +70,11 @@ public class GameScreen extends Group implements IGameScreen {
 				mLowerBackground.getHeight());
 		addActor(mLowerBackground);
 
-		mRocket1 = new Image(ResourceLoader.sRocket);
-		mRocket1.setPosition(150, -mRocket1.getHeight());
-
-		mRocket2 = new Image(ResourceLoader.sRocket);
-		mRocket2.setPosition(650, -mRocket2.getHeight());
+		mRocket1 = new SugarRocket(150);
+		addActor(mRocket1);
 		
 		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
-		mUpperBackground.setBounds(0, 350, mUpperBackground.getWidth(),
+		mUpperBackground.setBounds(0, 0, mUpperBackground.getWidth(),
 				mUpperBackground.getHeight());
 		addActor(mUpperBackground);
 
@@ -129,7 +128,7 @@ public class GameScreen extends Group implements IGameScreen {
 	/****************************************************************************
 	 * methods
 	 ****************************************************************************/
-
+	
 	public void checkArrows(int keycode) {
 		switch (keycode) {
 		case Input.Keys.LEFT:
@@ -148,6 +147,7 @@ public class GameScreen extends Group implements IGameScreen {
 	}
 
 	public void gameOver() {
+		System.out.println(mHighscorePoints);
 		boolean inHighscore = mHighscore.insertScore(mHighscorePoints);
 		mHighscore.saveHighscoreToPreferences();
 		mHighscore.refreshLabels();
@@ -163,6 +163,23 @@ public class GameScreen extends Group implements IGameScreen {
 		mGameJam6.startHighscore();
 		mCurrentSong.stop();
 
+	}
+	
+	public void successGameOver(int finalscore)
+	{
+		boolean inHighscore = mHighscore.insertScore(finalscore);
+		mHighscore.saveHighscoreToPreferences();
+		mHighscore.refreshLabels();
+		mPlayerPoints = mHighscorePoints = 0;
+		mSugarBar.clearActions();
+		mSugarBar.setValue(0.5f);
+		mDancePattern.clear();
+		mDancePattern.createLabel();
+		if (inHighscore)
+			SoundEffectPlayer.Play(Effect.highscore);
+		else
+			SoundEffectPlayer.Play(Effect.looser);
+		mGameJam6.startHighscore();
 	}
 
 	@Override
@@ -250,7 +267,7 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void songEnd() {
-		//TODO
+		successGameOver(mPlayerPoints);
 	}
 
 	@Override
