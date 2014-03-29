@@ -54,7 +54,9 @@ public class GameScreen extends Group implements IGameScreen {
 	private ISong mCurrentSong;
 	
 	private IBlurShader shader = ShaderFactory.createBlurShader();
-	private float shaderIntensity = 0f;
+	private float shaderBlurIntensity = 0f;
+	private float shaderBrightIntensity = 0f;
+	private float shaderRetroIntensity = 0f;
 	
 	/****************************************************************************
 	 * constructor
@@ -220,11 +222,15 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		shaderIntensity -= Gdx.graphics.getDeltaTime() / 2;
-		if (shaderIntensity < 0) {
-			shaderIntensity = 0f;
+		shaderBlurIntensity -= Gdx.graphics.getDeltaTime() / 2;
+		if (shaderBlurIntensity < 0) {
+			shaderBlurIntensity = 0f;
 		}
-		shader.begin(0f, 0.5f, 0.5f, shaderIntensity, 1f);
+		shaderRetroIntensity -= Gdx.graphics.getDeltaTime() / 2;
+		if (shaderRetroIntensity < 0) {
+			shaderRetroIntensity = 0f;
+		}
+		shader.begin(0f, 0.5f, 0.5f, shaderBlurIntensity, shaderBrightIntensity, shaderRetroIntensity);
 		super.draw(batch, parentAlpha);
 		player.render();
 		shader.end();
@@ -271,7 +277,10 @@ public class GameScreen extends Group implements IGameScreen {
 
 	@Override
 	public void fireBeat(IBeat beat) {
-		shaderIntensity = 0.3f;
+		shaderBlurIntensity = beat.getBlurIntensity();
+		shaderBrightIntensity = 1f;
+		shaderRetroIntensity = beat.getBlurIntensity();
+		System.out.println(shaderBlurIntensity + " " + shaderBrightIntensity + " " + shaderRetroIntensity);
 	}
 	
 	public void resize(int width, int height) {
