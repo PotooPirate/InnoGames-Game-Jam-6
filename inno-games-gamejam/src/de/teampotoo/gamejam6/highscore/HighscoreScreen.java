@@ -29,7 +29,7 @@ public class HighscoreScreen extends Group {
 	private int[] mHighscores = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private Table mHighscoreTable;
 	
-	private boolean entered = false;
+	private boolean entered;
 	private Player mPlayer;
 	private Actor mLowerBackground;
 	private Actor mUpperBackground;
@@ -40,7 +40,7 @@ public class HighscoreScreen extends Group {
 
 	public HighscoreScreen(GameJam6 gameJam6) {
 		this.mGameJam6 = gameJam6;
-		
+		entered = false;
 		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
 		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
 				mLowerBackground.getHeight());
