@@ -43,6 +43,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 	private int mPlayerPoints; // current points while the game runs
 	private int mHighscorePoints; // Frozen points after the game finished
 	private float mMultiplicator; //Combo multiplicator
+	private boolean alreadyFinished;
 	
 	// player stuff
 	private Player player;
@@ -175,8 +176,12 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		mSugarBar.setValue(0.5f);
 		mDancePattern.clear();
 		mDancePattern.createLabel();
+		if (inHighscore)
+			SoundEffectPlayer.Play(Effect.highscore);
+		else
 			SoundEffectPlayer.Play(Effect.looser);
 		mGameJam6.startHighscore();
+		alreadyFinished = true;
 		mCurrentSong.stop();
 
 	}
@@ -301,7 +306,9 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 
 	@Override
 	public void songEnd() {
+		if (!alreadyFinished)
 		successGameOver(mPlayerPoints);
+		alreadyFinished = false;
 	}
 
 	@Override
