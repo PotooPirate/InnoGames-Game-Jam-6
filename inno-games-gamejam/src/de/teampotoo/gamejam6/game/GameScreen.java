@@ -218,7 +218,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		super.act(delta); 
 		
 		//Calculate the multiplicator
-		mMultiplicator = 1.0f + ((int)(mDancePattern.getComboCounter()*10)/10.0f);
+		mMultiplicator = 1.0f + (mDancePattern.getComboCounter()/100.0f);
 		
 		if (mSugarBar.getAnimationLevel() == 0) {
 			player.setState(DanceStyle.losing);
@@ -240,7 +240,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		}  
 		
 		if (mDancePattern.getComboCounter() > 0) {
-			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter() + "\nx"+mMultiplicator);
+			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter() + "\nx"+String.format("%.2g%n",mMultiplicator));
 		} else {
 			mComboLabel.setText("");
 		}
