@@ -5,14 +5,11 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 import de.teampotoo.gamejam6.GameJam6;
 import de.teampotoo.gamejam6.game.gui.Player;
@@ -74,6 +71,13 @@ public class HighscoreScreen extends Group {
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
+		
+		if (enteredHighLastTime()) {
+
+			mPlayer.setState(DanceStyle.level5);
+		} else { 
+			mPlayer.setState(DanceStyle.wine);
+		}
 		
 		mPlayer.render();
 	}
