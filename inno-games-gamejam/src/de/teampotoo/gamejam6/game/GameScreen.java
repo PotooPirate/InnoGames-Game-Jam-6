@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -41,6 +42,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 
 	private int mPlayerPoints; // current points while the game runs
 	private int mHighscorePoints; // Frozen points after the game finished
+	private float mMultiplicator; //Combo multiplicator
 	
 	// player stuff
 	private Player player;
@@ -68,6 +70,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		this.mGameJam6 = gameJam6;
 		this.mHighscore = highscore;
 		this.mPlayerPoints = 0;
+		this.mMultiplicator = 1.0f;
 
 		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
 		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
@@ -138,6 +141,10 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		return this.mPlayerPoints;
 	}
 
+	public float getMultiplicator() {
+		return this.mMultiplicator;
+	}
+	
 	/****************************************************************************
 	 * methods
 	 ****************************************************************************/
@@ -210,6 +217,9 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 	public void act(float delta) {
 		super.act(delta); 
 		
+		//Calculate the multiplicator
+		mMultiplicator = 1.0f + ((int)(mDancePattern.getComboCounter()*10)/10.0f);
+		
 		if (mSugarBar.getAnimationLevel() == 0) {
 			player.setState(DanceStyle.losing);
 		} else if (mSugarBar.getAnimationLevel() == 1) {
@@ -230,7 +240,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		}  
 		
 		if (mDancePattern.getComboCounter() > 0) {
-			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter());
+			mComboLabel.setText("COMBO " + mDancePattern.getComboCounter() + "\nx"+mMultiplicator);
 		} else {
 			mComboLabel.setText("");
 		}
