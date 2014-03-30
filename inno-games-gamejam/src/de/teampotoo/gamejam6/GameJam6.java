@@ -135,6 +135,7 @@ public class GameJam6 implements ApplicationListener {
 	}
 	
 	private void stopMusic(){
+		menuIntro.stop();
 		mainMenuMusic.stop();
 	}
 

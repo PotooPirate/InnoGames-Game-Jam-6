@@ -29,6 +29,7 @@ public class HighscoreScreen extends Group {
 	private int[] mHighscores = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private Table mHighscoreTable;
 	
+	private boolean entered = false;
 	private Player mPlayer;
 	private Actor mLowerBackground;
 	private Actor mUpperBackground;
@@ -122,6 +123,7 @@ public class HighscoreScreen extends Group {
 				exchHighscore[x] = mHighscores[x - 1];
 			}
 		}
+		entered = inserted;
 		mHighscores = exchHighscore;
 		return inserted;
 	}
@@ -189,6 +191,11 @@ public class HighscoreScreen extends Group {
 		mHighscoreTable.setPosition(Gdx.graphics.getWidth() / 2,
 				Gdx.graphics.getHeight() / 2);
 		addActor(mHighscoreTable);
+	}
+	
+	public boolean enteredHighLastTime()
+	{
+		return entered;
 	}
 
 	public void refreshLabels() {
