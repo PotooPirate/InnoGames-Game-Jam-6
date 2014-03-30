@@ -77,7 +77,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 				mLowerBackground.getHeight());
 		addActor(mLowerBackground);
 
-		mRocket1 = new SugarRocket(150, 10f, this);
+		mRocket1 = new SugarRocket(150, 30f, this);
 		addActor(mRocket1);
 		
 		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
