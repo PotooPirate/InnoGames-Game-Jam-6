@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import de.teampotoo.gamejam6.GameJam6;
 import de.teampotoo.gamejam6.game.gui.DancePattern;
+import de.teampotoo.gamejam6.game.gui.ISugarRocket;
 import de.teampotoo.gamejam6.game.gui.Player;
 import de.teampotoo.gamejam6.game.gui.Player.DanceStyle;
 import de.teampotoo.gamejam6.game.gui.SugarBar;
@@ -26,7 +27,7 @@ import de.teampotoo.gamejam6.song.IStep;
 import de.teampotoo.gamejam6.song.IStep.StepType;
 import de.teampotoo.gamejam6.song.SongFactory;
 
-public class GameScreen extends Group implements IGameScreen {
+public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 
 	/****************************************************************************
 	 * variables
@@ -49,6 +50,7 @@ public class GameScreen extends Group implements IGameScreen {
 	private DancePattern mDancePattern;
 	private Label mPointsLabel;
 	private Label mComboLabel;
+	private Label mRocketReachedSkyLabel;
 	
 	// Music
 	private ISong mCurrentSong;
@@ -72,7 +74,7 @@ public class GameScreen extends Group implements IGameScreen {
 				mLowerBackground.getHeight());
 		addActor(mLowerBackground);
 
-		mRocket1 = new SugarRocket(150, 30f);
+		mRocket1 = new SugarRocket(150, 10f, this);
 		addActor(mRocket1);
 		
 		mUpperBackground = new Image(ResourceLoader.sGameUpperBackground);
@@ -107,6 +109,15 @@ public class GameScreen extends Group implements IGameScreen {
 		
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
+		
+		//Implementing background labels
+		mRocketReachedSkyLabel = new Label("ROCKET START +500 POINTS"
+				, ResourceLoader.sComboSkin);
+		mRocketReachedSkyLabel.addAction(Actions.alpha(0f));
+		mRocketReachedSkyLabel.setPosition(Gdx.graphics.getWidth() / 2
+				- mRocketReachedSkyLabel.getWidth() / 2, Gdx.graphics.getHeight()
+				- mRocketReachedSkyLabel.getHeight() - 20);
+		addActor(mRocketReachedSkyLabel);
 	}
 
 	/****************************************************************************
@@ -188,6 +199,13 @@ public class GameScreen extends Group implements IGameScreen {
 		mDancePattern.fireArrow(step.getType(), step.getTargetTime());
 	}
 
+	/**
+	 * was fired if the player miss a combo!
+	 */
+	public void miss() {
+		mRocket1.crashRocket();
+	}
+	
 	@Override
 	public void act(float delta) {
 		super.act(delta); 
@@ -288,5 +306,16 @@ public class GameScreen extends Group implements IGameScreen {
 	
 	public void resize(int width, int height) {
 		shader.resize(width, height);
+	}
+
+	@Override
+	public void rocketReachedSky() {
+		System.out.println("ROCKET REACHED SKY!");
+		mPlayerPoints += 500;
+		mRocketReachedSkyLabel.addAction(Actions.sequence(
+				Actions.fadeIn(0.25f),
+				Actions.delay(2f),
+				Actions.fadeOut(0.5f)
+				));
 	}
 }
