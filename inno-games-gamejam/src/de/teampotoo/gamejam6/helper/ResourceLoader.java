@@ -33,6 +33,8 @@ public class ResourceLoader {
 	public static TextureRegion sButtonFlag;
 	public static TextureRegion sAtom;
 
+	public static TextureRegion sTransparent;
+	
 	public static Skin SKIN;
 	public static Skin SKIN_BIG;
 	public static Skin sComboSkin;
@@ -62,6 +64,8 @@ public class ResourceLoader {
 		};
 		
 		sAtom = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/atomzeichen.png")));
+
+		sTransparent = new TextureRegion(new Texture(Gdx.files.internal("data/gfx/transparent.png")));
 		
 		sDancePatternBackground = new TextureRegion(new Texture(
 				Gdx.files.internal("data/gfx/dancepattern_background.png")));
