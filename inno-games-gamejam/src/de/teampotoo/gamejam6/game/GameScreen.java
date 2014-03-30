@@ -1,10 +1,13 @@
 package de.teampotoo.gamejam6.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -44,6 +47,12 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 	private float mMultiplicator; //Combo multiplicator
 	private boolean alreadyFinished;
 	
+	//Invisible HUD
+	private Image sLeftInvImage;
+	private Image sRightInvImage;
+	private Image sUpInvImage;
+	private Image sDownInvImage;
+	
 	// player stuff
 	private Player player;
 
@@ -71,7 +80,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		this.mHighscore = highscore;
 		this.mPlayerPoints = 0;
 		this.mMultiplicator = 1.0f;
-
+		
 		mLowerBackground = new Image(ResourceLoader.sGameLowerBackground);
 		mLowerBackground.setBounds(0, 0, mLowerBackground.getWidth(),
 				mLowerBackground.getHeight());
@@ -113,7 +122,56 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
 		
-		//Implementing background labels
+		//Invisible Hud
+		sLeftInvImage = new Image(ResourceLoader.sTransparent);
+		sLeftInvImage.setBounds(mDancePattern.getX(), mDancePattern.getY() + 500, 100, 100);
+		sLeftInvImage.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				mDancePattern.checkArrow(StepType.left);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		sUpInvImage = new Image(ResourceLoader.sTransparent);
+		sUpInvImage.setBounds(mDancePattern.getX()+100, mDancePattern.getY() + 500, 100, 100);
+		sUpInvImage.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				mDancePattern.checkArrow(StepType.up);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		sDownInvImage = new Image(ResourceLoader.sTransparent);
+		sDownInvImage.setBounds(mDancePattern.getX()+200, mDancePattern.getY() + 500, 100, 100);
+		sDownInvImage.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				mDancePattern.checkArrow(StepType.down);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		sRightInvImage = new Image(ResourceLoader.sTransparent);
+		sRightInvImage.setBounds(mDancePattern.getX()+300, mDancePattern.getY() + 500, 100, 100);
+		sRightInvImage.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				mDancePattern.checkArrow(StepType.right);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		addActor(sUpInvImage);
+		addActor(sDownInvImage);
+		addActor(sLeftInvImage);
+		addActor(sRightInvImage);
+		
 		mRocketReachedSky = new Image(new Texture("data/eyecandy/RocketStart.png"));
 		mRocketReachedSky.addAction(Actions.alpha(0f));
 		mRocketReachedSky.setPosition(Gdx.graphics.getWidth() / 2
@@ -148,7 +206,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 	 * methods
 	 ****************************************************************************/
 	
-	public void checkArrows(int keycode) {
+	public void checkArrows(int keycode) { 
 		switch (keycode) {
 		case Input.Keys.LEFT:
 			mDancePattern.checkArrow(StepType.left);
