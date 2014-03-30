@@ -50,7 +50,8 @@ public class GameJam6 implements ApplicationListener {
 		ResourceLoader.loadResources();
 		SoundEffectPlayer.loadSounds();
 		
-		mainMenuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/Nordkorea.mp3"));
+		mainMenuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/NorkoreaTechno.mp3"));
+		mainMenuMusic.setLooping(true);
 		mainMenuMusic.play();
 		
 		state = STATE_MAINMENU;
