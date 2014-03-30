@@ -143,7 +143,7 @@ public class DancePattern extends Group {
 				if (mPerfect.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + PERFECT_SCORE);
-					parent.setPlayerPoints(parent.getPlayerPoints() + 20);
+					parent.setPlayerPoints(Math.round(parent.getPlayerPoints() + (20*parent.getMultiplicator())));
 					a.getArrowImage().setColor(0, 1f, 0, 1f);
 					a.setActive(false);
 					hit = true;
@@ -154,7 +154,7 @@ public class DancePattern extends Group {
 				} else if (mGood.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + GOOD_SCORE);
-					parent.setPlayerPoints(parent.getPlayerPoints() + 10);
+					parent.setPlayerPoints(Math.round(parent.getPlayerPoints() + (10*parent.getMultiplicator())));
 					a.getArrowImage().setColor(1f, 0.5f, 0, 1f);
 					a.setActive(false);
 					hit = true;
@@ -164,7 +164,7 @@ public class DancePattern extends Group {
 				} else if (mBad.contains(centerX, centerY) && a.isActive()) {
 					GameScreen parent = (GameScreen) getParent();
 					parent.setSugarBar(parent.getSugarBarValue() + BAD_SCORE);
-					parent.setPlayerPoints(parent.getPlayerPoints() + 5);
+					parent.setPlayerPoints(Math.round(parent.getPlayerPoints() + (5*parent.getMultiplicator())));
 					a.getArrowImage().setColor(1f, 0, 0, 1f);
 					a.setActive(false);
 					hit = true;
@@ -181,7 +181,7 @@ public class DancePattern extends Group {
 			if (parent.getPlayerPoints() - 5 >= 0) {
 				parent.setPlayerPoints(parent.getPlayerPoints() - 5);
 			}
-
+			parent.miss();
 			labelAction("Miss!");
 		}
 	}
