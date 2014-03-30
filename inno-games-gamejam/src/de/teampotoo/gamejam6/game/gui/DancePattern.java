@@ -168,7 +168,7 @@ public class DancePattern extends Group {
 					a.getArrowImage().setColor(1f, 0, 0, 1f);
 					a.setActive(false);
 					hit = true;
-					addComboCounter();
+					resetComboCounter();
 					labelAction("Bad!");
 					//mDebugCenter.setPosition(centerX, centerY);
 				}
