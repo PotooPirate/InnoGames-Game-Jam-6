@@ -181,7 +181,7 @@ public class DancePattern extends Group {
 			if (parent.getPlayerPoints() - 5 >= 0) {
 				parent.setPlayerPoints(parent.getPlayerPoints() - 5);
 			}
-
+			parent.miss();
 			labelAction("Miss!");
 		}
 	}
