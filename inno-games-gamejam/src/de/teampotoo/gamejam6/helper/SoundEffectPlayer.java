@@ -114,7 +114,7 @@ public class SoundEffectPlayer {
 		great = getSound("Great.mp3");
 		greatjob = getSound("GreatJob.mp3");
 		highscore = getSound("Highscore.mp3");
-		kimjungundancerevolution = getSound("KimJungDanceRevolution.mp3");
+		kimjungundancerevolution = getSound("Intro.mp3");
 		kimjungun = getSound("KimJungUn.mp3");
 		looser = getSound("Looser.mp3");
 		potoo = getSound("Potoo.mp3");
@@ -122,6 +122,47 @@ public class SoundEffectPlayer {
 		youareawesome = getSound("YouAreAwesome.mp3");
 		youbeatthehighscore = getSound("YouBeatTheHighscore.mp3");
 		
+	}
+	
+	public static Sound getSoundRef(Effect playEffect){
+		switch(playEffect){
+		case awesome:
+			return awesome;
+		case brilliant:
+			return brilliant;
+		case cccombobreaker:
+			return cccombobreaker;
+		case combobreaker:
+			return combobreaker;
+		case extreme:
+			return extreme;
+		case fantastic:
+			return fantastic;
+		case fatality:
+			return fatality;
+		case great:
+			return great;
+		case greatjob:
+			return greatjob;
+		case highscore:
+			return highscore;
+		case kimjungundancerevolution:
+			return kimjungundancerevolution;
+		case kimjungun:
+			return kimjungun;
+		case looser:
+			return looser;
+		case potoo:
+			return potoo;
+		case ridiculus:
+			return ridiculus;
+		case youareawesome:
+			return youareawesome;
+		case youbeatthehighscore:
+			return youbeatthehighscore;
+		default:
+			return null;
+		}
 	}
 	
 	

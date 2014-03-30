@@ -2,10 +2,12 @@ package de.teampotoo.gamejam6;
 
 import java.io.IOException;
 
+import javax.lang.model.SourceVersion;
+
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music.OnCompletionListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -14,6 +16,7 @@ import de.teampotoo.gamejam6.credits.CreditsScreen;
 import de.teampotoo.gamejam6.game.GameScreen;
 import de.teampotoo.gamejam6.helper.ResourceLoader;
 import de.teampotoo.gamejam6.helper.SoundEffectPlayer;
+import de.teampotoo.gamejam6.helper.SoundEffectPlayer.Effect;
 import de.teampotoo.gamejam6.highscore.HighscoreScreen;
 import de.teampotoo.gamejam6.mainmenu.MainScreen;
 import de.teampotoo.musikeditor.musikMappingEditor;
@@ -36,7 +39,8 @@ public class GameJam6 implements ApplicationListener {
 	private Stage mCredits;
 	private Stage mHighscore;
 	
-	private Sound mainMenuMusic;
+	private Music mainMenuMusic;
+	private Music menuIntro;
 	
 	private GameScreen mGameGroup;
 	private HighscoreScreen mHighscoreScreen;
@@ -49,10 +53,19 @@ public class GameJam6 implements ApplicationListener {
 	@Override
 	public void create() {
 		ResourceLoader.loadResources();
-		SoundEffectPlayer.loadSounds();
 		
-		mainMenuMusic = Gdx.audio.newSound(Gdx.files.internal("data/music/NorkoreaTechno.mp3"));
-		mainMenuMusic.loop();
+		menuIntro = Gdx.audio.newMusic(Gdx.files.internal("data/soundEffects/Intro.mp3"));
+		mainMenuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/NorkoreaTechno.mp3"));
+		
+		menuIntro.setOnCompletionListener(new OnCompletionListener() {
+			@Override
+			public void onCompletion(Music music) {
+				mainMenuMusic.setLooping(true);
+				mainMenuMusic.play();
+				
+			}
+		});
+		menuIntro.play();
 		
 		state = STATE_MAINMENU;
 		
@@ -164,6 +177,6 @@ public class GameJam6 implements ApplicationListener {
 	public void startMainMenu() {
 		state = STATE_MAINMENU;
 		Gdx.input.setInputProcessor(mMainMenu);
-		mainMenuMusic.loop();
+		mainMenuMusic.play();
 	}
 }
