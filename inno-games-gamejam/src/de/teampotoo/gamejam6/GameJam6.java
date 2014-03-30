@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -35,7 +36,7 @@ public class GameJam6 implements ApplicationListener {
 	private Stage mCredits;
 	private Stage mHighscore;
 	
-	private Music mainMenuMusic;
+	private Sound mainMenuMusic;
 	
 	private GameScreen mGameGroup;
 	private HighscoreScreen mHighscoreScreen;
@@ -50,9 +51,8 @@ public class GameJam6 implements ApplicationListener {
 		ResourceLoader.loadResources();
 		SoundEffectPlayer.loadSounds();
 		
-		mainMenuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/NorkoreaTechno.mp3"));
-		mainMenuMusic.setLooping(true);
-		mainMenuMusic.play();
+		mainMenuMusic = Gdx.audio.newSound(Gdx.files.internal("data/music/NorkoreaTechno.mp3"));
+		mainMenuMusic.loop();
 		
 		state = STATE_MAINMENU;
 		
@@ -164,6 +164,6 @@ public class GameJam6 implements ApplicationListener {
 	public void startMainMenu() {
 		state = STATE_MAINMENU;
 		Gdx.input.setInputProcessor(mMainMenu);
-		mainMenuMusic.play();
+		mainMenuMusic.loop();
 	}
 }
