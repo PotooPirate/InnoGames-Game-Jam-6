@@ -3,9 +3,8 @@ package de.teampotoo.gamejam6.game;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -46,6 +45,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 	private int mPlayerPoints; // current points while the game runs
 	private int mHighscorePoints; // Frozen points after the game finished
 	private float mMultiplicator; //Combo multiplicator
+	private boolean alreadyFinished;
 	
 	//Invisible HUD
 	private Image sLeftInvImage;
@@ -61,7 +61,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 	private DancePattern mDancePattern;
 	private Label mPointsLabel;
 	private Label mComboLabel;
-	private Label mRocketReachedSkyLabel;
+	private Image mRocketReachedSky;
 	
 	// Music
 	private ISong mCurrentSong;
@@ -122,15 +122,6 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		// Let the music
 		mCurrentSong = SongFactory.createSong1(this, Difficulty.easy);
 		
-		//Implementing background labels
-		mRocketReachedSkyLabel = new Label("ROCKET START +500 POINTS"
-				, ResourceLoader.sComboSkin);
-		mRocketReachedSkyLabel.addAction(Actions.alpha(0f));
-		mRocketReachedSkyLabel.setPosition(Gdx.graphics.getWidth() / 2
-				- mRocketReachedSkyLabel.getWidth() / 2, Gdx.graphics.getHeight()
-				- mRocketReachedSkyLabel.getHeight() - 20);
-		addActor(mRocketReachedSkyLabel);
-		
 		//Invisible Hud
 		sLeftInvImage = new Image(ResourceLoader.sTransparent);
 		sLeftInvImage.setBounds(mDancePattern.getX(), mDancePattern.getY() + 500, 100, 100);
@@ -180,6 +171,13 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		addActor(sDownInvImage);
 		addActor(sLeftInvImage);
 		addActor(sRightInvImage);
+		
+		mRocketReachedSky = new Image(new Texture("data/eyecandy/RocketStart.png"));
+		mRocketReachedSky.addAction(Actions.alpha(0f));
+		mRocketReachedSky.setPosition(Gdx.graphics.getWidth() / 2
+				- mRocketReachedSky.getWidth() / 2 - mRocketReachedSky.getWidth() / 2, Gdx.graphics.getHeight()
+				- mRocketReachedSky.getHeight() - 20 -  mRocketReachedSky.getHeight() / 2);
+		addActor(mRocketReachedSky);
 	}
 
 	/****************************************************************************
@@ -208,7 +206,7 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 	 * methods
 	 ****************************************************************************/
 	
-	public void checkArrows(int keycode) {
+	public void checkArrows(int keycode) { 
 		switch (keycode) {
 		case Input.Keys.LEFT:
 			mDancePattern.checkArrow(StepType.left);
@@ -234,8 +232,12 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 		mSugarBar.setValue(0.5f);
 		mDancePattern.clear();
 		mDancePattern.createLabel();
+		if (inHighscore)
+			SoundEffectPlayer.Play(Effect.highscore);
+		else
 			SoundEffectPlayer.Play(Effect.looser);
 		mGameJam6.startHighscore();
+		alreadyFinished = true;
 		mCurrentSong.stop();
 
 	}
@@ -360,7 +362,9 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 
 	@Override
 	public void songEnd() {
+		if (!alreadyFinished)
 		successGameOver(mPlayerPoints);
+		alreadyFinished = false;
 	}
 
 	@Override
@@ -375,10 +379,9 @@ public class GameScreen extends Group implements IGameScreen, ISugarRocket {
 	}
 
 	@Override
-	public void rocketReachedSky() {
-		System.out.println("ROCKET REACHED SKY!");
+	public void rocketReachedSky() { 
 		mPlayerPoints += 500;
-		mRocketReachedSkyLabel.addAction(Actions.sequence(
+		mRocketReachedSky.addAction(Actions.sequence(
 				Actions.fadeIn(0.25f),
 				Actions.delay(2f),
 				Actions.fadeOut(0.5f)
