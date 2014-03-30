@@ -20,7 +20,7 @@ public class Player {
 	 ****************************************************************************/
 
 	public enum DanceStyle {
-		level1, level2, level3, level4, level5, losing
+		level1, level2, level3, level4, level5, losing, wine, wineing
 	}
 
 	/****************************************************************************
@@ -83,6 +83,12 @@ public class Player {
 			} else if (currentState == DanceStyle.losing) {
 
 				state.setAnimation(0, "move0", true);
+			} else if (currentState == DanceStyle.wine) {
+
+				state.setAnimation(0, "wine", false);
+			} else if (currentState == DanceStyle.wineing) {
+
+				state.setAnimation(0, "wineing", true);
 			}
 		}
 	}
@@ -129,6 +135,9 @@ public class Player {
 			}
 
 			public void complete(int trackIndex, int loopCount) {
+				if (currentState == DanceStyle.wine) {
+					setState(DanceStyle.wineing);
+				}
 			}
 
 			public void start(int trackIndex) {
