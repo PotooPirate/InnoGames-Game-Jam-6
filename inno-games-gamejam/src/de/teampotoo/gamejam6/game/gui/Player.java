@@ -60,6 +60,10 @@ public class Player {
 
 	public void setState(DanceStyle newDance) {
 
+		if (currentState == DanceStyle.wineing && newDance == DanceStyle.wine) { 
+			return;
+		}
+		
 		if (currentState == newDance) {
 			return;
 		} else {

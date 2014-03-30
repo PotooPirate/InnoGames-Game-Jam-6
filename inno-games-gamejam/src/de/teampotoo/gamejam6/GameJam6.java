@@ -167,18 +167,19 @@ public class GameJam6 implements ApplicationListener {
 	public void startHighscore() {
 		state = STATE_HIGHSCORE;
 		Gdx.input.setInputProcessor(mHighscore);
-		stopMusic();
+		if (!mainMenuMusic.isPlaying())
+		mainMenuMusic.play();
 	}
 	
 	public void startCredits() {
 		state = STATE_CREDITS;
 		Gdx.input.setInputProcessor(mCredits);
-		stopMusic();
 	}
 	
 	public void startMainMenu() {
 		state = STATE_MAINMENU;
 		Gdx.input.setInputProcessor(mMainMenu);
+		if (!mainMenuMusic.isPlaying())
 		mainMenuMusic.play();
 	}
 }
